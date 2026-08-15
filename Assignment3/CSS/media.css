@@ -1,0 +1,78 @@
+/*  X-Small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) { 
+    .xs-w-100 { width: 100%; }
+    .xs-w-90 { width: 90%; }
+    .xs-flex-col { flex-direction: column; }
+    .xs-gap-20 { gap: 20px; }
+    .nav-links {
+      display: none; /* Hide navigation links on small screens */
+    }
+    .container{
+    width: 90%;
+    margin: 0 auto;
+    }
+     .review-card, .sticky {
+        position: static !important; /* Disables sticky positioning completely */
+    }
+
+ }
+
+/*  Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) { 
+    
+    .sm-w-100 { width: 100%; }
+    .sm-w-90 { width: 90%; }
+    .sm-flex-col { flex-direction: column; }
+    .sm-gap-20 { gap: 20px; }
+    .nav-links {
+      display: none; /* Hide navigation links on small screens */
+    }
+    .container{
+    width: 90%;
+    margin: 0 auto;
+    }
+
+     .review-card, .sticky {
+        position: static !important; /* Disables sticky positioning completely */
+    }
+
+   
+
+ }
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) { 
+    .md-w-100 { width: 100%; }
+    .md-w-90 { width: 90%; }
+    .md-flex-col { flex-direction: column; }
+    .md-gap-20 { gap: 20px; }
+    .nav-links {
+      display: none; /* Hide navigation links on small screens */
+    }
+    .container{
+    width: 90%;
+    margin: 0 auto;
+    }
+     .review-card, .sticky {
+        position: static !important; /* Disables sticky positioning completely */
+    }
+     
+}
+
+/* Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) { 
+/* Since I did it as a desktop first responsive design it will not affect larger screens */
+/* Except the container */
+.container{
+    width: 90%;
+    margin: 0 auto;
+    }
+ }
+
+/* X-Large devices (large desktops, less than 1400px) */
+@media (max-width: 1399.98px) { 
+
+ }
+
+/* XX-Large devices (larger desktops) */
+/* No media query since the xxl breakpoint has no upper bound on its width */

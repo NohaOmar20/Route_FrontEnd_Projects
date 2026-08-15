@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What's for Dinner?</title>
+  <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- <link rel="stylesheet" href="fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.min.css"> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="./images/icon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="css/style.css">
+</head>
+</head>
+
+<body class=" min-vh-100">
+  <!-- ------------- Start Navbar ----------------------- -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <div class="d-flex align-items-center gap-3">
+          <span style="width: 40px; height: 40px;"
+            class="bg-main-orange p-3 rounded-circle d-flex justify-content-center text-center align-items-center">
+            <i class="fa-solid fa-utensils text-white"></i></span>
+          <div>
+            <h1 class="fs-4">What's for Dinner?</h1>
+            <p class="fs-6 text-muted mb-0">
+              Your daily meal inspiration</p>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </nav>
+
+  <!-- ------------- End Navbar ----------------------- -->
+
+  <!-- main content -->
+  <main class="bg-beige py-5">
+    <div class="container">
+      <div class="row bg-light shadow-md rounded-xl">
+        <div class="col-md-5 ps-0">
+          <div>
+            <div class="img-wrapper h-100 position-relative">
+              <div class="review position-absolute bg-white rounded-pill px-3 py-2 d-flex align-items-center gap-2">
+                <i class="fa-solid fa-star text-warning"></i>
+                <span class="fw-bold">4.5</span>
+                <span class="text-muted">(445 reviews)</span>
+              </div>
+              <img class="w-100 h-100 object-fit-cover rounded-start-xl" src="./images/meal-1.jpg" />
+
+              <div class="preview position-absolute row px-2 py-3 bg-white rounded-xl">
+                <div class="col-md-4 text-center">
+                  <div>
+                    <i class="fa-solid fa-clock text-orange"></i>
+                    <p class="text-muted mb-0">Prep Time: </p>
+                    <p class="fw-bold mb-0">20 mins</p>
+                  </div>
+                </div>
+
+                <div class="col-md-4 text-center">
+                  <div>
+                    <i class="fa-solid fa-fire-burner text-danger"></i>
+                    <p class="text-muted mb-0">Cook Time: </p>
+                    <p class="fw-bold mb-0">20 mins</p>
+                  </div>
+                </div>
+                <div class="col-md-4 text-center">
+                  <div>
+                    <i class="fa-solid fa-users text-primary"></i>
+                    <p class="text-muted mb-0">Servings: </p>
+                    <p class="fw-bold mb-0">4 people</p>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7 ">
+          <div class="right-content py-4 pe-4">
+            <div class="d-flex gap-2">
+              <span class="badge bg-success bg-opacity-25 rounded-pill  text-white">Easy</span>
+              <span class="badge bg-primary bg-opacity-25 rounded-pill text-white  ms-2">Asian</span>
+            </div>
+            <header class="py-2">
+              <h2 class="fw-bold">Pad Thai</h2>
+              <h3 class="fs-5 fw-light text-muted">Popular Thai stir-fried noodles with shrimp and peanuts</h3>
+            </header>
+            <div class="alert-danger rounded-xl border-start border-5 border-danger p-3 alert-info" role="alert">
+              <div class="d-flex align-items-center">
+                <i class="fa-solid fa-triangle-exclamation text-danger fs-4 me-2"></i>
+                <div>
+                  <p class="mb-0 fw-bold">
+                    Extended Preparation Time
+                  </p>
+                  <p class="mb-0 text-danger"> 
+                    This recipe requires more than 45 minutes to prepare. Plan accordingly!
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <nav>
+                <div class="nav nav-tabs custom-tabs" id="nav-tab" role="tablist">
+                  <button class="nav-link active" id="nav-ingredients-tab" data-bs-toggle="tab"
+                    data-bs-target="#nav-ingredients" type="button" role="tab">
+                    <i class="fa-solid fa-list-check me-2"></i>Ingredients
+                  </button>
+                  <button class="nav-link" id="nav-instructions-tab" data-bs-toggle="tab"
+                    data-bs-target="#nav-instructions" type="button" role="tab">
+                    <i class="fa-solid fa-book-open me-2"></i>Instructions
+                  </button>
+                  <button class="nav-link" id="nav-nutrition-tab" data-bs-toggle="tab" data-bs-target="#nav-nutrition"
+                    type="button" role="tab">
+                    <i class="fa-solid fa-chart-pie me-2"></i>Nutrition
+                  </button>
+                  <button class="nav-link" id="nav-tips-tab" data-bs-toggle="tab" data-bs-target="#nav-tips"
+                    type="button" role="tab">
+                    <i class="fa-solid fa-lightbulb me-2"></i>Chef's Tips
+                  </button>
+                </div>
+              </nav>
+
+              <div class="tab-content" id="nav-tabContent">
+                
+                <div class="tab-pane fade show active" id="nav-ingredients" role="tabpanel">
+                  <div class="bg-cream p-3 rounded-xl mt-3">
+                    <ol class="ingredient-list">
+                      <li class="py-1"><span>1kg pork shoulder</span></li>
+                      <li class="py-1"><span>1 cup BBQ sauce</span></li>
+                      <li class="py-1"><span>1/2 cup apple cider vinegar</span></li>
+                      <li class="py-1"><span>2 tablespoons brown sugar</span></li>
+                      <li class="py-1"><span>1 tablespoon paprika</span></li>
+                      <li class="py-1"><span>1 tablespoon garlic powder</span></li>
+                      <li class="py-1"><span>Burger buns</span></li>
+                      <li class="py-1"><span>Coleslaw for serving</span></li>
+                    </ol>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="nav-instructions" role="tabpanel">
+                    <div class=" bg-light p-3 rounded-xl mt-3">
+                    <ol class="ingredient-list">
+                      <li class="py-1"><span>1kg pork shoulder</span></li>
+                      <li class="py-1"><span>1 cup BBQ sauce</span></li>
+                      <li class="py-1"><span>1/2 cup apple cider vinegar</span></li>
+                      <li class="py-1"><span>2 tablespoons brown sugar</span></li>
+                      <li class="py-1"><span>1 tablespoon paprika</span></li>
+                      <li class="py-1"><span>1 tablespoon garlic powder</span></li>
+                      <li class="py-1"><span>Burger buns</span></li>
+                      <li class="py-1"><span>Coleslaw for serving</span></li>
+                    </ol>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="nav-nutrition" role="tabpanel">
+                  <div class="row g-2">
+                    <div class="col-md-6">
+                      <div>
+                        <div class="d-flex bg-light p-3 rounded-xl mt-3 justify-content-between align-items-center">
+                          <div>
+                         <span class="bg-light-orange rounded-3 p-2 "> <i class="fa-solid fa-fire text-orange"></i></span>
+                          <span> Calories</span>
+                          </div>
+                          <div>
+                            <span class="fw-bold">250 Kcal</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div>
+                        <div class="d-flex bg-light p-3 rounded-xl mt-3 justify-content-between align-items-center">
+                          <div>
+                         <span class="bg-light-orange rounded-3 p-2 "> <i class="fa-solid fa-fire text-orange"></i></span>
+                          <span> Protein</span>
+                          </div>
+                          <div>
+                            <span class="fw-bold">25g</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div>
+                        <div class="d-flex bg-light p-3 rounded-xl mt-3 justify-content-between align-items-center">
+                          <div>
+                         <span class="bg-light-orange rounded-3 p-2 "> <i class="fa-solid fa-fire text-orange"></i></span>
+                          <span> Carbohydrates</span>
+                          </div>
+                          <div>
+                            <span class="fw-bold">30g</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div>
+                        <div class="d-flex bg-light p-3 rounded-xl mt-3 justify-content-between align-items-center">
+                          <div>
+                         <span class="bg-light-orange rounded-3 p-2 "> <i class="fa-solid fa-fire text-orange"></i></span>
+                          <span> Fat</span>
+                          </div>
+                          <div>
+                            <span class="fw-bold">15g</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div>
+                        <div class="d-flex bg-light p-3 rounded-xl mt-3 justify-content-between align-items-center">
+                          <div>
+                         <span class="bg-light-orange rounded-3 p-2 "> <i class="fa-solid fa-fire text-orange"></i></span>
+                          <span> Fiber</span>
+                          </div>
+                          <div>
+                            <span class="fw-bold">5g</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div>
+                        <div class="d-flex bg-light p-3 rounded-xl mt-3 justify-content-between align-items-center">
+                          <div>
+                         <span class="bg-light-orange rounded-3 p-2 "> <i class="fa-solid fa-fire text-orange"></i></span>
+                          <span> Sodium</span>
+                          </div>
+                          <div>
+                            <span class="fw-bold">250 mg</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="nav-tips" role="tabpanel">
+                  <div class="d-flex  align-items-center bg-light-orange border-start border-5 border-warning p-3 rounded-xl mt-3">
+                    <i class="fa-solid text-orange fa-circle-check"></i>
+                    <p class="mb-0">Use ripe, in-season fruits for the best flavor.</p>
+                  </div>
+                   <div class="d-flex  align-items-center bg-light-orange border-start border-5 border-warning p-3 rounded-xl mt-3">
+                    <i class="fa-solid text-orange fa-circle-check"></i>
+                    <p class="mb-0">Use ripe, in-season fruits for the best flavor.</p>
+                  </div>
+                   <div class="d-flex  align-items-center bg-light-orange border-start border-5 border-warning p-3 rounded-xl mt-3">
+                    <i class="fa-solid text-orange fa-circle-check"></i>
+                    <p class="mb-0">Use ripe, in-season fruits for the best flavor.</p>
+                  </div>
+                   <div class="d-flex  align-items-center bg-light-orange border-start border-5 border-warning p-3 rounded-xl mt-3">
+                    <i class="fa-solid text-orange fa-circle-check"></i>
+                    <p class="mb-0">Use ripe, in-season fruits for the best flavor.</p>
+                  </div>
+                   <div class="d-flex  align-items-center bg-light-orange border-start border-5 border-warning p-3 rounded-xl mt-3">
+                    <i class="fa-solid text-orange fa-circle-check"></i>
+                    <p class="mb-0">Use ripe, in-season fruits for the best flavor.</p>
+                  </div>
+                </div>
+              </div>
+
+             
+            </div>
+            <hr/>
+             <div>
+                <button class="btn bg-main-orange p-2 mt-3 rounded-3 text-white" id="add-to-favorites">
+                  <i class="fa-solid fa-rotate me-2 text-white"></i>Try another recipe</button>
+              </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    </div>
+  </main>
+  <!-- End main content -->
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./js/script.js"></script>
+
+</body>
+
+</html>

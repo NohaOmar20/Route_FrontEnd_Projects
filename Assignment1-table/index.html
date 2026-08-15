@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Noha's Portfolio</title>
+  </head>
+  <!-- This is a portfolio project, the basic structure for the page is 3 sections used only HTML elements and 
+   a little bit of inline CSS for styling, all of them is made using Tables beside form in the last section.
+    you can find the syntax of each section in the Readme file attached -->
+
+  <body>
+    <!-- ************************************ Start About me Section ********************************* -->
+    <!-- headers it scaled from h1 to h6, used for titles -->
+    <h1 align="center" style="color: #4682b4">Noha Omar Portfolio</h1>
+    <h5 align="center" style="color: #468eb4">Front-End Developer</h5>
+    <h2 style="color: #4682b4">About Me</h2>
+    <!-- I've used here a table to organize the content with only one raw (tr) and the 2 cells (td), 
+     I put the the table width 100 to take the full screen width, then organized the content 30% and 70%, 
+     for the social media links: they are placed in a nested table as anchors inside them images -->
+    <table width="100%">
+      <tr>
+        <td width="30%" align="center">
+          <img src="./images/noha.jpeg" alt="Noha Omar Farrag" width="250px" />
+          <br />
+          <table align="center">
+            <tr>
+              <td>
+                <a href="https://www.linkedin.com/in/nohaomar/" target="_blank"
+                  ><img src="./images/linkedin.png" alt="LinkedIn" width="40px"
+                /></a>
+              </td>
+              <td>
+                <a href="https://github.com/NohaOmar20" target="_blank"
+                  ><img src="./images/github.png" alt="GitHub" width="40px"
+                /></a>
+              </td>
+              <td>
+                <a href="https://www.instagram.com/noha.omar._/" target="_blank"
+                  ><img
+                    src="./images/instagram.png"
+                    alt="Instagram"
+                    width="40px"
+                /></a>
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td width="70%">
+          <p>
+            Quality-driven Front-End Developer with expertise in HTML, CSS,
+            JavaScript, and UX/UI design certified by Google UX/UI. Skilled in
+            building responsive, user-centric, and high-performance web
+            applications that emphasize innovation and continuous improvement.
+            <br /><br />
+            Combining technical precision with a deep respect for teamwork,
+            integrity, and sustainability, I deliver solutions that meet global
+            standards of quality and usability. A Computer Science Engineering
+            graduate from the Egypt-Japan University of Science and Technology
+            (E-JUST), with research in AI-powered Text-to-Image Synthesis, I aim
+            to contribute to responsible innovation and cross cultural
+            collaboration in advancing front-end excellence.
+          </p>
+
+          <table width="100%">
+            <tr bgcolor="#ADD8E6">
+              <th align="start">Skills</th>
+            </tr>
+
+            <tr>
+              <td>
+                <ul>
+                  <li>
+                    <a href="#" target="_blank" style="color: #4682b4">HTML</a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank" style="color: #4682b4">CSS</a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank" style="color: #4682b4"
+                      >JavaScript</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#" target="_blank" style="color: #4682b4"
+                      >UX/UI Design</a
+                    >
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <!-- ************************************ End About me Section ************************************-->
+
+    <!-- ************************************ Start Experience Timeline Section ************************************-->
+    <!-- This section contains only table -->
+    <h2 style="color: #4682b4">Experience Timeline</h2>
+    <br />
+    <!-- To adjust the table border, I used border, border-collapse, cellspacing and bordercolor attributes ,
+     And for the organizing the tabke takes width 100% and we have here  5 columns, each with a specific width, 
+     the rowspan attribute merge 2 row cells together and the same thing for the colspan attribute , 
+     inside column 4, I've uses a list <ul> to organize the key achievements -->
+    <table
+      width="100%"
+      border="1"
+      border-collapse="collapse"
+      bordercolor="black"
+      cellspacing="0"
+    >
+      <caption align="top">
+        Professional Experience Overview
+      </caption>
+      <thead><tr bgcolor="#4682B4">
+        <th width="18%" style="color: white">Company</th>
+        <th width="10%" style="color: white">Logo</th>
+        <th style="color: white">Role</th>
+        <th width="32%" style="color: white">Key Achievements</th>
+        <th width="18%" style="color: white">Dates</th>
+      </tr>
+    </thead>
+      <tbody>
+      <tr>
+        <td rowspan="2">TechCrop Solutions Inc.</td>
+        <td rowspan="2">
+          <img src="./images/LOGO.png" alt="Tech Solutions Inc." width="100%" />
+        </td>
+        <td>Senior Full Stack developer</td>
+        <td>
+          <ul>
+            <li>Developed responsive web applications</li>
+            <li>Collaborated with design team to implement UI components</li>
+            <li>Improved website performance by 30%</li>
+          </ul>
+        </td>
+        <td>Jan 2020 - Present</td>
+      </tr>
+      <tr>
+        <td>Front-End Developer</td>
+        <td>
+          <ul>
+            <li>Developed responsive web applications</li>
+            <li>Collaborated with design team to implement UI components</li>
+            <li>Improved website performance by 30%</li>
+          </ul>
+        </td>
+        <td>Jan 2020 - Present</td>
+      </tr>
+      <tr>
+        <td>Tech Solutions Inc.</td>
+        <td>
+          <img src="./images/LOGO.png" alt="Tech Solutions Inc." width="100%" />
+        </td>
+        <td>Junior Front-End Developer</td>
+        <td>
+          <ul>
+            <li>Assisted in developing responsive web applications</li>
+            <li>Participated in code reviews and debugging sessions</li>
+          </ul>
+        </td>
+        <td>Jun 2019 - Dec 2019</td>
+      </tr>
+      <tr>
+        <td>Tech Solutions Inc.</td>
+        <td>
+          <img src="./images/LOGO.png" alt="Tech Solutions Inc." width="100%" />
+        </td>
+        <td>Junior Web Developer</td>
+        <td>
+          <ul>
+            <li>Developed responsive web applications</li>
+            <li>Collaborated with design team to implement UI components</li>
+            <li>Improved website performance by 30%</li>
+          </ul>
+        </td>
+        <td>Jan 2020 - Present</td>
+      </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+        <td colspan="5">Total Experience: 2 Years</td>
+      </tr>
+      </tfoot>
+      
+    </table>
+    <!-- ************************************ End Experience Timeline Section ************************************-->
+
+    <!-- ************************************ Start Contact me Section ************************************-->
+
+    <h2 style="color: #4682b4">Contact Me</h2>
+    <p>
+      Feel free to reach out to me at any time! Using the contact form below:
+    </p>
+    <br />
+    <!-- Organizing this section is based on a table structure + Form.
+     It consits of 2 main sections: Personal Information and Project Details and,
+      each section is grouped together by <fieldset> and labels by <legend> tags, 
+        The first fieldset
+        to organize the input fields to start at the same level, they have ake the same column,
+         so the table here consist of 4 columns, 3 raws,
+          1>> label, 2>> input field, 3>> label, 4>> input field 
+          And adjusted the widths accordingly
+        The second fieldset:
+        consist of 2 columns and 3 raws 
+        and the last raw takes the colspan of the table, 
+        Then the submit and the reset buttons come at the end of the form-->
+    <form>
+      <fieldset>
+        <legend>Personal Information</legend>
+        <table width="100%">
+          <tr>
+            <td width="15%">
+              <label for="firstName">First Name: <span>*</span> </label>
+            </td>
+            <td width="30%">
+              <input type="text" id="firstName" name="firstName" required />
+            </td>
+            <td width="15%">
+              <label for="lastName">Last Name: <span>*</span> </label>
+            </td>
+            <td width="40%">
+              <input type="text" id="lastName" name="lastName" required />
+            </td>
+          </tr>
+
+          <tr>
+            <td width="15%">
+              <label for="email">Email: <span>*</span> </label>
+            </td>
+            <td width="30%">
+              <input type="email" id="email" name="email" required />
+            </td>
+            <td width="15%"><label for="phone">Phone Number: </label></td>
+            <td width="40%"><input type="tel" id="phone" name="phone" /></td>
+          </tr>
+
+          <tr>
+            <td width="15%">
+              <label for="date">Preferred Meeting Date: </label>
+            </td>
+            <td width="30%"><input type="date" id="date" name="date" /></td>
+            <td width="15%">
+              <label for="time">Best Time to Contact: </label>
+            </td>
+            <td width="40%"><input type="time" id="time" name="time" /></td>
+          </tr>
+        </table>
+      </fieldset>
+      <br />
+      <fieldset>
+        <legend>Project Details</legend>
+        <table width="100%">
+          <tbody>
+            <tr>
+              <td width="10%">
+                <label for="projectType">Project Type: <span>*</span> </label>
+                <input
+                  type="text"
+                  id="projectType"
+                  name="projectType"
+                  required
+                />
+              </td>
+
+              <td width="20%">
+                <label for="projectDescription"
+                  >Project Description: <span>*</span>
+                </label>
+                <textarea
+                  id="projectDescription"
+                  name="projectDescription"
+                  required
+                ></textarea>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label>Budget Range:</label><br />
+                <input
+                  type="radio"
+                  id="budget1"
+                  name="budget_range"
+                  value="under5k"
+                />
+                <label for="budget1">Under $5,000</label><br />
+
+                <input
+                  type="radio"
+                  id="budget2"
+                  name="budget_range"
+                  value="5k-10k"
+                />
+                <label for="budget2">$5,000 - $10,000</label><br />
+
+                <input
+                  type="radio"
+                  id="budget3"
+                  name="budget_range"
+                  value="over25k"
+                />
+                <label for="budget3">Over $25,000</label><br />
+              </td>
+              <td>
+                <label>Services Required (Check all that apply):</label><br />
+                <input
+                  type="checkbox"
+                  id="service1"
+                  name="services"
+                  value="uiux"
+                />
+                <label for="service1">UI/UX Design</label><br />
+
+                <input
+                  type="checkbox"
+                  id="service2"
+                  name="services"
+                  value="frontend"
+                />
+                <label for="service2">Frontend Development</label><br />
+
+                <input
+                  type="checkbox"
+                  id="service3"
+                  name="services"
+                  value="backend"
+                />
+                <label for="service3">Backend Development</label><br />
+
+                <input
+                  type="checkbox"
+                  id="service4"
+                  name="services"
+                  value="hosting"
+                />
+                <label for="service4">Hosting & Deployment</label><br />
+
+                <input
+                  type="checkbox"
+                  id="service5"
+                  name="services"
+                  value="maintenance"
+                />
+                <label for="service5">Maintenance & Support</label>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <label for="referral">How did you hear about me?</label>
+                <select id="referral" name="referral">
+                  <option value="">-- select source --</option>
+                  <option value="linkedin">LinkedIn</option>
+                  <option value="github">GitHub</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </fieldset>
+      <br />
+      <button type="submit" style="background-color: #007bff; color: white">
+        Send Message
+      </button>
+      <button type="reset" style="background-color: #dc3545; color: white">
+        Clear Form
+      </button>
+      <br />
+      <br />
+    </form>
+    <!-- ************************************ End Contact me Section ************************************-->
+  </body>
+</html>

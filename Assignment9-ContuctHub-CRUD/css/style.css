@@ -1,0 +1,84 @@
+:root {
+
+ --color-violet: #5A36F7;
+ --color-blue: #1963FD;
+ --color-orange:#FF7700;
+ --color-red:#F00031;
+
+}
+
+
+
+body {
+  font-family: 'Inter', sans-serif;
+ 
+}
+
+
+
+/* ****************************** Header *********************** */
+.min-w-0{
+  min-width: 0;
+}
+.bg-gradient-violet{
+  background-color:var(--color-violet);
+}
+.text-violet{
+  color:var(--color-violet);
+}
+.bg-gradient-blue{
+  background-color:var(--color-blue);
+}
+.bg-gradient-orange{
+  background-color:var(--color-orange);
+}
+.bg-gradient-red{
+  background-color:var(--color-red);
+}
+
+.bg-primary-subtle{
+  background-color:#DBEAFE;
+}
+.bg-violet-subtle{
+  background-color:#F3E8FF;
+}
+.bg-danger-subtle{
+  background-color:#FFF1F2;
+}
+.bg-success-subtle{
+  background-color:#D0FAE5;
+}
+.bg-warning-subtle{
+  background-color:#FFF8EC;
+}
+
+.icon-box-sm{
+  width: 40px;
+  height: 40px;
+ 
+}
+.rounded-4{
+  border-radius:1rem;
+}
+
+.hover-bg-warning:hover{
+  background-color:#FFF8EC;
+}
+.hover-bg-danger:hover{
+  background-color:#FFF1F2;
+}
+
+.icon-box{
+  width: 35px;
+  height: 35px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+ 
+}
+.backdrop-blur {
+  background-color: rgba(255, 255, 255, 0.75) !important; /* Semi-transparent white */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* For Safari support */
+}

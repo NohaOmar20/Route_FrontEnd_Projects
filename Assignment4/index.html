@@ -1,0 +1,848 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="icon" href="./images/icon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./CSS/utilities.css" />
+    <link rel="stylesheet" href="./CSS/style.css" />
+    <link rel="stylesheet" href="./CSS/media.css" />
+    <title>Assignment 4 | UX Review</title>
+  </head>
+  <!-- -->
+  <body class="border-2 border-black">
+    <div id="navbar" class="z-100 top-20 fixed right-0 left-0">
+      <div class="container">
+        <div
+          class="bg-white flex flex-nowrap align-center justify-between p-10 border-2 border-black rounded-10"
+        >
+          <div id="logo" class="text-2xl font-bold">
+            <a class="flex align-center gap-10" href="./index.html#hero">
+              <span class="text-black"> The UX </span>
+              <span class="text-orange"> Review</span>
+            </a>
+          </div>
+          <div
+            class="box-shadow-sm p-10 border-2 border-black rounded-10 cursor-pointer hover-translate-Y transition-all"
+          >
+            <i class="fa-solid fa-bars text-xl"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      id="hero"
+      class="bg-yellow flex flex-col align-center relative overflow-hidden pt-100 md-flex-row md-gap-20 md-py-50"
+    >
+      <div class="container">
+        <div>
+          <div class="absolute inset-0 opacity-10">
+            <div
+              class="absolute top-10 left-10 w-100-p h-100-p bg-black rotate-12"
+            ></div>
+            <div
+              class="absolute top-100 right-80 w-100-p h-100-p bg-red-500 rotate-45"
+            ></div>
+            <div
+              class="absolute bottom-20 right-30 w-100-p h-100-p bg-blue-500 rotate-45"
+            ></div>
+          </div>
+        </div>
+        <div
+          class="w-100 relative z-50 flex flex-col align-start gap-20 py-50 md-w-100 md-flex-row md-gap-20 md-py-50"
+        >
+          <div class="md-w-45">
+            <div
+              class="bg-black border-2 border-black box-shadow-md p-10 rotate--10 fit-content"
+            >
+              <span class="text-white text-sm font-bold">🔥 TRENDING NOW</span>
+            </div>
+            <h1 class="text-left text-5xl text-shadow-lg">
+              <span class="text-black">BRUTAL</span><br />
+              <span class="text-red">THOUGHTS</span> <br /><span
+                class="text-blue"
+                >BOLD IDEAS</span
+              >
+            </h1>
+            <div
+              class="bg-white border-2 border-black box-shadow-sm p-15 md-mb-20"
+            >
+              <p class="text-xl">
+                Raw, unfiltered content about tech, design, and culture. No
+                sugar-coating, just pure truth that hits different.
+              </p>
+            </div>
+
+            <div
+              class="flex align-center justify-between mb-15 md-flex-row md-flex-align-center md-flex-justify-between"
+            >
+              <!-- Button 1 Container -->
+              <div class="shadow-container-md mr-4">
+                <button
+                  class="bg-black text-white text-lg font-bold py-10 px-20 border-2 border-black transition-transform hover-press-into-shadow"
+                >
+                  <i class="fa-brands fa-space-awesome"></i> START READING
+                </button>
+              </div>
+
+              <!-- Button 2 Container -->
+              <div class="shadow-container-md">
+                <button
+                  class="bg-white text-black text-lg font-bold py-10 px-20 border-2 border-black transition-transform hover-press-into-shadow"
+                >
+                  <i class="fa-solid fa-play"></i> WATCH INTRO
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative py-20 md-w-45">
+            <div
+              class="absolute z-10 -top-10 -right-10 bg-red-500 border-2 border-black box-shadow-md p-10 rotate-12"
+            >
+              <span class="text-white text-base font-bold"> FEATURED</span>
+            </div>
+            <div class="card border-2 border-black box-shadow-lg">
+              <img src="./images/header-img.png" alt="hero img" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      id="articles"
+      class="bg-white py-20 relative overflow-hidden border-2 border-black"
+    >
+      <div class="container">
+        <div
+          class="w-100 flex flex-col align-start justify-between lg-flex-row lg-gap-20 lg-py-50"
+        >
+          <div class="lg-w-60">
+            <div class="w-100 flex justify-between align-center mb-10">
+              <h3 class="text-2xl">LATEST ARTICLES</h3>
+              <div
+                class="hidden bg-black border-2 border-black box-shadow-md p-10 rotate-10"
+              >
+                <span class="text-white text-sm font-bold">
+                  🔥 FRESH CONTENT
+                </span>
+              </div>
+            </div>
+            <div
+              id="cards"
+              class="w-100 flex flex-col align-start justify-between lg-flex-row lg-flex-wrap lg-gap-20"
+            >
+              <div
+                class="card hover-red border-2 border-black box-shadow-lg p-20 mb-20"
+              >
+                <div class="flex flex-col align-start justify-between">
+                  <div class="relative w-40 mb-10">
+                    <img
+                      src="./images/artical1.jpg"
+                      alt="Article 1"
+                      class="border border-black"
+                    />
+                    <div
+                      class="absolute -top-10 -right-10 bg-red-500 border-2 border-black py-5 px-10 rotate-10"
+                    >
+                      <span class="text-white text-sm">NEW</span>
+                    </div>
+                  </div>
+                  <div class="flex-1">
+                    <div
+                      class="bg-yellow-500 border box-shadow-sm text-xs font-semibold p-6 mb-10 rotate--2"
+                    >
+                      TECH
+                    </div>
+                  </div>
+                  <h4 class="text-xl font-bold mb-10 text-left">
+                    Why Your Website Needs More Edge
+                  </h4>
+                  <p class="mb-6 text-left text-lg">
+                    Exploring the psychological impact of bold, unapologetic
+                    design choices on user engagement and brand perception in
+                    the digital age.
+                  </p>
+                  <div
+                    class="flex flex-col justify-between align-start text-sm font-semibold"
+                  >
+                    <span class="text-black"
+                      ><i class="fa-solid fa-user"></i> BY ALEX BRUTAL</span
+                    >
+                    <span class="text-black">
+                      <i class="fa-solid fa-calendar"></i>
+                      JUNE 15, 2024</span
+                    >
+                    <span class="text-black">
+                      <i class="fa-solid fa-clock"></i>
+                      5 MIN READ
+                    </span>
+                    <span class="text-red">
+                      <i class="fa-solid fa-heart"></i>
+                      127
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="card hover-blue border-2 border-black box-shadow-lg p-20 mb-20"
+              >
+                <div class="flex flex-col align-start justify-between">
+                  <div class="relative w-40 mb-10">
+                    <img
+                      src="./images/article2.avif"
+                      alt="Article 1"
+                      class="border border-black"
+                    />
+                    <div
+                      class="absolute -top-10 -right-10 bg-blue-500 border-2 border-black py-5 px-10 rotate--10"
+                    >
+                      <span class="text-white text-sm">Hot</span>
+                    </div>
+                  </div>
+                  <div class="flex-1">
+                    <div
+                      class="bg-green border box-shadow-sm text-xs font-semibold p-6 mb-10 rotate-2"
+                    >
+                      DESIGN
+                    </div>
+                  </div>
+                  <h4 class="text-xl font-bold mb-10 text-left">
+                    Typography that Screams
+                  </h4>
+                  <p class="mb-6 text-left text-lg">
+                    Exploring the psychological impact of bold, unapologetic
+                    design choices on user engagement and brand perception in
+                    the digital age.
+                  </p>
+                  <div
+                    class="flex flex-col justify-between align-start text-sm font-semibold"
+                  >
+                    <span class="text-black"
+                      ><i class="fa-solid fa-user"></i> BY ALEX BRUTAL</span
+                    >
+                    <span class="text-black">
+                      <i class="fa-solid fa-calendar"></i>
+                      JAN 15, 2025</span
+                    >
+                    <span class="text-black">
+                      <i class="fa-solid fa-clock"></i>
+                      7 MIN READ
+                    </span>
+                    <span class="text-red">
+                      <i class="fa-solid fa-heart"></i>
+                      89
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="card hover-purple border-2 border-black box-shadow-lg p-20 mb-20"
+              >
+                <div class="flex flex-col align-start justify-between">
+                  <div class="relative w-40 mb-10">
+                    <img
+                      src="./images/article3.jpg"
+                      alt="Article 1"
+                      class="border border-black"
+                    />
+                    <div
+                      class="absolute -top-10 -right-10 bg-purple border-2 border-black py-5 px-10 rotate-10"
+                    >
+                      <span class="text-white text-sm">Viral</span>
+                    </div>
+                  </div>
+                  <div class="flex-1">
+                    <div
+                      class="bg-pink border box-shadow-sm text-xs font-semibold p-6 mb-10 rotate--2"
+                    >
+                      CULTURE
+                    </div>
+                  </div>
+                  <h4 class="text-xl font-bold mb-10 text-left">
+                    The Anti-Instgram Movement
+                  </h4>
+                  <p class="mb-6 text-left text-lg">
+                    Exploring the psychological impact of bold, unapologetic
+                    design choices on user engagement and brand perception in
+                    the digital age.
+                  </p>
+                  <div
+                    class="flex flex-col justify-between align-start text-sm font-semibold"
+                  >
+                    <span class="text-black"
+                      ><i class="fa-solid fa-user"></i> BY ALEX BRUTAL</span
+                    >
+                    <span class="text-black">
+                      <i class="fa-solid fa-calendar"></i>
+                      JAN 15, 2025</span
+                    >
+                    <span class="text-black">
+                      <i class="fa-solid fa-clock"></i>
+                      7 MIN READ
+                    </span>
+                    <span class="text-red">
+                      <i class="fa-solid fa-heart"></i>
+                      203
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="align-self-center shadow-container-md mx-auto fit-content mt-20"
+            >
+              <button
+                class="bg-black text-white text-lg font-bold p-10 cursor-pointer transition-transform hover-press-into-shadow"
+              >
+                <i class="fa-solid fa-plus"></i> LOUD MORE ARTICLES
+              </button>
+            </div>
+          </div>
+          <div class="w-100 mt-30 lg-w-33">
+            <div class="article-card2 sticky top-10">
+              <div
+                class="bg-white border-2 border-black box-shadow-md p-20 mb-20"
+              >
+                <h4 class="text-2xl font-bold mb-10">TRENDING NOW</h4>
+                <div class="w-100">
+                  <div
+                    class="flex justify-start cursor-pointer gap-10 py-10 mb-10 hover-red"
+                  >
+                    <span class="text-4xl text-red font-bold">01</span>
+                    <div class="trend-card">
+                      <h5 class="text-lg font-bold">The Death of Minimalism</h5>
+                      <p class="text-sm">12.5K reads • 🔥 Trending</p>
+                    </div>
+                  </div>
+                  <div
+                    class="flex justify-start cursor-pointer gap-10 py-10 mb-10 hover-blue"
+                  >
+                    <span class="text-4xl text-blue font-bold">02</span>
+                    <div class="trend-card">
+                      <h5 class="text-lg font-bold">The Death of Minimalism</h5>
+                      <p class="text-sm">8.2K reads • ⚡ Rising</p>
+                    </div>
+                  </div>
+                  <div
+                    class="flex justify-start cursor-pointer gap-10 py-10 mb-10 hover-purple"
+                  >
+                    <span class="text-4xl text-purple font-bold">03</span>
+                    <div class="trend-card">
+                      <h5 class="text-lg font-bold">The Death of Minimalism</h5>
+                      <p class="text-sm">6.7K reads • 💥 Hot</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div
+                class="bg-white border-2 border-black box-shadow-md p-20 mb-20"
+              >
+                <h4 class="text-2xl font-bold mb-10">CATEGORIES</h4>
+                <div class="w-100 flex flex-col align-start">
+                  <span
+                    class="w-100 bg-yellow-100 brutal-border-sm p-6 transition-all cursor-pointer hover-lift hover-bg-yellow-300 text-sm mb-10"
+                  >
+                    TECH (24)
+                  </span>
+                  <span
+                    class="w-100 bg-green-100 brutal-border-sm p-6 transition-all cursor-pointer hover-lift hover-bg-green-300 text-sm mb-10"
+                  >
+                    TECH (24)
+                  </span>
+                  <span
+                    class="w-100 bg-pink-100 brutal-border-sm p-6 transition-all cursor-pointer hover-lift hover-bg-pink-300 text-sm mb-10"
+                  >
+                    TECH (24)
+                  </span>
+                  <span
+                    class="w-100 bg-blue-100 brutal-border-sm p-6 transition-all cursor-pointer hover-lift hover-bg-blue-300 text-sm mb-10"
+                  >
+                    TECH (24)
+                  </span>
+                  <span
+                    class="w-100 bg-purple-100 brutal-border-sm p-6 transition-all cursor-pointer hover-lift hover-bg-purple-300 text-sm mb-10"
+                  >
+                    TECH (24)
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        id="authors"
+        class="bg-yellow-500 isolate py-30 border-2 border-black relative overflow-hidden"
+      >
+        <div class="absolute z--10 opacity-10">
+          <div
+            class="absolute bg-yellow-700 top-10 right-20 rotate-45 w-16 h-100-p"
+          ></div>
+        </div>
+        <div class="container">
+          <div class="mb-30 text-center">
+            <h3 class="text-3xl font-bold mb-10">MEET THE AUTHORS</h3>
+            <p class="custom-underline">The rebels behind the brutal truth</p>
+          </div>
+          <div
+            class="w-100 flex flex-col align-center justify-between lg-flex-row lg-gap-20"
+          >
+            <div
+              class="card bg-yellow border-2 border-black p-20 box-shadow-md text-center mb-20"
+            >
+              <div class="relative py-10">
+                <div
+                  class="absolute z-10 -top-10 -right-10 bg-red-500 border-2 border-black p-6 rotate-12 mt-10"
+                >
+                  <span class="text-white text-xs font-bold"> FOUNDER</span>
+                </div>
+                <img
+                  src="./images/avatar-4.jpg"
+                  alt="author1"
+                  class="w-32 border-2 border-black mx-auto"
+                />
+              </div>
+              <div class="hover-red">
+                <h4 class="text-3xl font-bold mb-6">ALEX BRUTAL</h4>
+                <p class="text-xl text-gray my-10">Founder & CEO</p>
+                <p class="font-thin">
+                  Destroying conventional wisdom one article at a time. 10+
+                  years fighting the good fight against boring design and
+                  corporate BS.
+                </p>
+              </div>
+
+              <ul class="flex justify-center align-center gap-20 mt-20">
+                <li
+                  class="text-xl text-gray bg-black hover-bg-light-blue-icon cursor-pointer border-2 border-black hover-lift transition-all p-10"
+                >
+                  <a
+                    href="https://twitter.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i class="fa-brands fa-twitter text-white"></i>
+                  </a>
+                </li>
+                <li
+                  class="text-xl text-gray bg-black hover-bg-blue-icon cursor-pointer border-2 border-black hover-lift transition-all p-10"
+                >
+                  <a
+                    href="https://linkedin.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i class="fa-brands fa-linkedin text-white"></i>
+                  </a>
+                </li>
+                <li
+                  class="text-xl text-gray bg-black hover-bg-pink-icon cursor-pointer border-2 border-black hover-lift transition-all p-10"
+                >
+                  <a
+                    href="https://instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i class="fa-brands fa-instagram text-white"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div
+              class="card bg-light-green border-2 border-black p-20 box-shadow-md text-center mb-20"
+            >
+              <div class="relative py-10">
+                <div
+                  class="absolute z-10 -top-10 -right-10 bg-blue-500 border-2 border-black p-6 rotate--12 mt-10"
+                >
+                  <span class="text-white text-xs font-bold"> LEAD</span>
+                </div>
+                <img
+                  src="./images/avatar-3.jpg"
+                  alt="author1"
+                  class="w-32 border-2 border-black mx-auto"
+                />
+              </div>
+              <div class="hover-blue">
+                <h4 class="text-3xl font-bold mb-6">Arnolad Reeve</h4>
+                <p class="text-xl text-gray my-10">UX Designer</p>
+                <p class="font-thin">
+                  Destroying conventional wisdom one article at a time. 10+
+                  years fighting the good fight against boring design and
+                  corporate BS.
+                </p>
+              </div>
+
+              <ul class="flex justify-center align-center gap-20 mt-20">
+                <li
+                  class="text-xl text-gray bg-black hover-bg-light-blue-icon cursor-pointer border-2 border-black hover-lift transition-all p-10"
+                >
+                  <a
+                    href="https://twitter.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i class="fa-brands fa-twitter text-white"></i>
+                  </a>
+                </li>
+                <li
+                  class="text-xl text-gray bg-black hover-bg-blue-icon cursor-pointer border-2 border-black hover-lift transition-all p-10"
+                >
+                  <a
+                    href="https://linkedin.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i class="fa-brands fa-linkedin text-white"></i>
+                  </a>
+                </li>
+                <li
+                  class="text-xl text-gray bg-black hover-bg-pink-icon cursor-pointer border-2 border-black hover-lift transition-all p-10"
+                >
+                  <a
+                    href="https://instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i class="fa-brands fa-instagram text-white"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div
+              class="card bg-pink-100 border-2 border-black p-20 box-shadow-md text-center mb-20"
+            >
+              <div class="relative py-10">
+                <div
+                  class="absolute z-10 -top-10 -right-10 bg-purple border-2 border-black p-6 rotate-12 mt-10"
+                >
+                  <span class="text-white text-xs font-bold"> VIRAL</span>
+                </div>
+                <img
+                  src="./images/avatar-2.jpg"
+                  alt="author1"
+                  class="w-32 border-2 border-black mx-auto"
+                />
+              </div>
+              <div class="hover-purple">
+                <h4 class="text-3xl font-bold mb-6">MIKE EDGE</h4>
+                <p class="text-xl text-gray my-10">
+                  Cultural Critic & Trend Destroyer
+                </p>
+                <p class="font-thin">
+                  Destroying conventional wisdom one article at a time. 10+
+                  years fighting the good fight against boring design and
+                  corporate BS.
+                </p>
+              </div>
+
+              <ul class="flex justify-center align-center gap-20 mt-20">
+                <li
+                  class="text-xl text-gray bg-black hover-bg-light-blue-icon cursor-pointer border-2 border-black hover-lift transition-all p-10"
+                >
+                  <a
+                    href="https://twitter.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i class="fa-brands fa-twitter text-white"></i>
+                  </a>
+                </li>
+                <li
+                  class="text-xl text-gray bg-black hover-bg-blue-icon cursor-pointer border-2 border-black hover-lift transition-all p-10"
+                >
+                  <a
+                    href="https://linkedin.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i class="fa-brands fa-linkedin text-white"></i>
+                  </a>
+                </li>
+                <li
+                  class="text-xl text-gray bg-black hover-bg-pink-icon cursor-pointer border-2 border-black hover-lift transition-all p-10"
+                >
+                  <a
+                    href="https://instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i class="fa-brands fa-instagram text-white"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="community" class="py-30">
+        <div class="container">
+          <div class="mx-auto mb-30 text-center">
+            <h3 class="text-3xl font-bold mb-10">JOIN THE REBELLION</h3>
+            <p class="custom-underline">
+              Where rebels gather to change the digital world
+            </p>
+          </div>
+          <div class="lg-w-100 lg-flex-row lg-gap-20 lg-flex-nowrap">
+            <div class="w-100 lg-w-45 flex flex-col align-start justify-between mb-20">
+              <h4 class="text-2xl font-bold text-left mb-10">
+                BECOME PART OF SOMETING REAL
+              </h4>
+              <div class="bg-white border-2 border-black box-shadow-sm p-15">
+                <p class="text-base text-left">
+                  Join thousands of designers, developers, and digital rebels
+                  who are tired of the same old boring content. Our community is
+                  where raw ideas meet bold execution and real change happens.
+                </p>
+              </div>
+              <div>
+                <div class="my-20">
+                  <div class="flex align-center justify-start gap-20 mb-15">
+                    <div
+                      class="border-2 border-black bg-red-500 flex-shrink-0 w-40-p"
+                    >
+                      <i class="fa-solid fa-check text-white p-10"></i>
+                    </div>
+                    <span class="text-base">
+                      Weekly brutal insights newsletter with exclusive
+                      content</span
+                    >
+                  </div>
+                  <div class="flex align-center justify-start gap-20 mb-15">
+                    <div
+                      class="border-2 border-black bg-blue-500 flex-shrink-0 w-40-p"
+                    >
+                      <i
+                        class="fa-brands fa-discord text-white p-10 text-center"
+                      ></i>
+                    </div>
+                    <span class="text-base">
+                      Weekly brutal insights newsletter with exclusive
+                      content</span
+                    >
+                  </div>
+                  <div class="flex align-center justify-start gap-20 mb-15">
+                    <div
+                      class="border-2 border-black bg-purple flex-shrink-0 w-40-p"
+                    >
+                      <i
+                        class="fa-solid fa-star text-white p-10 text-center"
+                      ></i>
+                    </div>
+                    <span class="text-base">
+                      Weekly brutal insights newsletter with exclusive
+                      content</span
+                    >
+                  </div>
+                  <div class="flex align-center justify-start gap-20 mb-15">
+                    <div
+                      class="border-2 border-black bg-green-500 flex-shrink-0 w-40-p"
+                    >
+                      <i
+                        class="fa-solid fa-pen text-white p-10 text-center"
+                      ></i>
+                    </div>
+                    <span class="text-base">
+                      Weekly brutal insights newsletter with exclusive
+                      content</span
+                    >
+                  </div>
+                </div>
+                <div class="w-100">
+                  <div class="shadow-container-md mr-4">
+                    <button
+                      class="bg-black text-white text-lg font-bold py-10 px-20 border-2 border-black transition-transform hover-press-into-shadow"
+                    >
+                      <i class="fa-brands fa-space-awesome"></i> JOIN NOW IT'S
+                      FREE
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="w-100 flex lg-w-45 flex-col align-start justify-between mb-20 border-2 border-black box-shadow-lg p-30">
+              <h5 class="text-xl font-bold text-left mb-10">
+                WHAT REBELS ARE SAYING
+              </h5>
+              <div class="flex flex-col justify-between align-start">
+                <div class="bg-beige border-2 border-black p-15 mb-20">
+                  <p class="text-sm text-left font-bold">
+                    "Finally, a blog that tells it like it is. No corporate BS,
+                    just pure truth about what's really happening in tech. This
+                    is the wake-up call our industry needed."
+                  </p>
+                  <div class="flex justify-start align-center gap-10 mt-10">
+                    <img
+                      src="./images/avatar-1.png"
+                      alt="Testimonial 1"
+                      class="w-32-p border-2 border-black"
+                    />
+                    <div>
+                      <h6 class="text-sm font-bold">Sarah K.</h6>
+                      <p class="text-xs">UX Designer</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="bg-Elight-blue border-2 border-black p-15 mb-20">
+                  <p class="text-sm text-left font-bold">
+                    "Finally, a blog that tells it like it is. No corporate BS,
+                    just pure truth about what's really happening in tech. This
+                    is the wake-up call our industry needed."
+                  </p>
+                  <div class="flex justify-start align-center gap-10 mt-10">
+                    <img
+                      src="./images/avatar-3.jpg"
+                      alt="Testimonial 1"
+                      class="w-32-p border-2 border-black"
+                    />
+                    <div>
+                      <h6 class="text-sm font-bold">ALEX M.</h6>
+                      <p class="text-xs">UX Designer</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="bg-Elight-pink border-2 border-black p-15 mb-20">
+                  <p class="text-sm text-left font-bold">
+                    "Finally, a blog that tells it like it is. No corporate BS,
+                    just pure truth about what's really happening in tech. This
+                    is the wake-up call our industry needed."
+                  </p>
+                  <div class="flex justify-start align-center gap-10 mt-10">
+                    <img
+                      src="./images/avatar-2.jpg"
+                      alt="Testimonial 1"
+                      class="w-32-p border-2 border-black"
+                    />
+                    <div>
+                      <h6 class="text-sm font-bold">MARK T.</h6>
+                      <p class="text-xs">Creative Director</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer" class="bg-black text-white py-30">
+      <div class="container">
+        <div class="flex flex-col align-start justify-between gap-20">
+          <div>
+            <div class="flex align-center justify-start gap-10 mb-10">
+              <div class="w-50-p bg-white flex-shrink-0">
+                <i
+                  class="fa-solid fa-pen-nib text-black text-center text-xl p-15"
+                ></i>
+              </div>
+              <h1 class="text-3xl font-bold text-white">THE UX REVIEW</h1>
+            </div>
+            <p class="mb-10 text-base">
+              Raw, unfiltered thoughts on tech, design, and digital culture. No
+              compromise, no corporate speak, just brutal truth that matters.
+            </p>
+          </div>
+          <div>
+            <h4 class="text-2xl mb-10">CATEGORIES</h4>
+            <ul class="flex flex-col">
+              <li class="mb-10">
+                <a
+                  href="#"
+                  class="text-white hover-text-yellow transition-all cursor-pointer text-lg font-semibold flex align-center"
+                >
+                  TECH</a
+                >
+              </li>
+              <li class="mb-10">
+                <a
+                  href="#"
+                  class="text-white hover-text-yellow transition-all cursor-pointer text-lg font-semibold flex align-center"
+                >
+                  DESIGN</a
+                >
+              </li>
+              <li class="mb-10">
+                <a
+                  href="#"
+                  class="text-white hover-text-yellow transition-all cursor-pointer text-lg font-semibold flex align-center"
+                >
+                  CULTURE</a
+                >
+              </li>
+              <li class="mb-10">
+                <a
+                  href="#"
+                  class="text-white hover-text-yellow transition-all cursor-pointer text-lg font-semibold flex align-center"
+                >
+                  OPINION</a
+                >
+              </li>
+              <li class="mb-10">
+                <a
+                  href="#"
+                  class="text-white hover-text-yellow transition-all cursor-pointer text-lg font-semibold flex align-center"
+                >
+                  TUTORIALS</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="flex flex-col align-start justify-between mb-15">
+            <h4 class="text-2xl font-bold mb-10">NEWSLETTER</h4>
+            <p class="mb-10 text-lg">
+              Get brutal insights delivered weekly. No spam, just truth that
+              cuts through the noise.
+            </p>
+            <div class="w-100">
+              <input
+                type="email"
+                placeholder="Your email address"
+                class="w-100 mb-6 border border-white bg-black text-white p-10 text-lg font-semibold placeholder-neutral-400 focus-visible-outline-0 focus-border-yellow-300"
+              />
+              <button
+                class="w-100 p-10 bg-yellow-300 text-black py-4 text-lg font-bold cursor-pointer brutal-border relative transition-all duration-200 box-shadow-inner-inset hover-translate-1 hover-bg-yellow-400 active-translate-2"
+              >
+                SUBSCRIBE
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="w-100 border-t-5 border-white pt-10">
+          <div class="flex flex-col justify-center text-center">
+            <p class="text-lg font-semibold mb-10">
+              © 2025 The UX Review. ALL RIGHTS RESERVED. STAY BRUTAL.
+            </p>
+            <div class="flex justify-around">
+              <a
+                href="#"
+                class="text-white text-sm hover-text-yellow transition-all cursor-pointer font-semibold"
+                >PRIVACY POLICY</a
+              >
+              <a
+                href="#"
+                class="text-white text-sm hover-text-yellow transition-all cursor-pointer font-semibold"
+                >TERMS OF SERVICE</a
+              >
+              <a
+                href="#"
+                class="text-white text-sm hover-text-yellow transition-all cursor-pointer font-semibold"
+                >COOKIE POLICY</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,192 @@
+/* The utilities file I made to manage common CSS classes through 
+this task and the upcoming tasks */
+
+/* Layout helpers */
+.fl { float: left; }
+.fr { float: right; }
+.clr { clear: both; }
+/* .overflow-hidden { overflow: hidden; }
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.box-sizing-border { box-sizing: border-box; }
+ */
+
+/* Widths */
+.w-100 { width: 100%; }
+.w-90 { width: 90%; }
+.w-85 { width: 85%; }
+.w-80 { width: 80%; }
+.w-75 { width: 75%; }
+.w-50 { width: 50%; }
+.w-48 { width: 48%; }
+.w-40 { width: 40%; }
+.w-43 { width: 43%; }
+.w-33 { width: 33.33%; }
+.w-32 { width: 32%; }
+.w-31{ width: 31%; }
+.w-30 { width: 30%; }
+.w-29{width: 29%;}
+.w-25 { width: 25%; }
+.w-24 { width: 24%; }
+.w-20 { width: 20%; }
+.w-16 { width: 16%; }
+
+.w-60-p{ width: 60px;}
+.h-8 { height: 8px; }
+.h-16 { height: 16px; }
+
+/* Text */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+
+.text-sm{ font-size: 14px; }
+.text-base{ font-size: 16px; }
+.text-lg{ font-size: 18px; }
+.text-xl{ font-size: 20px; }
+.text-2xl{ font-size: 24px; }
+.text-3xl{ font-size: 30px; }
+.text-4xl{ font-size: 36px; }
+.text-5xl{ font-size: 48px; }
+.text-6xl{ font-size: 60px; }
+.text-7xl{ font-size: 72px; }
+
+/* text colors */
+.text-white { color: #fff; }
+.text-gray { color: #555; }
+.text-gray-100 { color: #F5F5F5; }
+.text-gray-300 { color: #99A1AF; }
+.text-gray-600{color: #4a5565;}
+.text-gray-700{color: #2d3748;}
+.text-gray-900{color: #1a202c;}
+
+.font-bold { font-weight: 700; }
+.font-semibold { font-weight: 600; }
+
+/* Line Heights */
+.line-height-1 { line-height: 1; }
+.line-height-1-5 { line-height: 1.5; }
+.line-height-1-6 { line-height: 1.6; }
+.line-height-2 { line-height: 2; }
+
+/* Spacing */
+ .px-6 { padding-left: 6px; padding-right: 6px; }
+ .px-10 { padding-left: 10px; padding-right: 10px; }
+ .px-20 { padding-left: 20px; padding-right: 20px; }
+ .px-15 { padding-left: 15px; padding-right: 15px; }
+ .px-30 { padding-left: 30px; padding-right: 30px; }
+ .px-70 { padding-left: 70px; padding-right: 70px; }
+
+
+ .py-6 { padding-top: 6px; padding-bottom: 6px; }
+ .py-10 { padding-top: 10px; padding-bottom: 10px; }
+ .py-15 { padding-top: 15px; padding-bottom: 15px; }
+ .py-20 { padding-top: 20px; padding-bottom: 20px;}
+ .py-30 { padding-top: 30px; padding-bottom: 30px; }
+ .py-50 { padding-top: 50px; padding-bottom: 50px; }
+ .py-60 { padding-top: 60px; padding-bottom: 60px; }
+ .py-70 { padding-top: 70px; padding-bottom: 70px; }
+
+ .p-10 { padding: 10px; }
+ .p-20 { padding: 20px; }
+ .p-15{padding:15px;}
+ .p-30 { padding: 30px; }
+
+ .pt-10 { padding-top: 10px; }
+
+
+ .mx-auto { margin-left: auto; margin-right: auto; }
+
+ .mt-10 { margin-top: 10px; }
+ .mt-20 { margin-top: 20px; }
+ .mt-30 { margin-top: 30px; }
+
+ .mb-6 { margin-bottom: 6px; }
+ .mb-10 { margin-bottom: 10px; }
+ 
+ .mb-15 {   margin-bottom: 15px;}
+ .mb-20 { margin-bottom: 20px; }
+ .mb-30 { margin-bottom: 30px; }
+
+ .mr-15 { margin-right: 15px; }
+
+ .mr-2 { margin-right: 2%; }
+ .mr-4 { margin-right: 4%; }
+ .mr-5{ margin-right: 5%; }
+ .mr-6{ margin-right: 6%; }
+ .mr-10 { margin-right: 10%; }
+
+
+ .ml-2 { margin-left: 2%; }
+
+ .my-20 { margin-top: 20px; margin-bottom: 20px; }
+ .my-30 { margin-top: 30px; margin-bottom: 30px; }
+
+
+/* Colors */
+/* background colors */
+.bg-blue-50{ background-color: #EFF6FF; }
+.bg-blue-100{ background-color: #E3F2FD; }
+.bg-blue-200{ background-color: #BBDEFB; }
+.bg-blue-300{ background-color: #90CAF9; }
+.bg-blue-400{ background-color: #64B5F6; }      
+.bg-blue-500{ background-color: #42A5F5; }
+.bg-blue-600{ background-color: #155dfc; }
+
+
+.bg-purple-50{ background-color: #FAF5FF; }
+.bg-purple-100{ background-color: #F3E5F5; }
+.bg-purple-200{ background-color: #E1BEE7; }
+.bg-purple-300{ background-color: #CE93D8; }
+.bg-purple-400{ background-color: #BA68C8; }
+.bg-purple-500{ background-color: #AB47BC; }
+.bg-purple-600{ background-color: #9810fa; }
+
+.bg-emerald-50{ background-color: #ECFDF5; }
+.bg-emerald-100{ background-color: #D1FAE5; }
+.bg-emerald-200{ background-color: #A7F3D0; }
+.bg-emerald-300{ background-color: #6EE7B7; }
+.bg-emerald-400{ background-color: #34D399; }
+.bg-emerald-500{ background-color: #10B981; }
+.bg-emerald-600{ background-color: #009966; }
+
+
+.bg-gray-100{ background-color: #F5F5F5; }
+.bg-gray-200{ background-color: #EEEEEE; }
+.bg-gray-300{ background-color: #F1F5F9; }      
+.bg-gray-400{ background-color: #BDBDBD; }
+.bg-gray-500{ background-color: #9E9E9E; }
+.bg-gray-600{ background-color: #616161; }
+.bg-gray-900{background-color: #101828;}
+
+.bg-black{ background-color: #000000;} 
+.bg-white { background-color: #FFFFFF; }
+.bg-gray{ background-color: #F9FAFB; } /*review section and the form*/
+
+
+
+
+
+
+/* Border Radius */
+.rounded-sm { border-radius: 4px; }
+.rounded-md { border-radius: 8px; }
+.rounded-10 { border-radius: 10px; }
+.rounded-lg { border-radius: 16px; }
+
+.rounded-50{ border-radius: 50%;}
+
+/* border */
+.border{ border: 1px solid transparent; }
+.border-2{ border: 2px solid transparent;  }
+.border-gray-300{ border-color: #E0E0E0; }
+.border-blue-500{ border-color: #71b9f5; }
+.border-purple-500{ border-color: #e77cfa; }
+.border-emerald-500{ border-color: #6ef8ca; }
+
+.cursor-pointer { cursor: pointer; }
+.border-top{ border-top: 1px solid #99A1AF; }

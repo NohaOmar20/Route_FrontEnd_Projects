@@ -1,0 +1,206 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'EXO', sans-serif;
+}
+ .container{
+    width: 90%;
+    margin: 0 auto;
+    }
+img{
+    width: 100%;
+    display: block;
+
+}
+::selection{
+    background-color: #FFDC7C;
+    color: #000;
+}
+a{
+    text-decoration: none;
+
+  
+}
+
+ul{
+    list-style: none;
+
+
+}
+/* Start Navigation Bar */
+/* End Navigation Bar */
+
+/* Start Articles Section */
+
+/* Base card styling for layout transition */
+.card {
+  transition: transform 0.3s ease;
+}
+
+/* Move left (-X) and up (-Y) on hover */
+.card:hover {
+  transform: translate(-5px, -5px);
+}
+
+/* Smooth transition for the h4 tag inside any card */
+.card h4 {
+  transition: color 0.3s ease;
+}
+
+.trend-card h5{
+    transition: color 0.3s ease;
+}
+
+/* End Articles Section */
+
+
+/* Load more articles button test & the buttons of the hero section */ 
+.shadow-container-md {
+  position: relative;
+  isolation: isolate;
+  display: inline-block; /* Crucial: Incase it is two bottons>> Keeps the shadow wrapper shrunk perfectly to the button's exact size */
+}
+
+/* This automatically generates the solid shadow block under any button/card inside it */
+.shadow-container-md::before {
+  content: ""; /* Required for pseudo-elements to render */
+  position: absolute;
+  top: 6px;    
+  left: 6px;   
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  z-index: -10;
+}
+
+/* Button Translation Utilities */
+.transition-transform {
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Moves down and right directly into the shadow block */
+.hover-press-into-shadow:hover {
+  transform: translate(6px, 6px);
+}
+
+/* For the hover of the spans */
+
+/* Base styling for the tag/badge element */
+.brutal-border-sm {
+  border: 2px solid #000000;
+}
+
+/* Base utility for a clean transition setup */
+.transition-all {
+  transition: all 0.2s ease-in-out;
+}
+
+/* The Hover Lift Utility */
+.hover-lift {
+  /* Start flat with no shadow, or a minimal 1px shadow */
+  box-shadow: 0px 0px 0px #000000;
+  transform: translate(0, 0);
+}
+
+.hover-lift:hover {
+  /* 1. Lift the item physically up (-Y) and left (-X) */
+  transform: translate(-4px, -4px);
+  
+  /* 2. Cast a thick shadow down and right (+X, +Y) to ground it */
+  box-shadow: 4px 4px 0px 0px #000000;
+}
+
+/* Background Color Utilities from your original code */
+.bg-yellow-100 { background-color: #fef08a; }
+.hover-bg-yellow-300:hover { background-color: #FFDF20; }
+
+.bg-green-100{ background-color: #d1fae5; }
+.hover-bg-green-300:hover { background-color: #7BF1A8; }
+
+.bg-pink-100 { background-color: #fce7f3; }
+.hover-bg-pink-300:hover { background-color: #F17BC0; }
+
+.bg-blue-100 { background-color: #dbeafe; }
+.hover-bg-blue-300:hover { background-color: #7BC0F1; }
+
+.bg-purple-100 { background-color: #E9D5FF; }
+.hover-bg-purple-300:hover { background-color: #C17BF1; }
+
+
+/* Start Authors section */
+
+.custom-underline{
+  display: inline-block;
+  position: relative;
+  padding-bottom: 10px; /* Space for the underline */
+}
+
+.custom-underline::after {
+  content: "";
+  position: absolute;
+  left: 33.33%; /* Start the underline from the center */
+  bottom: -10px; /* Adjust as needed */
+  width: 25%;
+  height: 5px; /* Thickness of the underline */
+  background-color: #000; /* Color of the underline */
+  
+}
+
+/* for icons hover */
+.hover-bg-pink-icon:hover{background-color: #E60076;}
+.hover-bg-blue-icon:hover{ background-color: #155DFC;}
+.hover-bg-light-blue-icon:hover{ background-color: #1DA1F2;}
+
+/* Start Review Section */
+.bg-beige{background-color: #FEF2F2;}
+.bg-Elight-blue{background-color: #EFF6FF;}
+.bg-Elight-pink{background-color:#FAF5FF;}
+
+
+/* Footer section */
+/* ul li a */
+.hover-text-yellow:hover{ color: #FFDF20;}
+/* input */
+/* Styling the Placeholder text color */
+.placeholder-neutral-400::placeholder {
+  color: #a3a3a3;
+  opacity: 1; /* Ensures custom colors show cleanly in all browsers */
+}
+
+/* --- Focus States --- */
+
+/* Removes the default thick browser outline ring entirely when active */
+.focus-visible-outline-0:focus-visible,
+.focus-visible-outline-0:focus {
+  outline: 0 !important;
+}
+
+/* Changes the border color cleanly when the user clicks inside */
+.focus-border-yellow-300:focus {
+  border-color: #fde047;
+}
+
+
+/* *** For the button *** */
+
+/* Base Inset Shadow Style */
+.box-shadow-inner-inset {
+  box-shadow: -4px -4px 0 0 rgba(0, 0, 0, 0.2) inset;
+}
+
+.hover-translate-1:hover {
+  transform: translate(4px, 4px);
+}
+
+.hover-bg-yellow-400:hover {
+  background-color: #facc15;
+}
+
+
+/* --- Active States (On Click) --- */
+
+/* Pushes the button even further down and right when actively pressed */
+.active-translate-2:active {
+  transform: translate(8px, 8px);
+}

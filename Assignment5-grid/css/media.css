@@ -1,0 +1,114 @@
+@media screen and (max-width:760px){
+    .sidebar{
+        display: none;
+    }
+   .layout{
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "main";
+    }
+    .header-item{
+     grid-template-columns: 1fr ;
+     grid-template-rows: 1fr 1fr;
+    gap: 15px;
+}
+.header-item-end{
+    display: grid;
+    grid-template-columns:  auto auto 1fr ;
+    gap: 10px;
+    align-items: center;
+}
+.person-info{
+    display: none;
+}
+.person{
+    width: 100px;
+    margin-right: auto;
+}
+.img-person{
+width: 50%;
+}
+.conect{
+   border: solid 1px #DBFCE7;
+   padding:5px 20px;
+   font-size: 1.1rem;
+   font-weight: 400;
+   height:40px ;
+   position: static;
+   text-align: center;
+}
+.conect i{
+  font-size: 0.8rem;
+}
+.Summary-Cards{
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 25px;
+    margin-top: 160px;
+}
+.dashboard-layout{
+  grid-template-columns: 1fr;
+    grid-template-rows: auto;
+}
+.transactions{
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: 0px;
+}
+
+.activities{
+   grid-column: 1;
+    grid-row: 1 ; 
+    padding: 10px;
+    padding-top: 30px;
+   
+}
+.activities h2{
+  margin-bottom: 30px;
+}
+.activity{
+  margin-bottom: 30px;
+}
+.activ{
+  margin-bottom: 25px;
+}
+hr{
+width: 80%;
+margin: auto;
+margin-top: 30px;
+margin-bottom: 30px;
+color: #c0c0c0;
+}
+.bills{
+    grid-column: 1;
+    grid-row: 3;
+   
+}
+.transactions{
+   overflow-x: auto;
+   scroll-behavior: smooth;
+   
+}
+.due{
+    font-size: 12px;
+}
+.transactions-header a{
+display: none;
+}
+.icon-7{
+  background-color: #F3E8FF;
+  width: 130px;
+  padding: 3px;
+  color:#8F47C4 ;
+}
+.pay{
+    margin-top: 1px;
+}
+.final-layout{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+     height: auto;
+}
+}

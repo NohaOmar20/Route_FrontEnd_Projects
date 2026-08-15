@@ -1,0 +1,156 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica','Arial', sans-serif;
+}
+.container{
+    width: 80%;
+    margin: 0 auto;
+}
+img{
+    width: 100%;
+
+}
+/* Start Navigation Bar */
+ul{
+    list-style: none;
+}
+a{       
+  text-decoration: none;     
+  margin-right: 15px;    
+  cursor: pointer;   
+}
+::selection{
+  background-color: #8E51FF;
+  color: #fff;
+}
+/* *** Start Hover of Navigation bar*** */
+/* Base Navigation Link Style */
+.nav-link-animated {
+  position: relative;
+  color: #000000;
+  text-decoration: none;
+  font-weight: 500;
+  padding-bottom: 4px;
+  display: inline-block;
+  transition: color 0.3s ease; 
+}
+
+/* Create the Underline (Hidden by default) */
+.nav-link-animated::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: #7c3aed; /* Purple line */
+  transition: width 0.3s ease; 
+}
+
+/* Combines Hover Text State AND Active Text State into one short line */
+.nav-link-animated:hover, 
+.nav-link-animated.active {
+  color: #7c3aed; /* Both active and hovered items turn purple */
+}
+
+/* Underline opens up on hover OR stays open if it is active */
+.nav-link-animated:hover::after,
+.nav-link-animated.active::after {
+  width: 100%;
+}
+
+
+
+
+/*  *** End Hover of Navigation bar*** */
+/* End Navigation Bar */
+
+/* ***** Start hero section ***** */
+
+.hero-btn{
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+}
+.hero-btn:hover {
+   transform: scale(1.05);
+}
+/* ***** End hero section ***** */
+
+/* *********  start what custmor says section ********* */
+
+/* Layout Alignment */
+.rating-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 12px;
+  font-family: sans-serif;
+}
+
+/* Fixed-width label prevents misalignment */
+.rating-label {
+  width: 30px;
+  text-align: right;
+  font-weight: bold;
+}
+
+/* Gray background track */
+.progress-bar-container {
+  flex-grow: 1; /* Automatically stretches to fill available space */
+  background-color: #e9ecef;
+  height: 14px;
+  border-radius: 7px;
+  overflow: hidden; /* Clips the inner fill bar corners */
+}
+
+/* Yellow progress fill */
+.progress-fill {
+  background-color: #fab005;
+  height: 100%;
+  border-radius: 7px;
+  /* Optional: adds a smooth slide animation when data changes */
+  /* transition: width 0.4s ease;  */
+}
+
+/* Percentage styling */
+.rating-percentage {
+  width: 45px;
+  text-align: left;
+  font-size: 14px;
+  color: #333;
+}
+
+.wcs-btn{
+    background-color: #8E51FF;
+    color: #fff;
+}
+.wcs-btn:hover {
+  background-color: #fff;
+  color: #7c3aed;
+  border: #7c3aed 2px solid;
+}
+
+/* *********  end what custmor says section ********* */
+
+/* *********  start products section ********* */
+.pr-btn{
+    background-color: #F7F5FF;
+    color: #7F22FE;
+    border: #7F22FE 2px solid;
+}
+.pr-btn:hover {
+  background-color: #7F22FE;
+  color: #fff;
+    border: #7F22FE 2px solid;
+}
+/* *********  end products section ********* */
+
+
+/* ******* start footer section ******* */
+
+/* .fa-facebook-f, .fa-twitter, .fa-instagram, .fa-youtube {
+  color: #fff;
+} */
+
+/* ******* End footer section ******* */

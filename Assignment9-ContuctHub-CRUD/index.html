@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ContuctHub - Smart Contact Manager</title>
+  <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- <link rel="stylesheet" href="fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.min.css"> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="./images/contacts.png" type="image/x-icon" />
+  <link rel="stylesheet" href="css/style.css">
+</head>
+</head>
+
+<body class=" min-vh-100 position-relative">
+  <!-- ------------- Header ----------------------- -->
+  <header id="header" class="sticky-top border-bottom backdrop-blur z-3">
+    <div class="container-xxl px-3 px-md-4 py-2 py-sm-3">
+      <div class="d-flex align-items-center justify-content-between">
+        <!-- logo -->
+        <div class="d-flex align-items-center gap-3">
+          <div
+            class="icon-box rounded-3 bg-gradient-violet shadow-sm d-flex align-items-center justify-content-center">
+            <i class="fa-solid fa-address-book text-white fs-4"></i>
+          </div>
+          <div>
+            <h1 class="h4 mb-0 fw-bold text-dark">Contact <span class="text-violet">Hub</span></h1>
+            <p class="text-muted mb-0 d-none d-sm-block" style="font-size: 0.75rem; font-weight: 500;">Smart Contact
+              Manager</p>
+          </div>
+        </div>
+        <!-- Actions -->
+        <div class="d-flex align-items-center gap-2 gap-sm-3">
+          <button id="addContactBtn"
+            class="btn bg-gradient-violet text-white fw-semibold rounded-3 px-3 py-2 d-flex align-items-center gap-2"
+            data-bs-toggle="modal" data-bs-target="#contactModal">
+
+            <i class="fa-solid fa-plus"></i>
+            <span class="d-none d-ssm-inline">Add Contact</span>
+            <span class=" d-sm-block">Add </span>
+          </button>
+          <button
+            class="btn btn-light d-none d-sm-flex icon-box rounded-3 bg-transparent border border-2 border-light  ">
+            <i class="fas fa-bell"></i>
+          </button>
+          <button
+            class="btn btn-light d-none d-sm-flex icon-box rounded-3 bg-transparent border border-2 border-light  ">
+            <i class="fas fa-gear"></i>
+          </button>
+          <div class="icon-box rounded-3 overflow-hidden border border-2 border-light">
+            <img src="./images/avatar-2.jpg" alt="Profile" class="object-fit-cover" width="40" height="40">
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- main content -->
+  <main id="main-content" class=" container-xxl px-3 px-md-4 py-5 py-sm-5">
+    <section id="quick-start" class="mb-5">
+      <div class="row g-3">
+        <div class="col-6 col-md-4">
+          <div class="card border-0 shadow-sm rounded-4 p-3 o-sm-4 h-100">
+            <div class="d-flex align-items-center gap-3">
+              <div class="icon-box rounded-3 bg-gradient-blue shadow-sm shrink-0">
+                <i class="fas fa-users"></i>
+              </div>
+              <div>
+                <p class="text-muted text-uppercase mb-0 tracking-wide" style="font-size: 0.7rem; font-weight: 600;">
+                  Total
+                </p>
+                <p id="totalCount" class="h3 mb-0 fw-bold text-dark">1</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4">
+          <div class="card border-0 shadow-sm rounded-4 p-3 o-sm-4 h-100">
+            <div class="d-flex align-items-center gap-3">
+              <div class="icon-box rounded-3 bg-gradient-orange shadow-sm shrink-0">
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <div>
+                <p class="text-muted text-uppercase mb-0 tracking-wide" style="font-size: 0.7rem; font-weight: 600;">
+                  Favorites
+                </p>
+                <p id="favoriteCount" class="h3 mb-0 fw-bold text-dark">1</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4">
+          <div class="card border-0 shadow-sm rounded-4 p-3 o-sm-4 h-100">
+            <div class="d-flex align-items-center gap-3">
+              <div class="icon-box rounded-3 bg-gradient-red shadow-sm shrink-0">
+                <i class="fa-solid fa-heart-pulse"></i>
+              </div>
+              <div>
+                <p class="text-muted text-uppercase mb-0 tracking-wide" style="font-size: 0.7rem; font-weight: 600;">
+                  Emergency
+                </p>
+                <p id="emergencyCount" class="h3 mb-0 fw-bold text-dark">1</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Contact Area & sidebar split -->
+    <div class="row g-4">
+      <!-- Main Contact Area -->
+      <div class="col-12 col-xl-8">
+        <!-- Header & Search -->
+        <section id="contacts-header" class="mb-4">
+          <div class="mb-3">
+            <h2 class="h3 fw-bold text-dark mb-1">All Contacts</h2>
+            <p class="text-muted small mb-3">Manage and organize your contacts</p>
+          </div>
+
+          <!-- Search bar -->
+          <div class="position-relative">
+            <span class="position-absolute top-50 start-0 translate-middle-y ps-3 text-muted"> <i
+                class="fa-solid fa-magnifying-glass"></i></span>
+            <input id="searchInput" type="text" placeholder="Search by name, phone or email..."
+              class="form-control form-control-lg rounded-3 ps-5 py-2 bg-light border-0 shadow-sm"
+              style="font-size: 0.875rem;">
+          </div>
+        </section>
+
+        <!-- Contacts Grid -->
+        <section id="contacts-grid">
+          <div id="allContactsContainer" class="row g-3">
+
+          </div>
+        </section>
+      </div>
+      <!-- Right Sidebar desktop-->
+      <aside class="col-xl-4  d-xl-block">
+        <div class="sticky-top z-1" style="top: 6.5rem;">
+
+          <!-- Favourite Section -->
+          <div class="card border-0 shadow-lg rounded-4 mb-4 overflow-hidden">
+            <div class="card-header border-bottom-0 p-3 bg-warning-subtle">
+              <div class="d-flex align-items-center gap-3">
+                <div
+                  class="icon-box-sm rounded-3 bg-gradient-orange shadow-sm text-center d-flex align-items-center justify-content-center"
+                  style="width: 40px; height: 40px;">
+                  <i class="fas fa-star text-white"></i>
+                </div>
+                <div>
+                  <h3 class="h6 mb-0 fw-bold text-dark">Favorites</h3>
+                  <p class="text-muted small">Quick access</p>
+                </div>
+              </div>
+            </div>
+        
+            <div class="card-body p-2" style="max-height: 320px; overflow-y: auto;">
+              <div class="row g-2" id="FavoriteList">
+                <!-- <div class="col-12 col-md-6 col-lg-12">
+                  <div
+                    class="d-flex align-items-center justify-content-between p-2 rounded-3 border border-1 hover-bg-warning min-w-0">
+                    <div class="d-flex align-items-center gap-3 min-w-0">
+                      <div
+                        class="rounded-3 bg-success d-flex align-items-center justify-content-center text-center text-white"
+                        style="width: 40px; height: 40px; font-size: 0.875rem; min-width: 40px;">
+                        UB
+                      </div>
+                      <div class="min-w-0">
+                        <h3 class="h6 mb-0 fw-bold text-dark text-truncate">Ubaidullah</h3>
+                        <p class="text-muted small text-truncate mb-0">01035647890</p>
+                      </div>
+                    </div>
+                    <span class="badge bg-success-subtle text-success rounded-3 border-0 p-2">
+                      <i class="fas fa-phone text-success small"></i>
+                    </span>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+          <!-- Emergency Section -->
+          <div class="card border-0 shadow-lg rounded-4 mb-4 overflow-hidden">
+            <div class="card-header border-bottom-0 p-3 bg-danger-subtle">
+              <div class="d-flex align-items-center gap-3">
+                <div
+                  class="icon-box-sm rounded-3 bg-danger shadow-sm text-center d-flex align-items-center justify-content-center"
+                  style="width: 40px; height: 40px;">
+                  <i class="fas fa-star text-white"></i>
+                </div>
+                <div>
+                  <h3 class="h6 mb-0 fw-bold text-dark">Emergency Contacts</h3>
+                  <p class="text-muted small">Urgent access</p>
+                </div>
+              </div>
+            </div>
+             <div class="card-body p-2" style="max-height: 320px; overflow-y: auto;">
+              <div class="row g-2" id="EmergencyList">
+
+                <!-- <div class="col-12 col-md-6 col-lg-12">
+                  <div
+                    class="d-flex align-items-center justify-content-between p-2 rounded-3 border border-1 hover-bg-danger min-w-0">
+                    <div class="d-flex align-items-center gap-3 min-w-0">
+                      <div
+                        class="rounded-3 bg-success d-flex align-items-center justify-content-center text-center text-white"
+                        style="width: 40px; height: 40px; font-size: 0.875rem; min-width: 40px;">
+                        UB
+                      </div>
+                      <div class="min-w-0">
+                        <h3 class="h6 mb-0 fw-bold text-dark text-truncate">Ubaidullah</h3>
+                        <p class="text-muted small text-truncate mb-0">01035647890</p>
+                      </div>
+                    </div>
+                    <span class="badge bg-danger-subtle text-danger rounded-3 border-0 p-2">
+                      <i class="fas fa-phone text-danger small"></i>
+                    </span>
+                  </div>
+                </div> -->
+
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </aside>
+    </div>
+  </main>
+  <!-- Contact Modal Form -->
+  <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 border-0 shadow-lg">
+        <!-- Modal Header -->
+        <div class="modal-header border-bottom p-4">
+          <h2 id="modalTitle" class="h5 fw-bold text-dark mb-0">
+            Add New Contact
+          </h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <!-- Modal Form -->
+        <form id="contactForm">
+          <div class="modal-body p-4 space-y-4">
+            <!-- image upload -->
+            <div class="d-flex flex-column align-items-center justify-content gap-2 pb-3">
+              <div id="avatarPreview"
+                class="rounded-circle bg-gradient-blue d-flex align-items-center justify-content-center"
+                style="width:88px; height: 88px; font-size:2rem;">
+                <i class="fas fa-user"></i>
+              </div>
+              <label class="btn btn-sm btn-light border d-inline-flex align-items-center gap-2 rounded-3"
+                for="avatarUpload">
+                <i class="fas fa-camera text-muted"></i>
+                <span>Change Photo</span>
+                <input type="file" id="avatarUpload" class="d-none" accept="image/*">
+              </label>
+              <input type="hidden" id="avatarPath" value="" name="avatarData">
+            </div>
+            <!-- Name -->
+            <div class="mb-3">
+              <label for="contactName" class="form-label small fw-medium text-dark">
+                Full Name <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control rounded-3 py-2 bg-light border-0 shadow-sm" id="contactName"
+                placeholder="Enter full name" name="name" required>
+              <div id="contactNameError" class="invalid-feedback d-none">
+                Name should contain only letters and spaces (2-50 characters).
+              </div>
+            </div>
+
+            <!-- phone -->
+            <div class="mb-3">
+              <label for="contactPhone" class="form-label small fw-medium text-dark">
+                Phone Number <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control rounded-3 py-2 bg-light border-0 shadow-sm" id="contactPhone"
+                placeholder="e.g., 0123 456 789" name="phone" required>
+              <div id="contactPhoneError" class="invalid-feedback d-none">
+                Please enter a valid Egyptian phone number (11 digits, starting with 010, 011, 012, or 015).
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+              <label for="contactEmail" class="form-label small fw-medium text-dark">
+                Email Address
+              </label>
+              <input type="email" class="form-control rounded-3 py-2 bg-light border-0 shadow-sm" id="contactEmail"
+                placeholder="e.g., john.doe@example.com" name="email">
+              <div id="contactEmailError" class="invalid-feedback d-none">
+                Please enter a valid email address.
+              </div>
+            </div>
+
+            <!-- Address -->
+            <div class="mb-3">
+              <label for="contactAddress" class="form-label small fw-medium text-dark">
+                Address
+              </label>
+              <input type="text" class="form-control rounded-3 py-2 bg-light border-0 shadow-sm" id="contactAddress"
+                placeholder="Enter address" name="address">
+            </div>
+
+            <!-- Group -->
+            <div class="mb-3">
+              <label for="contactGroup" class="form-label small fw-medium text-dark">
+                Group
+              </label>
+              <select class="form-select rounded-3 py-2 bg-light border-0 shadow-sm" id="contactGroup" name="group">
+                <option value="">Select group</option>
+                <option value="family">Family</option>
+                <option value="friends">Friends</option>
+                <option value="work">Work</option>
+                <option value="others">Others</option>
+              </select>
+            </div>
+
+            <!-- Notes -->
+            <div class="mb-3">
+              <label for="contactNotes" class="form-label small fw-medium text-dark">
+                Notes
+              </label>
+              <textarea class="form-control rounded-3 py-2 bg-light border-0 shadow-sm" id="contactNotes"
+                placeholder="Enter any additional notes" name="notes" rows="3" style="resize: none;">
+                </textarea>
+            </div>
+
+            <!-- Checkboxes -->
+            <div class="d-flex flex-wrap gap-3 pt-1">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="contactFavorite" name="favorite">
+                <label class="form-check-label small fw-medium text-secondary cursor-pointer" for="contactFavorite">
+                  <i class="fas fa-star text-warning me-1"></i> Favorite
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="contactEmergency" name="emergency">
+                <label class="form-check-label small fw-medium text-secondary cursor-pointer" for="contactEmergency">
+                  <i class="fa-solid fa-heart-pulse text-danger me-1"></i> Emergency
+                </label>
+              </div>
+            </div>
+            <input type="hidden" name="id" id="contactId" value="" />
+          </div>
+
+          <!-- Form Actions -->
+          <div class="modal-footer border-top-0 px-4 pb-4 pt-0 d-flex gap-2">
+            <button type="button" id="cancelModalBtn" class="btn btn-light flex-fill rounded-3 fw-semibold py-2"
+              data-bs-dismiss="modal">Cancel
+            </button>
+            <!-- data-bs-dismiss="modal" will be removed after validation -->
+            <button type="button" onclick="addContact()" id="saveContactBtn"
+              class="btn bg-gradient-violet text-white flex-fill rounded-3 fw-semibold py-2">
+              <i class="fas fa-check"></i>Save Contact
+            </button>
+            <button type="button" id="updateContactBtn" onclick="updateContact()"
+              class="btn bg-gradient-orange d-none text-white flex-fill rounded-3 fw-semibold py-2"
+              >
+              <i class="fas fa-check"></i>Update Contact
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./js/script.js"></script>
+
+</body>
+
+</html>

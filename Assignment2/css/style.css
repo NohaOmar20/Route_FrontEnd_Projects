@@ -1,0 +1,116 @@
+/* ********Global Styles********** */
+* {
+    margin: 0;
+    padding: 0;
+    
+   
+}
+.container {
+    width: 80%;
+    margin: 0 auto;
+    
+}
+.container-lg {
+    width: 90%;
+    margin: 0 auto;
+    
+}
+img{width: 100%;}
+
+
+
+/* ********Header Styles********** */
+
+
+.header-image{
+    float: right; 
+    width: 40%;
+    margin-top: 20px; 
+}
+.header-image img {
+   
+    width: 80%;
+    border-radius: 20px; 
+  
+}
+
+
+
+/* ********Why Choose Us Styles********** */
+
+/* This card it has been used on reviews section too */
+.card {
+  /* background-color: #E3F2FD; */
+  border-radius: 15px;
+  padding: 30px;
+  margin-right: 2%;
+  text-align: center;
+  box-sizing: border-box;
+}
+.icon-box {
+  width: 70px;
+  height: 70px;
+  /* background: #2563eb; */
+  border-radius: 15px;
+  margin: 0 auto 20px;
+  padding-top: 18px; /* center inner */
+  box-sizing: border-box;
+}
+
+.icon-inner {
+  width: 30px;
+  height: 30px;
+  background: white;
+  margin: auto;
+}
+
+
+
+/* End Colored Cards */
+.wcu-more-info{
+    padding: 20px 0;
+}
+.wcu-text{
+    float: right;
+    width: 45%;
+}
+.wcu-image{
+    float: left;
+    width: 45%;
+   
+}
+.wcu-info{
+    border-left: 4px solid #000000;
+  margin-bottom: 20px;
+  padding-left: 15px;
+}
+
+
+
+
+/* ********ReviewsStyles********** */
+/* Used the cards and the utility classes */
+
+
+/* ********Member Form Styles********** */
+
+input, select, textarea {
+    border: 1px solid #D0D5DD;
+    border-radius: 8px;
+}
+
+
+/* ********Footer Styles********** */
+
+a {
+  color: #99A1AF;           
+  text-decoration: none;  
+  font-weight: bold;      
+  padding-right: 15px;    
+  cursor: pointer;      
+}
+
+ul {
+  list-style-type: none; 
+  padding: 0;            
+}

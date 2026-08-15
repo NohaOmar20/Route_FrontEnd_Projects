@@ -1,0 +1,750 @@
+@font-face {
+    font-family:'DayOne' ;
+    src: url(../fonts/DaysOne-Regular.ttf);
+}
+
+.days-one-regular {
+  font-family: "Days One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+
+:root{
+    --primary-color: rgb(203, 254, 28);
+    --secound-color:#A4CE1A;
+    --third-color:rgb(225, 225, 225);
+    --main-color:#0B0E13;
+    --main-font: "Days One", sans-serif;
+    --secound-font:"Chakra Petch", sans-serif;
+
+     --bg-black: #07070a;
+    --bg-deep-dark: #0d0e12;
+    --bg-dark: #12141c;
+    --bg-dark-eval: #171a26;
+    --bg-dark-gray: #12161a;
+
+    --radius-lg: .5rem;
+    --radius-xl: .75rem;
+    --radius-2xl: 1rem;
+
+    --spacing:.25rem;
+
+    --neon-green: #ccff00; 
+  --card-bg: #191a1c;
+  --icon-bg: #212836;
+  --text-color: #ffffff;
+  --footer-bg: #050505;
+  --link-color: #a0a0a0;
+  --dark-bg: #111622;
+  --card-bg: #1c2433;
+  --input-bg: #273245;
+  --input-border: #334159;
+}
+
+/* Start Common classes */
+.primary-color{
+    color: var(--primary-color);
+}
+.main-color{
+    color: var(--main-color);
+}
+.third-color{
+    color: var(--third-color);
+}
+.main-font{
+    font-family: var(--main-font);
+}
+.secound-font{
+    font-family: var(--secound-font);
+}
+
+.bg-deep-dark{
+    background-color: var(--bg-deep-dark);
+}
+
+.btn-main{
+    background-color: var(--main-color) ;
+    border: 1px solid var(--primary-color);
+    color: var(--third-color);
+}
+.btn-main:hover{
+    background-color: var(--primary-color) ;
+}
+
+::selection{
+    background-color: var(--primary-color);
+    color: var(--main-color);
+}
+
+.radius-xl{
+    border-radius: var(--radius-xl);
+}
+/* End Common classes */
+
+
+/* Navbar */
+.navbar{
+    z-index: 999;
+}
+.icon-nav{
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 22px;
+    margin-right: 20px;
+    font-family: var(--main-font);
+}
+.links-nav{
+    font-family: var(--secound-font);
+}
+nav .navbar-nav .nav-link.active,nav .navbar-nav .nav-link:hover {
+    color: var(--primary-color) ;
+}
+
+nav .navbar-nav .nav-link{
+    color: var(--third-color) ;
+}
+
+.btn-green{
+    background-color: var(--primary-color) ;
+}
+.btn-green:hover{
+    background-color: var(--secound-color) ;
+}
+.border-nav{
+    border-bottom: 1px solid #233147;
+}
+.icons{
+    font-size: 21px;
+    margin-right: 10px;
+    color: var(--third-color);
+}
+.icons1:hover ,.icons2:hover{
+   color: var(--primary-color);
+   cursor: pointer;
+}
+
+/* ************* Hero Section************* */
+
+
+.hero-section {
+    min-height: 100vh;
+    background-image: url('../images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative; 
+    padding-top: 100px;
+    z-index: 0;
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(7, 7, 10, 0.842);
+    z-index: 1;
+}
+
+.hero-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+
+.hero-section h1{
+     color: var(--third-color);
+    font-family: var(--main-font);
+    font-size: 4rem;
+  
+}
+
+.hero-section span{
+    color: var(--primary-color);
+    font-family: var(--main-font);
+    font-size: 4rem;
+    
+}
+
+.hero-section p{
+    color: var(--third-color);
+    font-family: var(--secound-font);
+    font-size: 1.0rem;
+  
+}
+
+/* ************ start image hero part ******************* */
+
+/* .rounded-2xl {
+    border-radius: var(--radius-2xl);
+} */
+
+.image-border {
+    border: 5px solid var(--primary-color);
+    border-radius: var(--radius-2xl);
+}
+.h-mobile { height: 256px; }
+
+@media (min-width: 576px) {
+  .h-sm-tablet { height: 320px; }
+}
+@media (min-width: 768px) {
+  .h-md-desktop { height: 384px; }
+}
+
+
+
+
+/* End image hero part */
+
+
+/* ************ start Our games section ******************* */
+h2{
+    font-family: var(--main-font);
+    color: var(--third-color);
+
+}
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  
+  /* Styling the text */
+  color: var(--primary-color); 
+  font-family: var(--secound-font);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+/* Pseudo-elements for the left and right lines */
+.section-title::before,
+.section-title::after {
+  content: "";
+  width: 70px; /* Line length */
+  height: 2px; /* Line thickness */
+  flex-shrink: 0; /* Prevent shrinking on mobile screens */
+}
+
+/* Left Line: Fades in from the left */
+.section-title::before {
+  background: linear-gradient(to right, transparent, var(--primary-color));
+  margin-right: 20px; 
+}
+
+/* Right Line: Fades out to the right */
+.section-title::after {
+  background: linear-gradient(to left, transparent, var(--primary-color));
+  margin-left: 20px; /* Space between right line and text */
+}
+
+/* ********************************The sliderrrrr ************************** */
+
+
+
+/* Base Card Aspect Ratio Constraints */
+.game-card {
+  aspect-ratio: 4 / 3;
+  background-color: var(--bg-dark-gray);
+}
+
+.game-card .card-img {
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.game-card:hover .card-img {
+  transform: scale(1.08);
+}
+
+/* Gradient Background Overlays */
+.hover-overlay {
+  height: 66.666%;
+  background: linear-gradient(to top, rgba(203, 254, 28, 0.9) 0%, rgba(203, 254, 28, 0.4) 60%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  
+}
+
+.game-card:hover .hover-overlay {
+  opacity: 1;
+}
+
+/* Top Absolute Tags Animation */
+.tags-container {
+  top: -50px;
+  display: flex;
+  gap: 8px;
+  transition: top 0.3s ease-in-out;
+}
+
+.game-card:hover .tags-container {
+  top: 16px;
+}
+
+.badge-custom {
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 50px;
+}
+
+/* Bottom Text Slide Up Animation */
+.card-heading {
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.game-card:hover .card-heading {
+  transform: translateY(0);
+}
+
+/* Glowing Border States */
+.border-overlay {
+  border: 2px solid transparent;
+  border-radius: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.game-card:hover .border-overlay {
+  border-color: var(--primary-color);
+}
+
+/* ****************  Start Slider buttons **************** */
+.custom-carousel-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.custom-carousel-btn:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  background-color: rgba(191, 255, 0, 0.05);
+}
+
+.btn-view-all {
+  background: transparent;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 12px 28px;
+  border-radius: 6px;
+  letter-spacing: 1px;
+  transition: all 0.25s ease;
+}
+
+.btn-view-all:hover {
+  background-color: var(--primary-color);
+  color: #000000;
+  box-shadow: 0 0 15px rgba(191, 255, 0, 0.3);
+}
+/* ****************  End Slider buttons **************** */
+
+
+/* ****************  End Slider  **************** */
+
+/************************************* Cards page What we do *************************************  */
+
+/* Base Card Styling */
+.service-card {
+  background-color: var(--card-bg);
+height: 100%;             /* Fills the column height */
+  min-height: 280px;       
+  max-height: 280px;        /* Cap the max height so image can't push it */
+  position: relative;
+  border: 1px solid transparent;
+  border-radius: var(--radius-xl);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.service-title {
+  color: var(--text-color);
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+
+/* Default Icon Box */
+.icon-wrapper {
+  width: 60px;
+  height: 60px;
+  background-color: var(--icon-bg);
+  transition: background-color 0.3s ease;
+}
+
+.icon-wrapper i {
+  color: var(--neon-green);
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+/* -------------------------------------------
+   Hover Effects (Excluding .service-card-img)
+------------------------------------------- */
+
+/* 1. Neon Border on Hover */
+.service-card:not(.service-card-img):hover {
+  border-color: var(--neon-green);
+}
+
+/* 2. Top-Left Neon Triangle Accent */
+.service-card:not(.service-card-img):hover::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 0;
+  height: 0;
+  border-top: 18px solid var(--neon-green);
+  border-right: 18px solid transparent;
+}
+
+/* 3. Bottom-Right Neon Triangle Accent */
+.service-card:not(.service-card-img):hover::after {
+  content: "";
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: 0;
+  height: 0;
+  border-bottom: 18px solid var(--neon-green);
+  border-left: 18px solid transparent;
+}
+
+/* 4. Icon Container turns Neon Green, Icon turns Dark */
+.service-card:not(.service-card-img):hover .icon-wrapper {
+  background-color: var(--neon-green);
+}
+
+.service-card:not(.service-card-img):hover .icon-wrapper i {
+  color: #121212;
+}
+
+/* -------------------------------------------
+   Image Cards (Excluded from hover styles)
+------------------------------------------- */
+.service-card-img {
+  padding: 0 !important;
+  border: none;
+
+}
+
+/* --------------------------------------------------
+--------------------------------------------------- Start Animation ----------------- */
+
+/* radial background */
+.ticker-section {
+  background: radial-gradient(circle at center, #5c7e00 0%, #0d1117 75%);
+  position: relative;
+}
+
+/* Track Wrapper (masks overflow) */
+.marquee-container {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  user-select: none;
+  /* Mask edges for a smooth fade out on left and right */
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+/* Flex track holding the items */
+.marquee-track {
+  display: flex;
+  gap: 1.25rem;
+  width: max-content;
+  flex-shrink: 0;
+}
+
+/* Animation 1: Move Left */
+.marquee-left {
+  animation: scrollLeft 25s linear infinite;
+}
+
+/* Animation 2: Move Right */
+.marquee-right {
+  animation: scrollRight 25s linear infinite;
+}
+
+
+
+/* Individual Logo Card Styling */
+.logo-card {
+  width: 130px;
+  height: 130px;
+  
+  border-radius: 20px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+ 
+}
+
+.logo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+/* Keyframes for Left Movement */
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Keyframes for Right Movement */
+@keyframes scrollRight {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Responsive adjustments for mobile screens */
+@media (max-width: 576px) {
+  .logo-card {
+    width: 90px;
+    height: 90px;
+    border-radius: 14px;
+    padding: 8px;
+  }
+}
+
+
+/* --------------------------------------------------
+--------------------------------------------------- End Animation ----------------- */
+
+/* ****************************Our members****************** */
+
+
+
+/* Base Card Container */
+.member-card {
+  height: 360px;
+  cursor: pointer;
+  background-color: #121212;
+}
+
+/* Base Grayscale Image */
+.member-img-gray {
+  filter: grayscale(100%);
+}
+
+/* Color Wrapper (Initially hidden with height: 0) */
+.member-img-color-wrapper {
+  height: 0%;
+  overflow: hidden;
+  transition: height 0.5s ease-in-out; 
+  z-index: 1;
+}
+
+/* Color Image inside Wrapper */
+.member-img-color {
+  filter: grayscale(0%);
+  height: 360px !important; /* Must match .member-card height so image doesn't squish */
+}
+
+/* Dark Gradient Overlay */
+.member-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.4) 40%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  z-index: 2;
+}
+
+/* Text Base Styling */
+.member-name {
+  font-size: 1.15rem;
+  line-height: 1.2;
+}
+
+.member-role {
+  color: #c5c5c5;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.member-subtitle {
+  font-size: 0.75rem;
+}
+
+/* Vertical Tag */
+.member-tag {
+  right: 12px;
+  bottom: 20px;
+  writing-mode: vertical-rl;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 0.9rem;
+  color: #a0a0a0;
+  transition: color 0.3s ease;
+}
+
+/* -------------------------------------------
+   Hover Effects
+------------------------------------------- */
+
+/* 1. Expand Color Wrapper from 0% to 100% Height */
+.member-card:hover .member-img-color-wrapper {
+  height: 100%;
+}
+
+/* 2. Colorize Text Elements */
+.member-card:hover .member-role,
+.member-card:hover .member-tag {
+  color: var(--neon-green);
+}
+
+
+/* ************************************ Contact Us section *************************************/
+
+
+.contact-section {
+  background-color: var(--dark-bg);
+}
+
+/* Info Cards & Community Box */
+.info-card,
+.contact-form-card {
+  background-color: var(--card-bg);
+}
+
+.icon-box {
+  width: 48px;
+  height: 48px;
+  background-color: var(--neon-green);
+  color: #000000;
+  font-size: 1.25rem;
+}
+
+.community-card {
+  background: linear-gradient(135deg, #ccff00 0%, #3bf074 100%);
+}
+
+.community-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.community-icon:hover {
+  transform: translateY(-2px);
+  color: var(--neon-green);
+}
+
+/* Custom Form Styles */
+.custom-input {
+  background-color: var(--input-bg) !important;
+  border: 1px solid var(--input-border) !important;
+  color: #ffffff !important;
+}
+
+.custom-input::placeholder {
+  color: #72839f;
+}
+
+.custom-input:focus {
+  border-color: var(--neon-green) !important;
+  box-shadow: 0 0 0 0.25rem rgba(204, 255, 0, 0.15) !important;
+}
+
+.custom-checkbox:checked {
+  background-color: var(--neon-green);
+  border-color: var(--neon-green);
+}
+
+/* Submit Button */
+.btn-neon-submit {
+  background-color: var(--neon-green);
+  color: #000000;
+  border: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.btn-neon-submit:hover {
+  background-color: #b8e600;
+  color: #000000;
+  transform: translateY(-1px);
+}
+
+.text-neon {
+  color: var(--neon-green);
+}
+
+/* **********************************Footer **************************** */
+
+.game-footer {
+  background-color: var(--footer-bg);
+  color: #ffffff;
+  font-family: inherit;
+}
+
+.text-neon {
+  color: var(--neon-green) !important;
+}
+
+/* Links & Typography */
+.footer-links a,
+.legal-link,
+.social-icon {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.footer-links a:hover,
+.legal-link:hover,
+.social-icon:hover {
+  color: var(--neon-green);
+}
+
+.brand-title {
+  color: #ffffff;
+}
+
+/* Footer Bottom Bar */
+.legal-link {
+  font-size: 0.85rem;
+}

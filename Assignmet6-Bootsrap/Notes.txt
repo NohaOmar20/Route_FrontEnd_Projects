@@ -1,0 +1,23 @@
+In the animation part: Here is what i used to make it look smooth without using library. 
+In the marquee-container: 
+1.overflow: hidden;
+What it does: Clips (hides) any content that extends outside the container's left or right edges.
+
+Why it's needed: Without this, the extra set of duplicated logos would spill off the screen and cause horizontal scrollbars on your webpage.
+
+2. user-select: none;
+What it does: Prevents users from accidentally highlighting/selecting text or images when clicking and dragging over the sliding logos.
+
+3. The Fade Effect (mask-image) This is the key styling detail that makes the ticker look polished:
+
+How mask-image works: In CSS masks, any part of the layer covered by black stays 100% visible (opaque), while any part covered by transparent becomes invisible.
+
+The Gradient breakdown:
+
+0% to 10%: Fades smoothly from transparent (invisible) to black (fully visible) on the far left.
+
+10% to 90%: Remains solid black, keeping all logos in the middle completely visible.
+
+90% to 100%: Fades smoothly back to transparent on the far right.
+
+The Result: Logos don't just "pop" into view or suddenly cut off at the screen edge; they gently fade in on one side and fade out on the other.
