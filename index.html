@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noha Omar | Front-End Developer Route Portfolio</title>
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Google Fonts: Plus Jakarta Sans (display) + Inter (body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/[email protected]"></script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; }
+  h1, h2, h3, .font-display { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+  /* Custom pastel tokens */
+  :root {
+    --lavender:  #A78BFA; /* primary purple */
+    --lavender-deep: #7C5CE0;
+    --cream: #FBF7F0;     /* warm cream background */
+    --cream-card: #FFFDF9;
+    --mint: #86EFC0;      /* mint accent */
+    --mint-deep: #34D399;
+  }
+
+  .bg-cream { background-color: var(--cream); }
+  .bg-cream-card { background-color: var(--cream-card); }
+  .text-lavender { color: var(--lavender-deep); }
+  .bg-lavender { background-color: var(--lavender); }
+  .bg-lavender-deep { background-color: var(--lavender-deep); }
+  .border-lavender { border-color: var(--lavender); }
+  .bg-mint { background-color: var(--mint); }
+  .text-mint-deep { color: var(--mint-deep); }
+  .bg-mint-soft { background-color: #E6FBF1; }
+  .bg-lavender-soft { background-color: #F1EBFE; }
+
+  /* Card hover lift */
+  .project-card { transition: transform .25s ease, box-shadow .25s ease; }
+  .project-card:hover { transform: translateY(-6px); box-shadow: 0 18px 30px -12px rgba(124, 92, 224, 0.25); }
+
+  /* Filter button active state */
+  .filter-btn.active {
+    background-color: var(--lavender-deep);
+    color: white;
+  }
+
+  /* Mobile menu transition */
+  #mobile-menu { transition: max-height .3s ease, opacity .3s ease; }
+
+  /* Signature squiggle underline used on section eyebrows */
+  .eyebrow-underline {
+    position: relative;
+  }
+  .eyebrow-underline::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: -6px;
+    width: 42px; height: 3px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--lavender), var(--mint-deep));
+  }
+
+  .hide { display: none !important; }
+</style>
+</head>
+
+<body class="bg-cream text-slate-800 antialiased">
+
+<!-- ============ HEADER / NAV ============ -->
+<header class="sticky top-0 z-50 bg-cream/90 backdrop-blur-md border-b border-slate-200">
+  <nav class="max-w-6xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between">
+    <a href="#top" class="font-display text-xl font-extrabold text-slate-900">
+      Noha<span class="text-lavender">.</span>dev
+    </a>
+
+    <!-- Desktop nav -->
+    <ul class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+      <li><a href="#about" class="hover:text-lavender transition">About Me</a></li>
+      <li><a href="#academy" class="hover:text-lavender transition">Route Academy</a></li>
+      <li><a href="#projects" class="hover:text-lavender transition">Projects</a></li>
+      <li><a href="#contact" class="hover:text-lavender transition">Contact</a></li>
+    </ul>
+
+    <a href="#contact" class="hidden md:inline-flex items-center gap-2 bg-lavender-deep text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition">
+      Get in Touch
+    </a>
+
+    <!-- Hamburger (mobile) -->
+    <button id="menu-toggle" class="md:hidden text-slate-700" aria-label="Toggle menu">
+      <i data-lucide="menu" class="w-7 h-7"></i>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden overflow-hidden max-h-0 opacity-0">
+    <ul class="flex flex-col gap-1 px-5 pb-5 text-sm font-semibold text-slate-700">
+      <li><a href="#about" class="block py-2">About Me</a></li>
+      <li><a href="#academy" class="block py-2">Route Academy</a></li>
+      <li><a href="#projects" class="block py-2">Projects</a></li>
+      <li><a href="#contact" class="block py-2">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO / ABOUT ME ============ -->
+  <section id="about" class="max-w-6xl mx-auto px-5 sm:px-8 pt-16 sm:pt-24 pb-20">
+    <div class="grid md:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
+
+      <div>
+        <span class="eyebrow-underline inline-block text-xs font-bold tracking-widest uppercase text-lavender pb-2 mb-4">
+          Front-End Developer · Route Academy Graduate
+        </span>
+        <h1 class="font-display text-4xl sm:text-5xl font-extrabold leading-tight text-slate-900">
+          I build clean, usable interfaces —
+          <span class="text-lavender">one assignment at a time.</span>
+        </h1>
+        <p class="mt-6 text-slate-600 text-base sm:text-lg leading-relaxed max-w-xl">
+          I'm a web development student and front-end developer, trained hands-on at
+          Route Academy. This site is a running log of every assignment and practical
+          test I've shipped — real layouts, real bugs, real fixes — on the way to
+          becoming a dependable engineer.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="#projects" class="inline-flex items-center gap-2 bg-lavender-deep text-white font-semibold px-6 py-3 rounded-full hover:opacity-90 transition">
+            View Projects <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+          </a>
+          <a href="#contact" class="inline-flex items-center gap-2 bg-mint-soft text-mint-deep font-semibold px-6 py-3 rounded-full border border-mint hover:bg-mint hover:text-white transition">
+            Get in Touch <i data-lucide="mail" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="flex justify-center md:justify-end">
+        <div class="relative">
+          <div class="absolute -inset-4 bg-lavender-soft rounded-full -z-10"></div>
+          <!-- REPLACE: swap src below with your own profile photo URL -->
+          <img src="https://via.placeholder.com/300"
+               alt="Profile Picture"
+               class="rounded-full w-48 h-48 sm:w-60 sm:h-60 object-cover border-4 border-lavender shadow-lg">
+          <span class="absolute -bottom-2 -left-2 bg-mint text-white text-xs font-bold px-4 py-2 rounded-full shadow">
+            Open to work
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ ROUTE ACADEMY SECTION ============ -->
+  <section id="academy" class="bg-lavender-soft py-16 sm:py-20">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+      <div class="grid md:grid-cols-[0.35fr_0.65fr] gap-10 items-center bg-cream-card rounded-3xl p-8 sm:p-12 shadow-sm border border-white">
+
+        <div class="flex justify-center md:justify-start">
+          <!-- REPLACE: swap src below with Route Academy's actual logo URL -->
+          <img src="https://via.placeholder.com/120"
+               alt="Route Academy Logo"
+               class="rounded-full w-24 h-24 sm:w-28 sm:h-28 object-cover border-2 border-mint shadow">
+        </div>
+
+        <div>
+          <span class="eyebrow-underline inline-block text-xs font-bold tracking-widest uppercase text-mint-deep pb-2 mb-3">
+            Training Ground
+          </span>
+          <h2 class="font-display text-2xl sm:text-3xl font-bold text-slate-900 mb-3">
+            Route Academy — Front-End Diploma
+          </h2>
+          <p class="text-slate-600 leading-relaxed">
+            Route Academy is where I built my foundation: weekly assignments, timed
+            practical exams, and real-world mini-projects covering HTML5, CSS3,
+            JavaScript, Bootstrap, and API integration. Every project on this page
+            was built, tested, and submitted as part of that hands-on curriculum —
+            not tutorials I followed, but problems I solved on a deadline.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS SECTION ============ -->
+  <section id="projects" class="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20">
+
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10">
+      <div>
+        <span class="eyebrow-underline inline-block text-xs font-bold tracking-widest uppercase text-lavender pb-2 mb-3">
+          The Work
+        </span>
+        <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slate-900">
+          Assignments &amp; Practical Tests
+        </h2>
+      </div>
+
+      <!-- Filter buttons -->
+      <div class="flex gap-2 flex-wrap">
+        <button data-filter="all" class="filter-btn active text-sm font-semibold px-5 py-2.5 rounded-full border border-lavender transition">All</button>
+        <button data-filter="assignment" class="filter-btn text-sm font-semibold px-5 py-2.5 rounded-full border border-lavender text-lavender transition">Assignments</button>
+        <button data-filter="test" class="filter-btn text-sm font-semibold px-5 py-2.5 rounded-full border border-lavender text-lavender transition">Tests</button>
+      </div>
+    </div>
+
+    <!-- Grid of project cards -->
+    <div id="project-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
+
+      <!-- Card 1: Assignment (always visible) -->
+      <article class="project-card visible-first" data-type="assignment">
+        <div class="bg-cream-card rounded-2xl overflow-hidden border border-slate-200 h-full flex flex-col">
+          <!-- REPLACE: swap src with a screenshot of this project -->
+          <img src="https://via.placeholder.com/400x240" alt="Bakery landing page preview" class="rounded-t-2xl h-48 w-full object-cover">
+          <div class="p-5 flex flex-col flex-1">
+            <span class="self-start bg-lavender-soft text-lavender text-xs font-bold px-3 py-1 rounded-full mb-3">Assignment</span>
+            <h3 class="font-display font-bold text-lg text-slate-900 mb-1.5">Bakery Landing Page</h3>
+            <p class="text-sm text-slate-600 mb-4 flex-1">A responsive bakery storefront template built from a Figma layout, focused on pixel-accurate spacing and mobile breakpoints.</p>
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="text-xs bg-mint-soft text-mint-deep font-semibold px-2.5 py-1 rounded-md">HTML5</span>
+              <span class="text-xs bg-mint-soft text-mint-deep font-semibold px-2.5 py-1 rounded-md">CSS3</span>
+              <span class="text-xs bg-mint-soft text-mint-deep font-semibold px-2.5 py-1 rounded-md">Bootstrap</span>
+            </div>
+            <div class="flex gap-3 text-sm font-semibold">
+              <!-- REPLACE: point to your live GitHub Pages link -->
+              <a href="#" class="inline-flex items-center gap-1.5 text-lavender hover:underline">
+                <i data-lucide="external-link" class="w-4 h-4"></i> Live Demo
+              </a>
+              <!-- REPLACE: point to the assignment's GitHub folder -->
+              <a href="#" class="inline-flex items-center gap-1.5 text-slate-500 hover:underline">
+                <i data-lucide="github" class="w-4 h-4"></i> View Code
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2: Test (always visible) -->
+      <article class="project-card visible-first" data-type="test">
+        <div class="bg-cream-card rounded-2xl overflow-hidden border border-slate-200 h-full flex flex-col">
+          <img src="https://via.placeholder.com/400x240" alt="Yummy food app preview" class="rounded-t-2xl h-48 w-full object-cover">
+          <div class="p-5 flex flex-col flex-1">
+            <span class="self-start bg-mint-soft text-mint-deep text-xs font-bold px-3 py-1 rounded-full mb-3">Test</span>
+            <h3 class="font-display font-bold text-lg text-slate-900 mb-1.5">Yummy — Recipe Finder</h3>
+            <p class="text-sm text-slate-600 mb-4 flex-1">Timed practical exam: fetch and render recipes from a public API with search, filtering, and a loading state, built under a 3-hour limit.</p>
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="text-xs bg-lavender-soft text-lavender font-semibold px-2.5 py-1 rounded-md">JavaScript</span>
+              <span class="text-xs bg-lavender-soft text-lavender font-semibold px-2.5 py-1 rounded-md">Fetch API</span>
+              <span class="text-xs bg-lavender-soft text-lavender font-semibold px-2.5 py-1 rounded-md">CSS3</span>
+            </div>
+            <div class="flex gap-3 text-sm font-semibold">
+              <a href="#" class="inline-flex items-center gap-1.5 text-lavender hover:underline">
+                <i data-lucide="external-link" class="w-4 h-4"></i> Live Demo
+              </a>
+              <a href="#" class="inline-flex items-center gap-1.5 text-slate-500 hover:underline">
+                <i data-lucide="github" class="w-4 h-4"></i> View Code
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3: Assignment (always visible) -->
+      <article class="project-card visible-first" data-type="assignment">
+        <div class="bg-cream-card rounded-2xl overflow-hidden border border-slate-200 h-full flex flex-col">
+          <img src="https://via.placeholder.com/400x240" alt="Portfolio grid preview" class="rounded-t-2xl h-48 w-full object-cover">
+          <div class="p-5 flex flex-col flex-1">
+            <span class="self-start bg-lavender-soft text-lavender text-xs font-bold px-3 py-1 rounded-full mb-3">Assignment</span>
+            <h3 class="font-display font-bold text-lg text-slate-900 mb-1.5">CSS Grid Portfolio Layout</h3>
+            <p class="text-sm text-slate-600 mb-4 flex-1">A magazine-style portfolio grid built with pure CSS Grid — no frameworks — to practice responsive column spans and gap control.</p>
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="text-xs bg-mint-soft text-mint-deep font-semibold px-2.5 py-1 rounded-md">HTML5</span>
+              <span class="text-xs bg-mint-soft text-mint-deep font-semibold px-2.5 py-1 rounded-md">CSS Grid</span>
+            </div>
+            <div class="flex gap-3 text-sm font-semibold">
+              <a href="#" class="inline-flex items-center gap-1.5 text-lavender hover:underline">
+                <i data-lucide="external-link" class="w-4 h-4"></i> Live Demo
+              </a>
+              <a href="#" class="inline-flex items-center gap-1.5 text-slate-500 hover:underline">
+                <i data-lucide="github" class="w-4 h-4"></i> View Code
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 4: Test (hidden until "Show All") -->
+      <article class="project-card hide-extra hide" data-type="test">
+        <div class="bg-cream-card rounded-2xl overflow-hidden border border-slate-200 h-full flex flex-col">
+          <img src="https://via.placeholder.com/400x240" alt="Weather app preview" class="rounded-t-2xl h-48 w-full object-cover">
+          <div class="p-5 flex flex-col flex-1">
+            <span class="self-start bg-mint-soft text-mint-deep text-xs font-bold px-3 py-1 rounded-full mb-3">Test</span>
+            <h3 class="font-display font-bold text-lg text-slate-900 mb-1.5">3-Day Weather Forecast</h3>
+            <p class="text-sm text-slate-600 mb-4 flex-1">JavaScript exam: pull live weather data by city name and render a 3-day forecast with icons and error handling for invalid input.</p>
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="text-xs bg-lavender-soft text-lavender font-semibold px-2.5 py-1 rounded-md">JavaScript</span>
+              <span class="text-xs bg-lavender-soft text-lavender font-semibold px-2.5 py-1 rounded-md">AJAX</span>
+              <span class="text-xs bg-lavender-soft text-lavender font-semibold px-2.5 py-1 rounded-md">Bootstrap</span>
+            </div>
+            <div class="flex gap-3 text-sm font-semibold">
+              <a href="#" class="inline-flex items-center gap-1.5 text-lavender hover:underline">
+                <i data-lucide="external-link" class="w-4 h-4"></i> Live Demo
+              </a>
+              <a href="#" class="inline-flex items-center gap-1.5 text-slate-500 hover:underline">
+                <i data-lucide="github" class="w-4 h-4"></i> View Code
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 5: Assignment (hidden until "Show All") -->
+      <article class="project-card hide-extra hide" data-type="assignment">
+        <div class="bg-cream-card rounded-2xl overflow-hidden border border-slate-200 h-full flex flex-col">
+          <img src="https://via.placeholder.com/400x240" alt="Contact hub CRUD app preview" class="rounded-t-2xl h-48 w-full object-cover">
+          <div class="p-5 flex flex-col flex-1">
+            <span class="self-start bg-lavender-soft text-lavender text-xs font-bold px-3 py-1 rounded-full mb-3">Assignment</span>
+            <h3 class="font-display font-bold text-lg text-slate-900 mb-1.5">ContactHub — CRUD Manager</h3>
+            <p class="text-sm text-slate-600 mb-4 flex-1">A contact list manager with full create, read, update, and delete functionality, persisted with LocalStorage.</p>
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="text-xs bg-mint-soft text-mint-deep font-semibold px-2.5 py-1 rounded-md">JavaScript</span>
+              <span class="text-xs bg-mint-soft text-mint-deep font-semibold px-2.5 py-1 rounded-md">LocalStorage</span>
+            </div>
+            <div class="flex gap-3 text-sm font-semibold">
+              <a href="#" class="inline-flex items-center gap-1.5 text-lavender hover:underline">
+                <i data-lucide="external-link" class="w-4 h-4"></i> Live Demo
+              </a>
+              <a href="#" class="inline-flex items-center gap-1.5 text-slate-500 hover:underline">
+                <i data-lucide="github" class="w-4 h-4"></i> View Code
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 6: Test (hidden until "Show All") -->
+      <article class="project-card hide-extra hide" data-type="test">
+        <div class="bg-cream-card rounded-2xl overflow-hidden border border-slate-200 h-full flex flex-col">
+          <img src="https://via.placeholder.com/400x240" alt="Cosmos Space API preview" class="rounded-t-2xl h-48 w-full object-cover">
+          <div class="p-5 flex flex-col flex-1">
+            <span class="self-start bg-mint-soft text-mint-deep text-xs font-bold px-3 py-1 rounded-full mb-3">Test</span>
+            <h3 class="font-display font-bold text-lg text-slate-900 mb-1.5">Cosmos — NASA API Explorer</h3>
+            <p class="text-sm text-slate-600 mb-4 flex-1">Final practical exam: consume NASA's public API to display daily space imagery with a searchable date picker.</p>
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="text-xs bg-lavender-soft text-lavender font-semibold px-2.5 py-1 rounded-md">JavaScript</span>
+              <span class="text-xs bg-lavender-soft text-lavender font-semibold px-2.5 py-1 rounded-md">REST API</span>
+              <span class="text-xs bg-lavender-soft text-lavender font-semibold px-2.5 py-1 rounded-md">CSS3</span>
+            </div>
+            <div class="flex gap-3 text-sm font-semibold">
+              <a href="#" class="inline-flex items-center gap-1.5 text-lavender hover:underline">
+                <i data-lucide="external-link" class="w-4 h-4"></i> Live Demo
+              </a>
+              <a href="#" class="inline-flex items-center gap-1.5 text-slate-500 hover:underline">
+                <i data-lucide="github" class="w-4 h-4"></i> View Code
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Show all button -->
+    <div class="text-center mt-10">
+      <button id="show-all-btn" class="inline-flex items-center gap-2 bg-cream-card border-2 border-lavender text-lavender font-semibold px-8 py-3 rounded-full hover:bg-lavender-deep hover:text-white hover:border-lavender-deep transition">
+        Show all <i data-lucide="chevron-down" id="show-all-icon" class="w-4 h-4 transition-transform"></i>
+      </button>
+    </div>
+
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer id="contact" class="bg-lavender-deep text-white mt-10">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-14">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8">
+
+      <div>
+        <p class="font-display text-xl font-extrabold mb-2">Noha<span class="text-mint">.</span>dev</p>
+        <p class="text-white/70 text-sm max-w-xs">Building my way from Route Academy assignments to production-ready front-end work.</p>
+      </div>
+
+      <div class="flex gap-4">
+        <!-- REPLACE: point each href to your real profile / mail -->
+        <a href="#" aria-label="GitHub" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-mint hover:text-lavender-deep transition">
+          <i data-lucide="github" class="w-5 h-5"></i>
+        </a>
+        <a href="#" aria-label="LinkedIn" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-mint hover:text-lavender-deep transition">
+          <i data-lucide="linkedin" class="w-5 h-5"></i>
+        </a>
+        <a href="mailto:[email protected]" aria-label="Email" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-mint hover:text-lavender-deep transition">
+          <i data-lucide="mail" class="w-5 h-5"></i>
+        </a>
+      </div>
+
+    </div>
+
+    <div class="border-t border-white/15 mt-10 pt-6 text-center text-xs text-white/60">
+      © <span id="year"></span> Noha Omar. Built while learning, one assignment at a time.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Render Lucide icons
+  lucide.createIcons();
+
+  // Current year in footer
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  let menuOpen = false;
+  menuToggle.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    mobileMenu.style.maxHeight = menuOpen ? mobileMenu.scrollHeight + 'px' : '0px';
+    mobileMenu.style.opacity = menuOpen ? '1' : '0';
+  });
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menuOpen = false;
+      mobileMenu.style.maxHeight = '0px';
+      mobileMenu.style.opacity = '0';
+    });
+  });
+
+  // Filter logic
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('#project-grid article');
+  const showAllBtn = document.getElementById('show-all-btn');
+  const showAllIcon = document.getElementById('show-all-icon');
+  let extrasShown = false;
+
+  function applyFilter(type) {
+    cards.forEach(card => {
+      const matches = type === 'all' || card.dataset.type === type;
+      const isExtra = card.classList.contains('hide-extra');
+
+      if (!matches) {
+        card.classList.add('hide');
+        return;
+      }
+      // Extras only show if "Show all" has been clicked
+      if (isExtra && !extrasShown) {
+        card.classList.add('hide');
+      } else {
+        card.classList.remove('hide');
+      }
+    });
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => {
+        b.classList.remove('active');
+        b.classList.add('text-lavender');
+      });
+      btn.classList.add('active');
+      btn.classList.remove('text-lavender');
+      applyFilter(btn.dataset.filter);
+    });
+  });
+
+  showAllBtn.addEventListener('click', () => {
+    extrasShown = !extrasShown;
+    const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+    applyFilter(activeFilter);
+    showAllBtn.querySelector('span') // no-op safeguard
+    showAllBtn.firstChild.textContent = extrasShown ? 'Show less ' : 'Show all ';
+    showAllIcon.style.transform = extrasShown ? 'rotate(180deg)' : 'rotate(0deg)';
+  });
+</script>
+
+</body>
+</html>
