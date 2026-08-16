@@ -1,0 +1,20 @@
+SideBare:
+
+/* Controling the aside sections in the aside bar 
+
+To make a loop over them>> we can use the querySelectorAll ,
+ it will return to me nodeList, to select all the links
+ and then we can use the forEach method to loop over them
+ and add an event listener to each link. 
+ When a link is clicked>> 
+ use the classList property to add and remove hidden class from the links.
+*/
+
+
+
+
+/* Get APOD (Astronomy Picture of the Day) by Date >> params : API_KEY, date 
+Fetches APOD for a specific date selected by the user via the custom date picker. 
+Date must be in YYYY-MM-DD format and cannot be in the future or before June 16, 1995.
+defaults to today
+*/
