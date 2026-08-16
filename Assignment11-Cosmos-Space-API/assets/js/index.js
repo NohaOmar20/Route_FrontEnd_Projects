@@ -86,7 +86,7 @@ async function fetchAPOD(date = null) {
 
         const response = await fetch(url);
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        
+
         const data = await response.json();
         displayData(data);
     } catch (error) {
@@ -104,10 +104,10 @@ function displayData(data) {
     apodDate.textContent = `Astronomy Picture of the Day - ${formatted}`;
     inputDate.value = data.date;
     spanDate.textContent = formatted;
-    
+
     // Set media source (fallback to url if hdurl isn't present)
     apodImage.src = data.hdurl || data.url;
-    
+
     apodTitle.textContent = data.title;
     apodDetailDate.innerHTML = `<i class="far fa-calendar mr-2"></i>${data.date}`;
     apodExplanation.textContent = data.explanation;
@@ -135,19 +135,19 @@ loadBtn?.addEventListener("click", () => {
 
 /* Get Upcoming Launches >> Params: limit (10)*/
 async function getLaunches() {
-   const response = await fetch(`https://lldev.thespacedevs.com/2.3.0/launches/upcoming/?format=json&limit=10`);
-   const data = await response.json();
-//    return data;
-//    console.log(data);
-   displayMainLaunch(data.results[0]);
-   displayotherLaunches(data.results);
+    const response = await fetch(`https://lldev.thespacedevs.com/2.3.0/launches/upcoming/?format=json&limit=10`);
+    const data = await response.json();
+    //    return data;
+    //    console.log(data);
+    displayMainLaunch(data.results[0]);
+    displayotherLaunches(data.results);
 }
 function prepareLaunch(launch) {
     // from the results array
     const name = launch.name;
     const provider = launch.launch_service_provider.name;
     const rocket = launch.rocket.configuration.name;
-    const tripDate = new Date(launch.net); 
+    const tripDate = new Date(launch.net);
     const diffDate = tripDate - new Date;
     const days = Math.ceil(diffDate / (1000 * 60 * 60 * 24));
     const launchDate = tripDate.toLocaleDateString('en-US', {
@@ -159,8 +159,8 @@ function prepareLaunch(launch) {
     const launchTime = tripDate.toLocaleTimeString('en-US', {
         hour: '2-digit',
         minute: '2-digit',
-        timeZone:"UTC"
-    }) +'UTC';
+        timeZone: "UTC"
+    }) + 'UTC';
     const location = launch.pad.location.name;
     const country = launch.pad.location.country.name;
     const image = launch.image.image_url
@@ -188,8 +188,8 @@ function prepareLaunch(launch) {
     };
 
 }
-function displayMainLaunch(data){
-   let info = prepareLaunch(data);
+function displayMainLaunch(data) {
+    let info = prepareLaunch(data);
     let main = ` <div
               class="relative bg-slate-800/30 border border-slate-700 rounded-3xl overflow-hidden group hover:border-blue-500/50 transition-all"
             >
@@ -316,13 +316,13 @@ function displayMainLaunch(data){
                 </div>
               </div>
             </div>`
-            document.getElementById("featured-launch").innerHTML = main;
+    document.getElementById("featured-launch").innerHTML = main;
 }
 function displayotherLaunches(results) {
- let launchesHTML = ``;
- for (let i = 1; i < results.length; i++) {
-    let info = prepareLaunch(results[i]);
-    launchesHTML += `<div
+    let launchesHTML = ``;
+    for (let i = 1; i < results.length; i++) {
+        let info = prepareLaunch(results[i]);
+        launchesHTML += `<div
               class="bg-slate-800/50 border border-slate-700 rounded-2xl overflow-hidden hover:border-blue-500/30 transition-all group cursor-pointer"
             >
               <div
@@ -383,9 +383,9 @@ function displayotherLaunches(results) {
                 </div>
               </div>
             </div>`;
-            
-}
-document.getElementById("launches-grid").innerHTML = launchesHTML;
+
+    }
+    document.getElementById("launches-grid").innerHTML = launchesHTML;
 }
 
 
@@ -399,171 +399,124 @@ async function getPlanets() {
     displayPlanets(data.bodies);
 }
 function preparePlanet(planet) {
-    // const name = planet.englishName;
-    // const semimajor = planet.semimajorAxis; 
-    // const AU = (semimajor / 149597870.7).toFixed(2); 
-    // const radius = planet.meanRadius; 
-    // const massValue = planet.mass.massValue; 
-    // const massExponent = planet.mass.massExponent;
-    // const mass = `${massValue} x 10^${massExponent} kg`;
-    
-    // const volValue = planet.vol.volValue; 
-    // const volExponent = planet.vol.volExponent;
-    // const volume = `${volValue} x 10^${volExponent} km³`;
+    if (!planet) return null;
+    // Destructure with default fallbacks
+    const {
+        id,
+        englishName: name = 'Unknown Body',
+        semimajorAxis = 0,
+        meanRadius = 0,
+        density = 0,
+        gravity = 0,
+        moons = null,
+        sideralOrbit = 0,
+        sideralRotation = 0,
+        discoveredBy = '',
+        discoveryDate = '',
+        bodyType = 'Planet',
+        type = 'Terrestrial',
+        vol = {},
+        mass = {},
+        perihelion = 0,
+        aphelion = 0,
+        eccentricity = 0,
+        inclination = 0,
+        axialTilt = 0,
+        avgTemp = 0,
+        escape = 0,
+        image = '',
+        description = ''
+    } = planet;
 
-    // const density = planet.density;
-    // const moons = planet.moons ? planet.moons.length : 0;
-    // const gravity = planet.gravity; 
-    // const orbitalPeriod = planet.sideralOrbit; 
-    // const rotationPeriod = planet.sideralRotation; 
+    // 1. Calculations & Conversions
+    const distanceAU = (semimajorAxis / 149597870.7).toFixed(2);
+    const semimajorInM = (semimajorAxis / 1000000).toFixed(1);
+    const perihelionInM = (perihelion / 1000000).toFixed(1);
+    const aphelionInM = (aphelion / 1000000).toFixed(1);
+    const escapeKmPerSec = (escape / 1000).toFixed(2);
 
-    // const discoveryDate = planet.discoveryDate || 'Ancient Times';
-    // const discoveredBy = planet.discoveredBy || 'known Since antiquity';
-    // const bodyType = planet.bodyType;
-    // const axialTilt = planet.axialTilt;
-    // return{
-    //     name,
-    //     semimajor,
-    //     AU,
-    //     radius,
-    //     massValue,
-    //     massExponent,
-    //     mass,
-    //     volValue,
-    //     volExponent,
-    //     volume,
-    //     density,
-    //     moons,
-    //     gravity,
-    //     orbitalPeriod,
-    //     rotationPeriod,
-    //     discoveryDate,
-    //     discoveredBy,
-    //     bodyType,
-    //     axialTilt
-    // }
+    // Temperature conversion (Kelvin to Celsius if necessary, or raw)
+    const tempCelsius = avgTemp > 0 ? Math.round(avgTemp - 273.15) : 'N/A';
 
-   if (!planet) return null;
+    // Format Scientific Notations
+    const massFormatted = mass.massValue
+        ? `${mass.massValue} × 10^${mass.massExponent} kg`
+        : 'N/A';
 
-  // Destructure with default fallbacks
-  const {
-    id,
-    englishName: name = 'Unknown Body',
-    semimajorAxis = 0,
-    meanRadius = 0,
-    density = 0,
-    gravity = 0,
-    moons = null,
-    sideralOrbit = 0,
-    sideralRotation = 0,
-    discoveredBy = '',
-    discoveryDate = '',
-    bodyType = 'Planet',
-    type = 'Terrestrial',
-    vol = {},
-    mass = {},
-    perihelion = 0,
-    aphelion = 0,
-    eccentricity = 0,
-    inclination = 0,
-    axialTilt = 0,
-    avgTemp = 0,
-    escape = 0,
-    image = '',
-    description = ''
-  } = planet;
+    const volFormatted = vol.volValue
+        ? `${vol.volValue} × 10^${vol.volExponent} km³`
+        : 'N/A';
 
-  // 1. Calculations & Conversions
-  const distanceAU = (semimajorAxis / 149597870.7).toFixed(2);
-  const semimajorInM = (semimajorAxis / 1000000).toFixed(1);
-  const perihelionInM = (perihelion / 1000000).toFixed(1);
-  const aphelionInM = (aphelion / 1000000).toFixed(1);
-  const escapeKmPerSec = (escape / 1000).toFixed(2);
+    return {
+        id,
+        name,
+        type,
+        bodyType,
+        image,
+        description,
 
-  // Temperature conversion (Kelvin to Celsius if necessary, or raw)
-  const tempCelsius = avgTemp > 0 ? Math.round(avgTemp - 273.15) : 'N/A';
+        // Distances & Radii
+        distanceAU: `${distanceAU} AU`,
+        semimajorAxis: `${semimajorInM}M km`,
+        perihelion: `${perihelionInM}M km`,
+        aphelion: `${aphelionInM}M km`,
+        radius: `${meanRadius.toLocaleString()} km`,
+        diameter: `${(meanRadius * 2).toLocaleString()} km`,
 
-  // Format Scientific Notations
-  const massFormatted = mass.massValue 
-    ? `${mass.massValue} × 10^${mass.massExponent} kg` 
-    : 'N/A';
+        // Physical Characteristics
+        mass: massFormatted,
+        volume: volFormatted,
+        density: `${density} g/cm³`,
+        gravity: `${gravity} m/s²`,
+        moonsCount: moons ? moons.length : 0,
 
-  const volFormatted = vol.volValue 
-    ? `${vol.volValue} × 10^${vol.volExponent} km³` 
-    : 'N/A';
+        // Orbital & Rotational Periods
+        orbitalPeriodDays: sideralOrbit ? `${sideralOrbit.toFixed(2)} days` : 'N/A',
+        rotationPeriodHours: sideralRotation ? `${Math.abs(sideralRotation).toFixed(2)} hours` : 'N/A',
 
-  return {
-    id,
-    name,
-    type,
-    bodyType,
-    image,
-    description,
-    
-    // Distances & Radii
-    distanceAU: `${distanceAU} AU`,
-    semimajorAxis: `${semimajorInM}M km`,
-    perihelion: `${perihelionInM}M km`,
-    aphelion: `${aphelionInM}M km`,
-    radius: `${meanRadius.toLocaleString()} km`,
-    diameter: `${(meanRadius * 2).toLocaleString()} km`,
+        // Discovery Information
+        discoveredBy: discoveredBy || 'Known since antiquity',
+        discoveryDate: discoveryDate || 'Ancient times',
 
-    // Physical Characteristics
-    mass: massFormatted,
-    volume: volFormatted,
-    density: `${density} g/cm³`,
-    gravity: `${gravity} m/s²`,
-    moonsCount: moons ? moons.length : 0,
+        // Orbital Characteristics Sidebar
+        eccentricity: eccentricity.toFixed(5),
+        inclination: inclination ? `${inclination}°` : 'N/A',
+        axialTilt: `${axialTilt}°`,
+        avgTemp: `${avgTemp}K (${tempCelsius}°C)`,
+        escapeVelocity: `${escapeKmPerSec} km/s`
+    };
 
-    // Orbital & Rotational Periods
-    orbitalPeriodDays: sideralOrbit ? `${sideralOrbit.toFixed(2)} days` : 'N/A',
-    rotationPeriodHours: sideralRotation ? `${Math.abs(sideralRotation).toFixed(2)} hours` : 'N/A',
-
-    // Discovery Information
-    discoveredBy: discoveredBy || 'Known since antiquity',
-    discoveryDate: discoveryDate || 'Ancient times',
-
-    // Orbital Characteristics Sidebar
-    eccentricity: eccentricity.toFixed(5),
-    inclination: inclination ? `${inclination}°` : 'N/A',
-    axialTilt: `${axialTilt}°`,
-    avgTemp: `${avgTemp}K (${tempCelsius}°C)`,
-    escapeVelocity: `${escapeKmPerSec} km/s`
-  };
-    
-
-    
 }
 function displayPlanets(planets) {
-    const colors={
-        mercury:'#eab308',
-        venus:'#f59e0b',
-        earth:'#10b981',
-        mars:'#ef4444',
-        jupiter:'#f97316',
-        saturn:'#fbbf24',
-        uranus:'#60a5fa',
-        neptune:'#3b82f6',
-        pluto:'#a78bfa'
+    const colors = {
+        mercury: '#eab308',
+        venus: '#f59e0b',
+        earth: '#10b981',
+        mars: '#ef4444',
+        jupiter: '#f97316',
+        saturn: '#fbbf24',
+        uranus: '#60a5fa',
+        neptune: '#3b82f6',
+        pluto: '#a78bfa'
     }
-    const image={
-        mercury:'./assets/images/mercury.png',
-        venus:'./assets/images/venus.png',
-        earth:'./assets/images/earth.png',
-        mars:'./assets/images/mars.png',
-        jupiter:'./assets/images/jupiter.png',
-        saturn:'./assets/images/saturn.png',
-        uranus:'./assets/images/uranus.png',
-        neptune:'./assets/images/neptune.png',
-        pluto:'./assets/images/pluto.png',
+    const image = {
+        mercury: './assets/images/mercury.png',
+        venus: './assets/images/venus.png',
+        earth: './assets/images/earth.png',
+        mars: './assets/images/mars.png',
+        jupiter: './assets/images/jupiter.png',
+        saturn: './assets/images/saturn.png',
+        uranus: './assets/images/uranus.png',
+        neptune: './assets/images/neptune.png',
+        pluto: './assets/images/pluto.png',
     }
     let planetsHTML = '';
-    for(let i = 0; i < planets.length; i++) {
+    for (let i = 0; i < planets.length; i++) {
         const planetInfo = preparePlanet(planets[i]);
         planetsHTML += `
              <div
               class="planet-card bg-slate-800/50 border border-slate-700 rounded-2xl p-4 transition-all cursor-pointer group"
-              data-planet-id=${planets[i].englishName.toLowerCase()}
+              data-planet-id="${planets[i].englishName.toLowerCase()}"
               style="--planet-color: ${colors[planets[i].englishName.toLowerCase()] || '#eab308'}"
               onmouseover="this.style.borderColor='${colors[planets[i].englishName.toLowerCase()] || '#eab308'}80'"
               onmouseout="this.style.borderColor='#334155'"
@@ -581,7 +534,23 @@ function displayPlanets(planets) {
         `;
     }
     document.getElementById("planets-grid").innerHTML = planetsHTML;
+
+    // Add click event listeners to each planet card
+    const planetCards = document.querySelectorAll('.planet-card');
+    // planetCards.forEach((planet) => {
+    //     planet.addEventListener('click', () => {
+    //         const targetPlanet = planet.getAttribute('data-planet-id');
+    //         let selectedPlanet = '';
+    //         for (let i = 0; i < planets.length; i++) {
+    //             if (planets[i].englishName.toLowerCase() === targetPlanet) {
+    //                 selectedPlanet = planets[i];
+    //             }
+    //         }
+    //         displayPlanetDetails(selectedPlanet);
+    //     });
+    // });
 }
+
 
 /* ==========================================================================
            App Initialization
