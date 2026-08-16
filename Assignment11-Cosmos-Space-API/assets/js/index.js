@@ -1,3 +1,11 @@
+
+// Variables
+var links = document.querySelectorAll('.nav-link');
+var sections = document.querySelectorAll('.app-section');
+var inputDate = document.getElementById("apod-date-input");
+var spanDate = document.querySelector(".date-input-wrapper span");
+var loadBtn= document.getElementById("load-date-btn");
+
 const API_KEY = 'efVaodLkPR3HTSp8y0HRDzFJdGMeYNOlLIjltfZ1';
 // Get all data
 
@@ -18,10 +26,6 @@ To make a loop over them>> we can use the querySelectorAll ,
  When a link is clicked>> 
  use the classList property to add and remove hidden class from the links.
 */
-
-// Variables
-var links = document.querySelectorAll('.nav-link');
-var sections = document.querySelectorAll('.app-section');
 
 // Side bar 
 links.forEach((link) => link.addEventListener('click', () => {
@@ -61,27 +65,54 @@ Get Today's APOD (Astronomy Picture of the Day) >> Params : API_KEY
 
 async function getToday() {
     //Use it only for Image display
-    const APOD_URL = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`;
+    var APOD_URL = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`;
     var response = await fetch(APOD_URL);
-    const data = await response.json();
+    var data = await response.json();
     // console.log(data);
 
     displayData(data);
 
 }
-// display data in the UI today or selected date
-function displayData(data) {
-    var date = new Date(data.date);
-    var formattedDate = date.toLocaleDateString('en-US',
+
+/* Get APOD (Astronomy Picture of the Day) by Date >> params : API_KEY, date 
+Fetches APOD for a specific date selected by the user via the custom date picker. 
+Date must be in YYYY-MM-DD format and cannot be in the future or before June 16, 1995.
+defaults to today
+*/
+async function getSpecificDay(date) {
+    var APOD_BY_DATE_URL = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&date=${date}`;
+
+     var response = await fetch(APOD_BY_DATE_URL);
+    var data = await response.json();
+    // console.log(data);
+
+    displayData(data);
+}
+function formattedDate(date) {
+     var newDate = new Date(date);
+    var formattedDate = newDate.toLocaleDateString('en-US',
         {
             year: 'numeric',
             month: 'long',
             day: 'numeric'
         });
+        return formattedDate;
+}
+inputDate.addEventListener("change", ()=> {
+    var selectedDate = formattedDate(inputDate.value);
+    spanDate.textContent = selectedDate;
+});
+loadBtn.addEventListener("click", async ()=> {
+    await getSpecificDay(inputDate.value);
+});
 
-    document.getElementById("apod-date").textContent = `Astronomy Picture of the Day - ${formattedDate}`;
-    document.getElementById("apod-date-input").value = data.date;
-    document.querySelector(".date-input-wrapper span").textContent = formattedDate;
+// display data in the UI today or selected date
+function displayData(data) {
+    var date = formattedDate(data.date);
+
+    document.getElementById("apod-date").textContent = `Astronomy Picture of the Day - ${date}`;
+    inputDate.value = data.date;
+    spanDate.textContent = date;
     document.getElementById("apod-image").src = data.hdurl || data.url;
     document.getElementById("apod-title").textContent = data.title;
     document.getElementById("apod-date-detail").innerHTML =`<i class="far fa-calendar mr-2"></i>${data.date}`;
@@ -96,12 +127,7 @@ function displayData(data) {
 
 
 
-/* Get APOD (Astronomy Picture of the Day) by Date >> params : API_KEY, date 
-Fetches APOD for a specific date selected by the user via the custom date picker. 
-Date must be in YYYY-MM-DD format and cannot be in the future or before June 16, 1995.
-defaults to today
-*/
-const APOD_BY_DATE_URL = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&date=2025-12-01`;
+
 
 /* ************************ Launches  section************************ */
 
