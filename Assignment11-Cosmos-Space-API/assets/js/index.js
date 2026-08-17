@@ -389,7 +389,7 @@ function displayotherLaunches(results) {
 }
 
 
-/* ************************ Plants section************************ */
+/* ************************ Planets section************************ */
 
 /* Get All Planets*/
 // const PLANETS_URL = `https://solar-system-opendata-proxy.vercel.app/api/planets`;
@@ -401,6 +401,7 @@ async function getPlanets() {
         // Filter or display bodies
         if (data && data.bodies) {
             displayPlanets(data.bodies);
+            displayComparison(data.bodies); 
         }
     } catch (error) {
         console.error("Error fetching planets:", error);
@@ -459,7 +460,7 @@ function preparePlanet(planet) {
 
     return {
         id,
-        name, // <--- Property is named `name`
+        name, 
         type,
         bodyType,
         image,
@@ -520,8 +521,6 @@ function preparePlanet(planet) {
         pluto: './assets/images/pluto.png',
     };
 function displayPlanets(planets) {
- 
-
     let planetsHTML = '';
 
     for (let i = 0; i < planets.length; i++) {
@@ -564,7 +563,7 @@ function displayPlanets(planets) {
         card.addEventListener('click', () => {
             const targetPlanet = card.getAttribute('data-planet-id');
             const selectedPlanet = planets.find(p => p.englishName.toLowerCase() === targetPlanet);
-            console.log(selectedPlanet);
+            // console.log(selectedPlanet);
 
             if (selectedPlanet && typeof displayPlanetDetails === 'function') {
                 const preparedDetails = preparePlanet(selectedPlanet);
@@ -852,6 +851,68 @@ function displayPlanetDetails(planet) {
             </div>`;
   document.getElementById('planet-data').innerHTML = detailsHTML;
 
+}
+
+// planets comparison table
+function displayComparison(planets) {
+  let comparisonHTML = '';
+ 
+  for (let i = 0; i < planets.length; i++) {
+    let planetInfo = preparePlanet(planets[i]);
+    if (!planetInfo) continue;
+    comparisonHTML += `
+    <tr class="hover:bg-slate-800/30 transition-colors">
+                      <td
+                        class="px-4 md:px-6 py-3 md:py-4 sticky left-0 bg-slate-800 z-10"
+                      >
+                        <div class="flex items-center space-x-2 md:space-x-3">
+                          <div
+                            class="w-6 h-6 md:w-8 md:h-8 rounded-full flex-shrink-0"
+                            style="background-color: ${colors[planetInfo.name.toLowerCase()] || '#eab308'}"
+                          ></div>
+                          <span
+                            class="font-semibold text-sm md:text-base whitespace-nowrap"
+                            >${planetInfo.name}</span
+                          >
+                        </div>
+                      </td>
+                      <td
+                        class="px-4 md:px-6 py-3 md:py-4 text-slate-300 text-sm md:text-base whitespace-nowrap"
+                      >
+                        ${planetInfo.semimajorAxis}
+                      </td>
+                      <td
+                        class="px-4 md:px-6 py-3 md:py-4 text-slate-300 text-sm md:text-base whitespace-nowrap"
+                      >
+                        ${planetInfo.diameter}
+                      </td>
+                      <td
+                        class="px-4 md:px-6 py-3 md:py-4 text-slate-300 text-sm md:text-base whitespace-nowrap"
+                      >
+                        ${planetInfo.mass}
+                      </td>
+                      <td
+                        class="px-4 md:px-6 py-3 md:py-4 text-slate-300 text-sm md:text-base whitespace-nowrap"
+                      >
+                        ${planetInfo.orbitalPeriodDays}
+                      </td>
+                      <td
+                        class="px-4 md:px-6 py-3 md:py-4 text-slate-300 text-sm md:text-base whitespace-nowrap"
+                      >
+                        ${planetInfo.moonsCount}
+                      </td>
+                      <td class="px-4 md:px-6 py-3 md:py-4 whitespace-nowrap">
+                        <span
+                          class="px-2 py-1 rounded text-xs bg-orange-500/50 text-orange-200"
+                          >${planetInfo.type}</span
+                        >
+                      </td>
+                    </tr>
+    `;
+  }
+  document.getElementById('planet-comparison-tbody').innerHTML = comparisonHTML;
+ 
+  
 }
 
 
