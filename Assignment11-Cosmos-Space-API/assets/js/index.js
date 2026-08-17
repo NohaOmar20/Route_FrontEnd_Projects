@@ -55,7 +55,7 @@ links.forEach((link) => link.addEventListener('click', () => {
 
 
 /* ==========================================================================
-    API INTEGRATION (ASTRONOMY PICTURE OF THE DAY)
+    API INTEGRATION (ASTRONOMY PICTURE OF THE DAY) SECTION
    ========================================================================== */
 
 /* 
@@ -129,10 +129,9 @@ loadBtn?.addEventListener("click", () => {
     }
 });
 
-
-
-/* ************************ Launches  section************************ */
-
+/* ==========================================================================
+    LAUNCHES SECTION
+   ========================================================================== */
 /* Get Upcoming Launches >> Params: limit (10)*/
 async function getLaunches() {
     const response = await fetch(`https://lldev.thespacedevs.com/2.3.0/launches/upcoming/?format=json&limit=10`);
@@ -388,9 +387,9 @@ function displayotherLaunches(results) {
     document.getElementById("launches-grid").innerHTML = launchesHTML;
 }
 
-
-/* ************************ Planets section************************ */
-
+/* ==========================================================================
+    PLANETS SECTION
+   ========================================================================== */
 /* Get All Planets*/
 // const PLANETS_URL = `https://solar-system-opendata-proxy.vercel.app/api/planets`;
 
@@ -439,7 +438,7 @@ function preparePlanet(planet) {
         description = ''
     } = planet;
 
-    // 1. Calculations & Conversions
+    // Calculations & Conversions
     const distanceAU = (semimajorAxis / 149597870.7).toFixed(2);
     const semimajorInM = (semimajorAxis / 1000000).toFixed(1);
     const perihelionInM = (perihelion / 1000000).toFixed(1);
