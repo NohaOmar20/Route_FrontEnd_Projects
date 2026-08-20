@@ -1,23 +1,33 @@
 // =========== Loading Spinner Design ============
-/*
-<div class="flex items-center justify-center py-12">
-    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600"></div>
-</div>
-*/
-
-// =========== Empty State Design ============
-/*
-<div class="flex flex-col items-center justify-center py-12 text-center">
-    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
-        <i class="fa-solid fa-search text-gray-400 text-2xl"></i>
-    </div>
-    <p class="text-gray-500 text-lg">No recipes found</p>
-    <p class="text-gray-400 text-sm mt-2">Try searching for something else</p>
-</div>
-*/
 import { state, saveMealList, getKcalForDate, getItemsCountForDate } from "../state/appState.js"
 
+/*Show meals*/
+export function showMeals(onCardClick) {
+    //Showing the number of recipes found
+    document.getElementById("recipes-count").textContent =`Showing ${state.dataMeals.length} ${state.currentFilterLabel} recipes`
+    // Display a message if no recipes are found
+     if (state.dataMeals.length === 0) {
+        document.getElementById("recipes-grid").className = ""
+        document.getElementById("recipes-grid").innerHTML = `
+        <div class="flex flex-col items-center justify-center py-12 text-center">
+            <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                <i class="text-2xl text-gray-400 fa-solid fa-magnifying-glass"></i>
+            </div>
+            <p class="text-gray-500 text-lg">No recipes found. Try a different search term.</p>
+        </div>
+        `
+        return
+    }
+    // Grid or List toggle based on user preference
+    if (state.currentView === "grid") {
+        document.getElementById("recipes-grid").className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+    } else {
+        document.getElementById("recipes-grid").className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4"
+    }
+    // Show grid box or list box for each meal using map function
+    
 
+} 
 
 // Meal details
 `<div class="max-w-7xl mx-auto">
