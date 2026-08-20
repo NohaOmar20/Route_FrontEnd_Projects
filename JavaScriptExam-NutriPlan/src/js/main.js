@@ -7,6 +7,7 @@
 
 
 import * as api from "./api/mealdb.js";
+import { state, saveMealList, checkNewDay } from "./state/appState.js"
 import * as ui from "./ui/components.js";
 
 // Helper function to select by ID
@@ -115,4 +116,33 @@ function goBackToMeals() {
     elements.title.textContent = "Meals & Recipes"
     elements.caption.textContent = "Discover delicious and nutritious recipes tailored for you"
     // history.back();
+}
+
+
+elements.gridView.addEventListener("click", function () {
+    state.currentView = "grid"
+    elements.gridView.classList.add("bg-white", "rounded-md", "shadow-sm")
+    elements.listView.classList.remove("bg-white", "rounded-md", "shadow-sm")
+    ui.showMeals(openMealDetails)
+});
+
+elements.listView.addEventListener("click", function () {
+    state.currentView = "list"
+    elements.gridView.classList.remove("bg-white", "rounded-md", "shadow-sm")
+    elements.listView.classList.add("bg-white", "rounded-md", "shadow-sm")
+    ui.showMeals(openMealDetails)
+});
+
+function openMealDetails(mealId) {
+    elements.search.classList.add("hidden")
+    elements.mealCategories.classList.add("hidden")
+    elements.allRecipes.classList.add("hidden")
+    elements.mealDetails.classList.remove("hidden")
+    elements.title.textContent = "Recipe Details"
+    elements.caption.textContent = "View full recipe information and nutrition facts"
+    loadMeal(mealId);
+}
+
+async function loadMeal(id) {
+    let meal = await api.fetchMealById(id);
 }
