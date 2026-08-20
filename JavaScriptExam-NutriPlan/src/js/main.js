@@ -6,3 +6,5 @@
  */
 
 
+import * as api from "./api/mealdb.js";
+import * as ui from "./ui/components.js";
