@@ -151,7 +151,7 @@ export function showArea(areaList, onAreaClick){
     });
 }
 
-
+// Category Styles object for consistent styling of category cards
 const categoryStyles = {
     "Beef": { bg: "from-red-50 to-rose-50", border: "border-red-200 hover:border-red-400", icon: "from-red-400 to-rose-500", faIcon: "fa-drumstick-bite" },
     "Chicken": { bg: "from-amber-50 to-orange-50", border: "border-amber-200 hover:border-amber-400", icon: "from-amber-400 to-orange-500", faIcon: "fa-drumstick-bite" },
@@ -195,6 +195,170 @@ export function showCategory(categoryList, onCategoryClick) {
 
 }
 
+// Products
+
+export const boxNoProduct = `
+        <div class="text-center">
+                        <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="text-3xl text-gray-400 fa-solid fa-box-open"></i>
+                        </div>
+                        <p class="text-gray-500 text-lg mb-2">No products to display</p>
+                        <p class="text-gray-400 text-sm">Search for a product or browse by category</p>
+                    </div>
+        `
+
+function productCardHtml(item) {
+    let imageBox = item.image
+        ? `<img class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300" src="${item.image}" alt="${item.name}" loading="lazy" />`
+        : `<div class="w-16 h-16 bg-gray-200 rounded-xl flex items-center justify-center"><i class="text-2xl text-gray-400 fa-solid fa-box"></i></div>`
+
+    return `
+<div class="product-card bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all cursor-pointer group" data-barcode="${item.barcode}">
+                <div class="relative h-40 bg-gray-100 flex items-center justify-center overflow-hidden">
+                  ${imageBox}
+                  <div class="absolute top-2 left-2 ${item.nutritionGrade ? "bg-green-500" : "bg-gray-400"} text-white text-xs font-bold px-2 py-1 rounded uppercase">
+                    Nutri-Score ${item.nutritionGrade || "Unknown"}
+                  </div>
+                  <div class="absolute top-2 right-2 bg-lime-500 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center ${!item.novaGroup ? "hidden" : ""}" title="NOVAgggggggggggg ${item.novaGroup}">
+                    ${item.novaGroup}
+                  </div>
+                </div>
+                <div class="p-4">
+                  <p class="text-xs text-emerald-600 font-semibold mb-1 truncate">${item.brand}</p>
+                  <h3 class="font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-emerald-600 transition-colors">${item.name}</h3>
+                  <div class="flex items-center gap-3 text-xs text-gray-500 mb-3">
+                    <span class="${!item.quantity ? "hidden" : ""}"><i class="fa-solid fa-weight-scale mr-1"></i>${item.quantity}</span>
+                    <span><i class="fa-solid fa-fire mr-1"></i>${Number(item.nutrients.calories).toFixed(1)} kcal/100g</span>
+                  </div>
+                  <div class="grid grid-cols-4 gap-1 text-center">
+                    <div class="bg-emerald-50 rounded p-1.5">
+                      <p class="text-xs font-bold text-emerald-700">${Number(item.nutrients.protein).toFixed(1)}g</p>
+                      <p class="text-[10px] text-gray-500">Protein</p>
+                    </div>
+                    <div class="bg-blue-50 rounded p-1.5">
+                      <p class="text-xs font-bold text-blue-700">${Number(item.nutrients.carbs).toFixed(1)}g</p>
+                      <p class="text-[10px] text-gray-500">Carbs</p>
+                    </div>
+                    <div class="bg-purple-50 rounded p-1.5">
+                      <p class="text-xs font-bold text-purple-700">${Number(item.nutrients.fat).toFixed(1)}g</p>
+                      <p class="text-[10px] text-gray-500">Fat</p>
+                    </div>
+                    <div class="bg-orange-50 rounded p-1.5">
+                      <p class="text-xs font-bold text-orange-700">${Number(item.nutrients.sugar).toFixed(1)}g</p>
+                      <p class="text-[10px] text-gray-500">Sugar</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+`
+}
+export function renderProducts() {
+    let productList = state.allProducts
+
+    if (state.selectedGrade !== "") {
+        productList = []
+        for (let i = 0; i < state.allProducts.length; i++) {
+            if (state.allProducts[i].nutritionGrade === state.selectedGrade) {
+                productList.push(state.allProducts[i])
+            }
+        }
+    }
+
+    if (productList.length === 0) {
+        document.getElementById("products-grid").innerHTML = boxNoProduct
+        return
+    }
+
+    document.getElementById("products-grid").innerHTML = productList.map(productCardHtml).join("")
+}
+
+export function renderSingleProduct(item) {
+    document.getElementById("products-grid").innerHTML = productCardHtml(item)
+}
+
+export function fillProductModal(item) {
+    let modal = document.getElementById("product-detail-modal")
+
+    modal.querySelector("img").src = item.image
+    modal.querySelector("img").alt = item.name
+    modal.querySelector("h2").textContent = item.name
+
+
+    let brandEl = modal.querySelector(".text-emerald-600.font-semibold")
+    if (brandEl) brandEl.textContent = item.brand
+
+    let quantityEl = modal.querySelectorAll("p")[2]
+    if (quantityEl) quantityEl.textContent = item.quantity
+
+    let gradeColors = { A: "#038141", B: "#85bb2f", C: "#fecb02", D: "#ee8100", E: "#e63e11" }
+    let gradeLabels = { A: "Excellent", B: "Good", C: "Average", D: "Poor", E: "Bad" }
+    let grade = item.nutritionGrade ? item.nutritionGrade.toUpperCase() : ""
+    let gradeColor = gradeColors[grade] || "#9ca3af"
+    let gradeLabel = gradeLabels[grade] || "Unknown"
+    let badgeBoxes = modal.querySelectorAll(".flex.items-center.gap-2.px-3.py-1\\.5.rounded-lg")
+
+    let gradeBox = badgeBoxes[0]
+    if (gradeBox) {
+        gradeBox.style.backgroundColor = gradeColor + "20"
+        let gradeBadge = gradeBox.querySelector("span")
+        gradeBadge.style.backgroundColor = gradeColor
+        gradeBadge.textContent = grade || "?"
+        gradeBox.querySelector("p.font-bold").style.color = gradeColor
+
+        let labelEl = gradeBox.querySelector("p:not(.font-bold)")
+        if (labelEl) labelEl.textContent = gradeLabel
+    }
+
+    let novaBox = badgeBoxes[1]
+    if (novaBox) {
+        if (item.novaGroup) {
+            novaBox.classList.remove("hidden")
+            novaBox.querySelector("span").textContent = item.novaGroup
+        } else {
+            novaBox.classList.add("hidden")
+        }
+    }
+
+    modal.querySelector("#modal-calories-value").textContent = Number(item.nutrients.calories).toFixed(0)
+    let total = item.nutrients.protein + item.nutrients.carbs + item.nutrients.fat + item.nutrients.sugar
+
+    modal.querySelector("#modal-protein-bar").style.width = `${Math.round((item.nutrients.protein / total) * 100)}%`
+    modal.querySelector("#modal-carbs-bar").style.width = `${Math.round((item.nutrients.carbs / total) * 100)}%`
+    modal.querySelector("#modal-fat-bar").style.width = `${Math.round((item.nutrients.fat / total) * 100)}%`
+    modal.querySelector("#modal-sugar-bar").style.width = `${Math.round((item.nutrients.sugar / total) * 100)}%`
+
+    modal.querySelector("#modal-protein-value").textContent = Number(item.nutrients.protein).toFixed(1) + "g"
+
+    modal.querySelector("#modal-carbs-value").textContent = Number(item.nutrients.carbs).toFixed(1) + "g"
+
+    modal.querySelector("#modal-fat-value").textContent = Number(item.nutrients.fat).toFixed(1) + "g"
+
+    modal.querySelector("#modal-sugar-value").textContent = Number(item.nutrients.sugar).toFixed(1) + "g"
+
+    modal.querySelector("#modal-sugar-value").textContent = Number(item.nutrients.sugar).toFixed(1) + "g"
+    modal.querySelector("#modal-sodium").textContent = Number(item.nutrients.sodium).toFixed(1) + "g"
+    modal.querySelector("#modal-fiber").textContent = Number(item.nutrients.fiber).toFixed(1) + "g"
+    modal.querySelector("#modal-salt").textContent = (Number(item.nutrients.sodium) * 2.5).toFixed(2) + "g"
+
+    let ingredientsBox = modal.querySelector(".bg-gray-50.rounded-xl.p-5.mb-6")
+    if (ingredientsBox) ingredientsBox.classList.add("hidden")
+
+    let allergensBox = modal.querySelector(".bg-red-50.rounded-xl.p-5.mb-6")
+    if (allergensBox) allergensBox.classList.add("hidden")
+
+    let logBtn = modal.querySelector(".add-product-to-log")
+    logBtn.dataset.barcode = item.barcode
+    logBtn.dataset.name = item.name
+    logBtn.dataset.image = item.image
+    logBtn.dataset.brand = item.brand
+    logBtn.dataset.category = item.nutritionGrade ? "Product · Nutri-Score " + item.nutritionGrade : "Product"
+    logBtn.dataset.calories = item.nutrients.calories
+    logBtn.dataset.protein = item.nutrients.protein
+    logBtn.dataset.carbs = item.nutrients.carbs
+    logBtn.dataset.fat = item.nutrients.fat
+}
+
+// Nutrition Facts (Side bar of the meal details page)
 
 export function showNutrition(nutrition) {
     return `
@@ -288,6 +452,8 @@ export function showNutrition(nutrition) {
             </div>
     `
 }
+
+// Pop-up dialog for meal details (modal) before logging a meal to the food log
 export function showModal(nutrition, meal) {
     document.getElementById("modal-calories").textContent = nutrition.perServing.calories
     document.getElementById("modal-protein").textContent = `${nutrition.perServing.protein}g`
@@ -298,334 +464,133 @@ export function showModal(nutrition, meal) {
     document.getElementById("modal-name").textContent = meal.name
 }
 
+/* Show details of recipe details page
+(Combines: hero headers, a navigation back button , a disabled log meal button, ingredient cards, instructions, video layout, and a loading skeleton box inside .)
+*/
+export function showDetails(meal) {
+  // ingredients list (checkboxes)
+  let ingredients = meal.ingredients.map(function(step){
+    return`
+      <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl hover:bg-emerald-50 transition-colors">
+                <input type="checkbox" class="ingredient-checkbox w-5 h-5 text-emerald-600 rounded border-gray-300" />
+                <span class="text-gray-700">
+                    <span class="font-medium text-gray-900">${step.measure}</span> ${step.ingredient}
+                </span>
+            </div>
+    `;
+  }).join("");
+  // instructions list
+  let instructions = meal.instructions.map(function(step, index){
+      return `
+            <div class="flex gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors">
+                <div class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold shrink-0">
+                    ${index + 1}
+                </div>
+                <p class="text-gray-700 leading-relaxed pt-2">${step}</p>
+            </div>
+        `;
 
+  }).join("");
 
+  let videoURL =meal.video || meal.youtube|| meal.strYoutube || "";
+  let embedURl = getYoutubeEmbedUrl(videoURL);
+  let videoSection = embedURl ? `
+     <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <i class="fa-solid fa-circle-play text-emerald-600"></i>
+                  Video Tutorial
+                </h2>
+                <div class="relative w-full rounded-xl overflow-hidden" style="padding-top: 56.25%">
+                  <iframe
+                    class="absolute top-0 left-0 w-full h-full"
+                    src="${embedUrl}"
+                    title="${meal.name} video tutorial"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
+  `: "";
+   let boxDetails = `
+ <div class="max-w-7xl mx-auto">
+          <button id="back-to-meals-btn" class="flex items-center gap-2 text-gray-600 hover:text-emerald-600 font-medium mb-6 transition-colors">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span>Back to Recipes</span>
+          </button>
 
+          <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8">
+            <div class="relative h-80 md:h-96">
+              <img src="${meal.thumbnail}" alt="${meal.name}" class="w-full h-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-8">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="px-3 py-1 bg-emerald-500 text-white text-sm font-semibold rounded-full">${meal.category}</span>
+                  <span class="px-3 py-1 bg-blue-500 text-white text-sm font-semibold rounded-full">${meal.area}</span>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">${meal.name}</h1>
+                <div class="flex items-center gap-6 text-white/90">
+                  <span class="flex items-center gap-2"><i class="fa-solid fa-clock"></i><span>30 min</span></span>
+                  <span class="flex items-center gap-2"><i class="fa-solid fa-utensils"></i><span id="hero-servings">Calculating...</span></span>
+                  <span class="flex items-center gap-2"><i class="fa-solid fa-fire"></i><span id="hero-calories">Calculating...</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
 
+          <div class="flex flex-wrap gap-3 mb-8">
+            <button id="log-meal-btn" class="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-all opacity-60 cursor-not-allowed" data-meal-id="${meal.id}" disabled>
+              <span id="log-meal-btn-spinner" class="flex items-center"><i class="fa-solid fa-spinner fa-spin"></i></span>
+              <span id="log-meal-btn-icon-wrap" class="hidden items-center"><i class="fa-solid fa-clipboard-list"></i></span>
+              <span id="log-meal-btn-text">Calculating...</span>
+            </button>
+          </div>
 
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 space-y-8">
+              <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <i class="fa-solid fa-list-check text-emerald-600"></i>
+                  Ingredients
+                  <span class="text-sm font-normal text-gray-500 ml-auto">${meal.ingredients.length} items</span>
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                ${ingredients}
+                </div>
+              </div>
 
+              <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <i class="fa-solid fa-shoe-prints text-emerald-600"></i>
+                  Instructions
+                </h2>
+                <div class="space-y-4">
+                 ${instructions}
+                </div>
+              </div>
 
+              ${videoSection}
+            </div>
 
+                        <div id="meal-details-nutrition-slot">
+              <div class="bg-white rounded-2xl shadow-lg p-6 sticky top-24">
+                <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <i class="fa-solid fa-chart-pie text-emerald-600"></i>
+                  Nutrition Facts
+                </h2>
+                <div class=" p-6 flex flex-col items-center justify-center text-center py-12">
+                <div class="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center mb-4 animate-pulse">
+                  <i class="fa-solid fa-calculator text-emerald-500"></i>
+                </div>
+                
+                <p class="font-semibold text-gray-700">Calculating Nutrition</p>
+                <p class="text-sm text-gray-400">Analyzing ingredients...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    `;
+  document.getElementById("meal-details").innerHTML = boxDetails;
 
+}
 
-
-// Show meal details >> that I can log from the meal details page
-// export function showDetails(meal) {}
-// Meal details
-// `<div class="max-w-7xl mx-auto">
-//         <!-- Back Button -->
-//         <button id="back-to-meals-btn"
-//           class="flex items-center gap-2 text-gray-600 hover:text-emerald-600 font-medium mb-6 transition-colors">
-//           <i class="fa-solid fa-arrow-left"></i>
-//           <span>Back to Recipes</span>
-//         </button>
-
-//         <!-- Hero Section -->
-//         <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8">
-//           <div class="relative h-80 md:h-96">
-//             <img src="https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg"
-//               alt="Teriyaki Chicken Casserole" class="w-full h-full object-cover" />
-//             <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-//             <div class="absolute bottom-0 left-0 right-0 p-8">
-//               <div class="flex items-center gap-3 mb-3">
-//                 <span class="px-3 py-1 bg-emerald-500 text-white text-sm font-semibold rounded-full">Chicken</span>
-//                 <span class="px-3 py-1 bg-blue-500 text-white text-sm font-semibold rounded-full">Japanese</span>
-//                 <span class="px-3 py-1 bg-purple-500 text-white text-sm font-semibold rounded-full">Casserole</span>
-//               </div>
-//               <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">
-//                 Teriyaki Chicken Casserole
-//               </h1>
-//               <div class="flex items-center gap-6 text-white/90">
-//                 <span class="flex items-center gap-2">
-//                   <i class="fa-solid fa-clock"></i>
-//                   <span>30 min</span>
-//                 </span>
-//                 <span class="flex items-center gap-2">
-//                   <i class="fa-solid fa-utensils"></i>
-//                   <span id="hero-servings">4 servings</span>
-//                 </span>
-//                 <span class="flex items-center gap-2">
-//                   <i class="fa-solid fa-fire"></i>
-//                   <span id="hero-calories">485 cal/serving</span>
-//                 </span>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-
-//         <!-- Action Buttons -->
-//         <div class="flex flex-wrap gap-3 mb-8">
-//           <button id="log-meal-btn"
-//             class="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-all"
-//             data-meal-id="52772">
-//             <i class="fa-solid fa-clipboard-list"></i>
-//             <span>Log This Meal</span>
-//           </button>
-//         </div>
-
-//         <!-- Main Content Grid -->
-//         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-//           <!-- Left Column - Ingredients & Instructions -->
-//           <div class="lg:col-span-2 space-y-8">
-//             <!-- Ingredients -->
-//             <div class="bg-white rounded-2xl shadow-lg p-6">
-//               <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-//                 <i class="fa-solid fa-list-check text-emerald-600"></i>
-//                 Ingredients
-//                 <span class="text-sm font-normal text-gray-500 ml-auto">9 items</span>
-//               </h2>
-//               <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-//                 <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl hover:bg-emerald-50 transition-colors">
-//                   <input type="checkbox" class="ingredient-checkbox w-5 h-5 text-emerald-600 rounded border-gray-300" />
-//                   <span class="text-gray-700">
-//                     <span class="font-medium text-gray-900">3/4 cup</span> soy
-//                     sauce
-//                   </span>
-//                 </div>
-//                 <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl hover:bg-emerald-50 transition-colors">
-//                   <input type="checkbox" class="ingredient-checkbox w-5 h-5 text-emerald-600 rounded border-gray-300" />
-//                   <span class="text-gray-700">
-//                     <span class="font-medium text-gray-900">1/2 cup</span>
-//                     water
-//                   </span>
-//                 </div>
-//                 <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl hover:bg-emerald-50 transition-colors">
-//                   <input type="checkbox" class="ingredient-checkbox w-5 h-5 text-emerald-600 rounded border-gray-300" />
-//                   <span class="text-gray-700">
-//                     <span class="font-medium text-gray-900">1/4 cup</span>
-//                     brown sugar
-//                   </span>
-//                 </div>
-//                 <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl hover:bg-emerald-50 transition-colors">
-//                   <input type="checkbox" class="ingredient-checkbox w-5 h-5 text-emerald-600 rounded border-gray-300" />
-//                   <span class="text-gray-700">
-//                     <span class="font-medium text-gray-900">1/2 teaspoon</span>
-//                     ground ginger
-//                   </span>
-//                 </div>
-//                 <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl hover:bg-emerald-50 transition-colors">
-//                   <input type="checkbox" class="ingredient-checkbox w-5 h-5 text-emerald-600 rounded border-gray-300" />
-//                   <span class="text-gray-700">
-//                     <span class="font-medium text-gray-900">1/2 teaspoon</span>
-//                     minced garlic
-//                   </span>
-//                 </div>
-//                 <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl hover:bg-emerald-50 transition-colors">
-//                   <input type="checkbox" class="ingredient-checkbox w-5 h-5 text-emerald-600 rounded border-gray-300" />
-//                   <span class="text-gray-700">
-//                     <span class="font-medium text-gray-900">4 Tablespoons</span>
-//                     cornstarch
-//                   </span>
-//                 </div>
-//                 <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl hover:bg-emerald-50 transition-colors">
-//                   <input type="checkbox" class="ingredient-checkbox w-5 h-5 text-emerald-600 rounded border-gray-300" />
-//                   <span class="text-gray-700">
-//                     <span class="font-medium text-gray-900">2</span> chicken
-//                     breasts
-//                   </span>
-//                 </div>
-//                 <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl hover:bg-emerald-50 transition-colors">
-//                   <input type="checkbox" class="ingredient-checkbox w-5 h-5 text-emerald-600 rounded border-gray-300" />
-//                   <span class="text-gray-700">
-//                     <span class="font-medium text-gray-900">1 bag</span>
-//                     stir-fry vegetables
-//                   </span>
-//                 </div>
-//                 <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl hover:bg-emerald-50 transition-colors">
-//                   <input type="checkbox" class="ingredient-checkbox w-5 h-5 text-emerald-600 rounded border-gray-300" />
-//                   <span class="text-gray-700">
-//                     <span class="font-medium text-gray-900">3 cups</span>
-//                     brown rice
-//                   </span>
-//                 </div>
-//               </div>
-//             </div>
-
-//             <!-- Instructions -->
-//             <div class="bg-white rounded-2xl shadow-lg p-6">
-//               <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-//                 <i class="fa-solid fa-shoe-prints text-emerald-600"></i>
-//                 Instructions
-//               </h2>
-//               <div class="space-y-4">
-//                 <div class="flex gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors">
-//                   <div
-//                     class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold shrink-0">
-//                     1
-//                   </div>
-//                   <p class="text-gray-700 leading-relaxed pt-2">
-//                     Preheat oven to 350° F. Spray a 9x13-inch baking pan with
-//                     non-stick spray.
-//                   </p>
-//                 </div>
-//                 <div class="flex gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors">
-//                   <div
-//                     class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold shrink-0">
-//                     2
-//                   </div>
-//                   <p class="text-gray-700 leading-relaxed pt-2">
-//                     Combine soy sauce, ½ cup water, brown sugar, ginger and
-//                     garlic in a small saucepan and cover. Bring to a boil over
-//                     medium heat. Remove lid and cook for one minute once
-//                     boiling.
-//                   </p>
-//                 </div>
-//                 <div class="flex gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors">
-//                   <div
-//                     class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold shrink-0">
-//                     3
-//                   </div>
-//                   <p class="text-gray-700 leading-relaxed pt-2">
-//                     Meanwhile, stir together the cornstarch and 2 tablespoons
-//                     of water in a separate dish until smooth. Once sauce is
-//                     boiling, add mixture to the saucepan and stir to combine.
-//                     Cook until the sauce starts to thicken then remove from
-//                     heat.
-//                   </p>
-//                 </div>
-//                 <div class="flex gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors">
-//                   <div
-//                     class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold shrink-0">
-//                     4
-//                   </div>
-//                   <p class="text-gray-700 leading-relaxed pt-2">
-//                     Place the chicken breasts in the prepared pan. Pour one
-//                     cup of the sauce over top of chicken. Place chicken in
-//                     oven and bake 35 minutes or until cooked through. Remove
-//                     from oven and shred chicken in the pan using two forks.
-//                   </p>
-//                 </div>
-//                 <div class="flex gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors">
-//                   <div
-//                     class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold shrink-0">
-//                     5
-//                   </div>
-//                   <p class="text-gray-700 leading-relaxed pt-2">
-//                     *Meanwhile, steam the vegetables according to package
-//                     directions and stir together with the cooked brown rice.
-//                     Add the remaining sauce to the mixture and stir to
-//                     combine. Serve the chicken over the rice and veggie
-//                     mixture.
-//                   </p>
-//                 </div>
-//               </div>
-//             </div>
-
-//             <!-- Video Section -->
-//             <div class="bg-white rounded-2xl shadow-lg p-6">
-//               <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-//                 <i class="fa-solid fa-video text-red-500"></i>
-//                 Video Tutorial
-//               </h2>
-//               <div class="relative aspect-video rounded-xl overflow-hidden bg-gray-100">
-//                 <iframe src="https://www.youtube.com/embed/4aZr5hZXP_s" class="absolute inset-0 w-full h-full"
-//                   frameborder="0"
-//                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-//                   allowfullscreen>
-//                 </iframe>
-//               </div>
-//             </div>
-//           </div>
-
-//           <!-- Right Column - Nutrition -->
-//           <div class="space-y-6">
-//             <!-- Nutrition Facts -->
-//             <div class="bg-white rounded-2xl shadow-lg p-6 sticky top-24">
-//               <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-//                 <i class="fa-solid fa-chart-pie text-emerald-600"></i>
-//                 Nutrition Facts
-//               </h2>
-//               <div id="nutrition-facts-container">
-//                 <p class="text-sm text-gray-500 mb-4">Per serving</p>
-
-//                 <div class="text-center py-4 mb-4 bg-linear-to-br from-emerald-50 to-teal-50 rounded-xl">
-//                   <p class="text-sm text-gray-600">Calories per serving</p>
-//                   <p class="text-4xl font-bold text-emerald-600">485</p>
-//                   <p class="text-xs text-gray-500 mt-1">Total: 1940 cal</p>
-//                 </div>
-
-//                 <div class="space-y-4">
-//                   <div class="flex items-center justify-between">
-//                     <div class="flex items-center gap-2">
-//                       <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
-//                       <span class="text-gray-700">Protein</span>
-//                     </div>
-//                     <span class="font-bold text-gray-900">42g</span>
-//                   </div>
-//                   <div class="w-full bg-gray-100 rounded-full h-2">
-//                     <div class="bg-emerald-500 h-2 rounded-full" style="width: 84%"></div>
-//                   </div>
-
-//                   <div class="flex items-center justify-between">
-//                     <div class="flex items-center gap-2">
-//                       <div class="w-3 h-3 rounded-full bg-blue-500"></div>
-//                       <span class="text-gray-700">Carbs</span>
-//                     </div>
-//                     <span class="font-bold text-gray-900">52g</span>
-//                   </div>
-//                   <div class="w-full bg-gray-100 rounded-full h-2">
-//                     <div class="bg-blue-500 h-2 rounded-full" style="width: 17%"></div>
-//                   </div>
-
-//                   <div class="flex items-center justify-between">
-//                     <div class="flex items-center gap-2">
-//                       <div class="w-3 h-3 rounded-full bg-purple-500"></div>
-//                       <span class="text-gray-700">Fat</span>
-//                     </div>
-//                     <span class="font-bold text-gray-900">8g</span>
-//                   </div>
-//                   <div class="w-full bg-gray-100 rounded-full h-2">
-//                     <div class="bg-purple-500 h-2 rounded-full" style="width: 12%"></div>
-//                   </div>
-
-//                   <div class="flex items-center justify-between">
-//                     <div class="flex items-center gap-2">
-//                       <div class="w-3 h-3 rounded-full bg-orange-500"></div>
-//                       <span class="text-gray-700">Fiber</span>
-//                     </div>
-//                     <span class="font-bold text-gray-900">4g</span>
-//                   </div>
-//                   <div class="w-full bg-gray-100 rounded-full h-2">
-//                     <div class="bg-orange-500 h-2 rounded-full" style="width: 14%"></div>
-//                   </div>
-
-//                   <div class="flex items-center justify-between">
-//                     <div class="flex items-center gap-2">
-//                       <div class="w-3 h-3 rounded-full bg-pink-500"></div>
-//                       <span class="text-gray-700">Sugar</span>
-//                     </div>
-//                     <span class="font-bold text-gray-900">12g</span>
-//                   </div>
-//                   <div class="w-full bg-gray-100 rounded-full h-2">
-//                     <div class="bg-pink-500 h-2 rounded-full" style="width: 24%"></div>
-//                   </div>
-//                 </div>
-
-//                 <div class="mt-6 pt-6 border-t border-gray-100">
-//                   <h3 class="text-sm font-semibold text-gray-900 mb-3">
-//                     Vitamins & Minerals (% Daily Value)
-//                   </h3>
-//                   <div class="grid grid-cols-2 gap-3 text-sm">
-//                     <div class="flex justify-between">
-//                       <span class="text-gray-600">Vitamin A</span>
-//                       <span class="font-medium">15%</span>
-//                     </div>
-//                     <div class="flex justify-between">
-//                       <span class="text-gray-600">Vitamin C</span>
-//                       <span class="font-medium">25%</span>
-//                     </div>
-//                     <div class="flex justify-between">
-//                       <span class="text-gray-600">Calcium</span>
-//                       <span class="font-medium">4%</span>
-//                     </div>
-//                     <div class="flex justify-between">
-//                       <span class="text-gray-600">Iron</span>
-//                       <span class="font-medium">12%</span>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </div>`

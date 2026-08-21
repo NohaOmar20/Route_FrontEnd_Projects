@@ -177,8 +177,8 @@ async function loadMealNutrition(meal) {
         state.currentValue = 1;
         input.value = 1;
         ui.showModal(nutrition, meal);
-        logModal.classList.remove("hidden");
-    })
+        elements.logModal.classList.remove("hidden");
+    });
     
 }
 async function getMeals(query) {
@@ -191,3 +191,37 @@ allRecipesBtn.addEventListener("click", function () {
     state.currentFilterLabel = ""
     getMeals("chicken")
 });
+
+// Search 
+let mealDebounceTimer;
+mealSearchInput.addEventListener("input", function () {
+    clearTimeout(mealDebounceTimer);
+    mealDebounceTimer = setTimeout(searchMeals, 500);
+});
+
+async function searchMeals() {
+    let inputText = mealSearchInput.value.trim()
+    if (inputText === "") return
+    state.dataMeals = await api.fetchMeals(inputText)
+    ui.showMeals(openMealDetails)
+}
+
+async function initAreas() {
+    let areaList = await api.fetchAreas()
+    ui.showArea(areaList, async function (areaName) {
+        state.dataMeals = await api.fetchMealsByArea(areaName);
+        state.currentFilterLabel = areaName;
+        ui.showMeals(openMealDetails);
+    })
+}
+initAreas();
+
+async function initCategories() {
+    let categoryList = await api.fetchCategories()
+    ui.showCategory(categoryList, async function (categoryName) {
+        state.dataMeals = await api.fetchMealsByCategory(categoryName);
+        state.currentFilterLabel = categoryName;
+        ui.showMeals(openMealDetails);
+    })
+}
+initCategories();
