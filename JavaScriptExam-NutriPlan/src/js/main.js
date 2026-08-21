@@ -157,5 +157,37 @@ async function loadMealNutrition(meal) {
     let nutrition = await api.fetchNutrition(meal);
     state.currentMeal = meal;
     state.currentNutrition = nutrition;
+
+    document.getElementById("hero-servings").textContent= "1 serving";
+    document.getElementById("hero-calories").textContent = `${nutrition.perServing.calories} kcal`;
+
+    let slot = document.getElementById("meal-details-nutrition-slot");
+    if (slot) slot.innerHTML = ui.showNutrition(nutrition);
+
+    let logBtn = document.getElementById("log-meal-btn");
+    logBtn.disabled = false;
+
+    logBtn.classList.remove("opacity-60", "cursor-not-allowed");
+    document.getElementById("log-meal-btn-spinner").classList.add("hidden");
+    document.getElementById("log-meal-btn-icon-wrap").classList.remove("hidden");
+    document.getElementById("log-meal-btn-icon-wrap").classList.add("flex");
+    document.getElementById("log-meal-btn-text").textContent = "Log This Meal";
+
+    logBtn.addEventListener("click", function () {
+        state.currentValue = 1;
+        input.value = 1;
+        ui.showModal(nutrition, meal);
+        logModal.classList.remove("hidden");
+    })
     
 }
+async function getMeals(query) {
+    state.dataMeals = await api.fetchMeals(query)
+    ui.showMeals(openMealDetails);
+}
+getMeals("chicken");
+
+allRecipesBtn.addEventListener("click", function () {
+    state.currentFilterLabel = ""
+    getMeals("chicken")
+});
