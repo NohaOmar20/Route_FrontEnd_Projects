@@ -61,7 +61,7 @@ elements.btnMeals.addEventListener("click", function (e) {
     elements.btnFoodLog.classList.add("text-gray-600", "hover:bg-gray-50");
     elements.title.textContent = "Meals & Recipes"
     elements.caption.textContent = "Discover delicious and nutritious recipes tailored for you"
-    // history.pushState(null, "", "#meals")
+    history.pushState(null, "", "#meals") // Update URL for deep linking to the meals section
 
 
 });
@@ -81,7 +81,7 @@ elements.btnProduct.addEventListener("click", function (e) {
     elements.btnFoodLog.classList.add("text-gray-600", "hover:bg-gray-50")
     elements.title.textContent = "Product Scanner"
     elements.caption.textContent = "Search packaged foods by name or barcode"
-    // history.pushState(null, "", "#products");
+    history.pushState(null, "", "#products"); // Update URL for deep linking to the product scanner section
 });
 
 elements.btnFoodLog.addEventListener("click", function (e) {
@@ -100,7 +100,7 @@ elements.btnFoodLog.addEventListener("click", function (e) {
     elements.btnFoodLog.classList.remove("text-gray-600", "hover:bg-gray-50")
     elements.title.textContent = "Food Log"
     elements.caption.textContent = "Track your daily nutrition and food intake"
-    // history.pushState(null, "", "#foodlog")
+    history.pushState(null, "", "#foodlog") // Update URL for deep linking to the food log section
 }) ;
 
 elements.BackToMealsBtn?.addEventListener("click", goBackToMeals)
@@ -115,7 +115,7 @@ function goBackToMeals() {
     elements.mealDetails.classList.add("hidden");
     elements.title.textContent = "Meals & Recipes"
     elements.caption.textContent = "Discover delicious and nutritious recipes tailored for you"
-    // history.back();
+    history.back(); // Navigate back in history to restore the previous state (e.g., search results or category view)
 }
 
 
@@ -145,4 +145,17 @@ function openMealDetails(mealId) {
 
 async function loadMeal(id) {
     let meal = await api.fetchMealById(id);
+    state.currentFilterLabel ="" // Reset filter label when opening a meal
+    ui.showDetails(meal);
+    await loadMealNutrition(meal);
+    //URL update for deep linking to a specific meal
+    let mealSlug = meal.name.toLowerCase().replace(/\s+/g, '-');
+    history.pushState(null, "", `#meal/${mealSlug}`);
+
+}
+async function loadMealNutrition(meal) {
+    let nutrition = await api.fetchNutrition(meal);
+    state.currentMeal = meal;
+    state.currentNutrition = nutrition;
+    
 }

@@ -1,11 +1,43 @@
 // =========== Loading Spinner Design ============
 import { state, saveMealList, getKcalForDate, getItemsCountForDate } from "../state/appState.js"
 
+
+export function getYoutubeEmbedUrl(url) {
+    if (!url) return ""
+    const videoId = url.split("v=")[1]?.split("&")[0]
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : ""
+}
+
+export function getBarWidth(value, dailyValue) {
+    let percentage = (value / dailyValue) * 100
+    if (percentage > 100) percentage = 100
+    if (percentage < 0 || isNaN(percentage)) percentage = 0
+    return percentage.toFixed(0)
+}
+
+export function showToast(message) {
+    let toast = document.getElementById("toast-notification")
+    toast.textContent = message
+    toast.style.display = "block"
+
+    setTimeout(function () {
+        toast.style.display = "none"
+    }, 2000)
+}
+export function showTodayDate() {
+    let dateToday = document.getElementById("foodlog-date")
+    let today = new Date()
+
+    let dayName = today.toLocaleDateString("en-US", { weekday: "long" })
+    let monthDay = today.toLocaleDateString("en-US", { month: "short", day: "numeric" })
+
+    dateToday.innerHTML = `${dayName}, ${monthDay}`
+}
 /*Show meals*/
 export function showMeals(onCardClick) {
-    //Showing the number of recipes found
+    //1. Header and Counter updates
     document.getElementById("recipes-count").textContent =`Showing ${state.dataMeals.length} ${state.currentFilterLabel} recipes`
-    // Display a message if no recipes are found
+    // 2. Empty State handeling >> Display a message if no recipes are found
      if (state.dataMeals.length === 0) {
         document.getElementById("recipes-grid").className = ""
         document.getElementById("recipes-grid").innerHTML = `
@@ -18,17 +50,95 @@ export function showMeals(onCardClick) {
         `
         return
     }
-    // Grid or List toggle based on user preference
+    // 3. Toggel between grid and list view based on the currentView state
     if (state.currentView === "grid") {
         document.getElementById("recipes-grid").className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
     } else {
         document.getElementById("recipes-grid").className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4"
     }
-    // Show grid box or list box for each meal using map function
+    //4. Loop and Render All Meal Cards (.map())
+    let boxMeals = state.dataMeals.map(function(item){
+      if (state.currentView === "grid") {
+        return `<div
+            class="recipe-card bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all cursor-pointer group"
+            data-meal-id="${item.id}">
+            <div class="relative h-48 overflow-hidden">
+              <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                src="${item.thumbnail}" alt="${item.name}"
+                loading="lazy" />
+              <div class="absolute bottom-3 left-3 flex gap-2">
+                <span class="px-2 py-1 bg-white/90 backdrop-blur-sm text-xs font-semibold rounded-full text-gray-700">
+                  ${item.category}
+                </span>
+                <span class="px-2 py-1 bg-emerald-500 text-xs font-semibold rounded-full text-white">
+                  ${item.area ? item.area : "International"}
+                </span>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3
+                class="text-base font-bold text-gray-900 mb-1 group-hover:text-emerald-600 transition-colors line-clamp-1">
+                ${item.name}
+              </h3>
+              <p class="text-xs text-gray-600 mb-3 line-clamp-2">
+                ${item.instructions[0]}
+              </p>
+              <div class="flex items-center justify-between text-xs">
+                <span class="font-semibold text-gray-900">
+                  <i class="fa-solid fa-utensils text-emerald-600 mr-1"></i>
+                  ${item.category}
+                </span>
+                <span class="font-semibold text-gray-500">
+                  <i class="fa-solid fa-globe text-blue-500 mr-1"></i>
+                  ${item.area ? item.area : "International"}
+                </span>
+              </div>
+            </div>
+          </div>`
+      } else {
+        return ` 
+        <div class="recipe-card bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all cursor-pointer group flex" data-meal-id="${item.id}">
+                    <img class="w-40 h-32 object-cover shrink-0" src="${item.thumbnail}" alt="${item.name}" loading="lazy" />
+                    <div class="p-4 flex-1">
+                        <h3 class="text-base font-bold text-gray-900 mb-1 group-hover:text-emerald-600 transition-colors">${item.name}</h3>
+                        <p class="text-xs text-gray-600 mb-3 line-clamp-2">${item.instructions[0]}</p>
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-semibold text-gray-900"><i class="fa-solid fa-utensils text-emerald-600 mr-1"></i>${item.category}</span>
+                            <span class="font-semibold text-gray-500"><i class="fa-solid fa-globe text-blue-500 mr-1"></i>${item.area ? item.area : "International"}</span>
+                        </div>
+                    </div>
+                </div>
+        `
+      }
+    }).join("");
+    // 5. DOM Injection & Click attachment for each meal card
+    document.getElementById("recipes-grid").innerHTML = boxMeals;
+    let cards =document.querySelectorAll(".recipe-card");
+    cards.forEach(card => {
+        card.addEventListener("click", function () {
+            let clickedId = card.getAttribute("data-meal-id");
+            onCardClick(clickedId);
+        });
+    });
     
-
 } 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Show meal details >> that I can log from the meal details page
+export function showDetails(meal) {}
 // Meal details
 `<div class="max-w-7xl mx-auto">
         <!-- Back Button -->
