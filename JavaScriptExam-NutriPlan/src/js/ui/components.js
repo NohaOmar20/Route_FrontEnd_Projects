@@ -492,9 +492,9 @@ export function showDetails(meal) {
 
   }).join("");
 
-  let videoURL =meal.video || meal.youtube|| meal.strYoutube || "";
-  let embedURl = getYoutubeEmbedUrl(videoURL);
-  let videoSection = embedURl ? `
+  let videoUrl = meal.video || meal.youtube || meal.strYoutube || ""
+    let embedUrl = getYoutubeEmbedUrl(videoUrl)
+    let videoSection = embedUrl ? `
      <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
                   <i class="fa-solid fa-circle-play text-emerald-600"></i>
                   Video Tutorial

@@ -1,6 +1,6 @@
 // API_KEY: DDuEyFQ7sX89TaEhsGMasIOaA99hd9nmWaHEziap
 const BASE_URL = "https://nutriplan-api.vercel.app/api";
-const NUTRITION_API_KEY  = "DuEyFQ7sX89TaEhsGMasIOaA99hd9nmWaHEziap";
+const NUTRITION_API_KEY  = "DDuEyFQ7sX89TaEhsGMasIOaA99hd9nmWaHEziap";
 
 // FETCH MEALS BY SEARCH QUERY
 export async function fetchMeals(query) {

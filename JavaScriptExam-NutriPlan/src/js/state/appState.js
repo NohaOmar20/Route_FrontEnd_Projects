@@ -93,7 +93,7 @@ export function getKcalForDate(date) {
     return typeof entry === "object"? entry.calories : entry; // Return calories if entry exists else return 0
 }
 
-export function getItemCountForDate(date) {
+export function getItemsCountForDate(date) {
     let dateStr  = date.toDateString();
     let today = new Date().toDateString();
     if (dateStr === today) {
