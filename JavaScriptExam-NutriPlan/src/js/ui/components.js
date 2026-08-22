@@ -594,3 +594,255 @@ export function showDetails(meal) {
 
 }
 
+// Add meal >> "Logged Items Today" list (Food Log page)
+export function addMeal() {
+  let mealCount = document.getElementById("meal-count");
+  mealCount.textContent = `Logged Items (${state.mealList.length})`;
+  let btnClear = document.getElementById("clear-foodlog");
+
+  if (state.mealList.length == 0) {
+    btnClear.style.display = "none";
+    let empty = `
+<div class="text-center py-12">
+                    <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="text-3xl text-gray-300 fa-solid fa-utensils"></i>
+                    </div>
+                    <p class="text-gray-500 font-medium mb-2">No food logged today</p>
+                    <p class="text-gray-400 text-sm mb-4">Start tracking your nutrition by logging meals or scanning products</p>
+                    <div class="flex justify-center gap-3">
+                        <a id="browse-recipes-link" href="#" class="inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-all">
+                            <i class="fa-solid fa-plus"></i>
+                            Browse Recipes
+                        </a>
+                        <a id="scan-product-link" href="#" class="nav-link inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all">
+                            <i class="fa-solid fa-barcode"></i>
+                            Scan Product
+                        </a>
+                    </div>
+                </div>
+    `;
+     document.getElementById("logged-items-list").innerHTML = empty;
+
+     document.getElementById("browse-recipes-link").addEventListener("click", function (e) {
+      e.preventDefault();
+      document.getElementById("btn-meals").click();
+      history.pushState(null, "", "#foodlog#meals"); //URL update
+     });
+
+     document.getElementById("scan-product-link").addEventListener("click", function (e) {
+      e.preventDefault();
+      document.getElementById("btn-products").click();
+      history.pushState(null, "", "#products"); //URL update
+      location.reload();
+     });
+  } else{
+        btnClear.style.display = "block";
+        let box = state.mealList.map(function(entry, index){
+          let {meal, nutrition, servings} = entry;
+           return `
+<div class="flex items-center justify-between bg-gray-50 rounded-xl p-4 hover:bg-gray-100 transition-all">
+                        <div class="flex items-center gap-4">
+                            <img src="${meal.thumbnail}" alt="${meal.name}" class="w-14 h-14 rounded-xl object-cover">
+                            <div>
+                                <p class="font-semibold text-gray-900">${meal.name}</p>
+                                <p class="text-sm text-gray-500">
+                                ${servings} serving${servings > 1 ? "s" : ""}
+                                    <span class="mx-1">•</span>
+                                    <span class="text-emerald-600">Recipe</span>
+                                </p>
+                                <p class="text-xs text-gray-400 mt-1">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="text-right">
+                                <p class="text-lg font-bold text-emerald-600">${nutrition.perServing.calories.toFixed(1)}</p>
+                                <p class="text-xs text-gray-500">kcal</p>
+                            </div>
+                            <div class="hidden md:flex gap-2 text-xs text-gray-500">
+                                <span class="px-2 py-1 bg-blue-50 rounded">${nutrition.perServing.protein.toFixed(1)}g P</span>
+                                <span class="px-2 py-1 bg-amber-50 rounded">${nutrition.perServing.carbs.toFixed(1)}g C</span>
+                                <span class="px-2 py-1 bg-purple-50 rounded">${nutrition.perServing.fat.toFixed(1)}g F</span>
+                            </div>
+                            <button class="remove-foodlog-item text-gray-400 hover:text-red-500 transition-all p-2" data-index="${index}">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                    </div>
+`;
+        }).join(" ");
+        document.getElementById("logged-items-list").innerHTML = box;
+
+  }
+        // remove one logged item button handelling 
+        let btnRemove = document.querySelectorAll(".remove-foodlog-item");
+        btnRemove.forEach(function(btn){
+            btn.addEventListener("click", function(){
+              state.mealList.splice(btn.dataset.index, 1);
+              saveMealList();
+              addMeal();
+              todayNutrition();
+              showToast("Item removed from log");
+            });
+        });
+
+      todayNutrition();
+      renderWeeklyOverview()
+}
+
+// Calculates daily macro totals from state.mealList,
+export function todayNutrition() {
+  // select elements to update
+    let calories = document.getElementById("calories")
+    let caloriesPercentage = document.getElementById("calories-percentage")
+    let protein = document.getElementById("protein")
+    let proteinPercentage = document.getElementById("protein-percentage")
+    let carbs = document.getElementById("carbs")
+    let carbsPercentage = document.getElementById("carbs-percentage")
+    let fat = document.getElementById("fat")
+    let fatPercentage = document.getElementById("fat-percentage")
+
+    let caloriesBar = document.getElementById("calories-bar")
+    let proteinBar = document.getElementById("protein-bar")
+    let carbsBar = document.getElementById("carbs-bar")
+    let fatBar = document.getElementById("fat-bar")
+
+    let totalKcal = 0
+    let totalProtein = 0
+    let totalCarbs = 0
+    let totalFat = 0
+  // loop through state.mealList and sum up the nutrition values
+    state.mealList.forEach(function (item) {
+        totalKcal += item.nutrition.perServing.calories
+        totalProtein += item.nutrition.perServing.protein
+        totalCarbs += item.nutrition.perServing.carbs
+        totalFat += item.nutrition.perServing.fat
+    })
+
+    calories.textContent = `${totalKcal.toFixed(0)} kcal`
+    protein.textContent = `${totalProtein.toFixed(0)} g`
+    carbs.textContent = `${totalCarbs.toFixed(0)} g`
+    fat.textContent = `${totalFat.toFixed(0)} g`
+
+    let calculateCaloriesPercentage = `${Math.round((totalKcal / 2000) * 100)}%`
+    let calculateProteinPercentage = `${Math.round((totalProtein / 50) * 100)}%`
+    let calculateCarbsPercentage = `${Math.round((totalCarbs / 250) * 100)}%`
+    let calculateFatPercentage = `${Math.round((totalFat / 65) * 100)}%`
+    // Target Goal Comparison & Warning Thresholds
+    if (totalKcal > 2000) {
+        caloriesPercentage.textContent = "100%"
+        caloriesBar.style.width = "100%"
+        calories.classList.replace("text-emerald-600", "text-red-500")
+        caloriesPercentage.classList.replace("text-emerald-600", "text-red-500")
+        caloriesBar.classList.replace("bg-emerald-500", "bg-red-500")
+    } else {
+        calories.classList.remove("text-red-500")
+        calories.classList.add("text-emerald-600")
+        caloriesPercentage.classList.remove("text-red-500")
+        caloriesPercentage.classList.add("text-emerald-600")
+        caloriesBar.classList.remove("bg-red-500")
+        caloriesBar.classList.add("bg-emerald-500")
+        caloriesPercentage.textContent = calculateCaloriesPercentage
+        caloriesBar.style.width = calculateCaloriesPercentage
+    }
+
+    if (totalProtein > 50) {
+        proteinPercentage.textContent = "100%"
+        proteinBar.style.width = "100%"
+        protein.classList.replace("text-blue-600", "text-red-500")
+        proteinPercentage.classList.replace("text-blue-600", "text-red-500")
+        proteinBar.classList.replace("bg-blue-500", "bg-red-500")
+    } else {
+        protein.classList.remove("text-red-500")
+        protein.classList.add("text-blue-600")
+        proteinPercentage.classList.remove("text-red-500")
+        proteinPercentage.classList.add("text-blue-600")
+        proteinBar.classList.remove("bg-red-500")
+        proteinBar.classList.add("bg-blue-500")
+        proteinPercentage.textContent = calculateProteinPercentage
+        proteinBar.style.width = calculateProteinPercentage
+    }
+
+    if (totalCarbs > 250) {
+        carbsPercentage.textContent = "100%"
+        carbsBar.style.width = "100%"
+        carbs.classList.replace("text-amber-600", "text-red-500")
+        carbsPercentage.classList.replace("text-amber-600", "text-red-500")
+        carbsBar.classList.replace("bg-amber-500", "bg-red-500")
+    } else {
+        carbs.classList.remove("text-red-500")
+        carbs.classList.add("text-amber-600")
+        carbsPercentage.classList.remove("text-red-500")
+        carbsPercentage.classList.add("text-amber-600")
+        carbsBar.classList.remove("bg-red-500")
+        carbsBar.classList.add("bg-amber-500")
+        carbsPercentage.textContent = calculateCarbsPercentage
+        carbsBar.style.width = calculateCarbsPercentage
+    }
+
+    if (totalFat > 65) {
+        fatPercentage.textContent = "100%"
+        fatBar.style.width = "100%"
+        fat.classList.replace("text-purple-600", "text-red-500")
+        fatPercentage.classList.replace("text-purple-600", "text-red-500")
+        fatBar.classList.replace("bg-purple-500", "bg-red-500")
+    } else {
+        fat.classList.remove("text-red-500")
+        fat.classList.add("text-purple-600")
+        fatPercentage.classList.remove("text-red-500")
+        fatPercentage.classList.add("text-purple-600")
+        fatBar.classList.remove("bg-red-500")
+        fatBar.classList.add("bg-purple-500")
+        fatPercentage.textContent = calculateFatPercentage
+        fatBar.style.width = calculateFatPercentage
+    }
+}
+
+// Weekly Overview Chart (Food Log page)
+export function renderWeeklyOverview() {
+    let today = new Date()
+
+    let totalWeekKcal = 0
+    let totalWeekItems = 0
+    let daysOnGoal = 0
+    let dailyGoal = 2000
+  // get the last 7 days including today (Backwards loop from today)
+    let weekDays = []
+    for (let i = 6; i >= 0; i--) {
+        let d = new Date(today)
+        d.setDate(today.getDate() - i)
+        weekDays.push(d)
+    }
+    // check from appState for each day, get the total calories and items logged, and render the weekly overview chart
+    let box = weekDays.map(function (d) {
+        let isToday = d.toDateString() === today.toDateString()
+        let kcal = getKcalForDate(d)
+        let itemsCount = getItemsCountForDate(d)
+        let dayName = d.toLocaleDateString("en-US", { weekday: "short" })
+
+        totalWeekKcal += kcal
+        totalWeekItems += itemsCount
+        if (kcal > 0 && kcal <= dailyGoal) {
+            daysOnGoal++
+        }
+
+        return `
+            <div class="text-center ${isToday ? "bg-indigo-100 rounded-xl" : ""}">
+                <p class="text-xs text-gray-500 mb-1">${dayName}</p>
+                <p class="text-sm font-medium text-gray-900">${d.getDate()}</p>
+                <div class="mt-2 ${kcal > 0 ? "text-gray-900" : "text-gray-300"}">
+                    <p class="text-lg font-bold">${kcal}</p>
+                    <p class="text-xs">kcal</p>
+                    <p class="text-xs text-gray-400">${itemsCount} items</p>
+                </div>
+            </div>
+        `
+    }).join(" ")
+
+    document.getElementById("weekly-overview").innerHTML = box
+    // last section of the weekly overview chart, showing the average calories, total items, and days on goal
+    let weeklyAverage = Math.round(totalWeekKcal / 7)
+
+    document.getElementById("weekly-average").textContent = `${weeklyAverage} kcal`
+    document.getElementById("total-items-week").textContent = `${totalWeekItems} items`
+    document.getElementById("days-on-goal").textContent = `${daysOnGoal} / 7`
+}
