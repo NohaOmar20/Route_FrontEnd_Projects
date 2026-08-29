@@ -22,7 +22,10 @@ let taskpriority = document.querySelector("#task-priority") as HTMLSelectElement
 let taskduedate = document.querySelector("#task-due-date") as HTMLInputElement;
 let taskdescription = document.querySelector("#task-description") as HTMLTextAreaElement;
 let submitbtn = document.querySelector("#submit-btn") as HTMLButtonElement;
-let toDoCol = document.querySelector("#tasks-todo") as HTMLElement;
+let toDoCol = document.querySelector("#tasksTodo") as HTMLElement;
+let inProgressCol = document.querySelector("#tasksInProgress") as HTMLElement;
+let completedCol = document.querySelector("#tasksCompleted") as HTMLElement;
+
 let allTasks: ITask[] = loadDate();
 // Show the modal when the add task button is clicked
 addtaskbtn?.addEventListener("click", () => {
@@ -94,20 +97,71 @@ function createCard(task: ITask) : HTMLElement {
         
         <!-- Action Buttons -->
         <div class="flex flex-wrap gap-2">
-          
-        <button class="status-btn text-[11px] px-3 py-2 rounded-lg font-semibold transition-all duration-200 flex items-center gap-1.5 hover:scale-105 active:scale-95 bg-amber-100 text-amber-700 hover:bg-amber-200" data-task-id="${task.id}" data-status="${task.status}" fdprocessedid="r9wkbq">
-          <i class="fa-solid fa-play pointer-events-none"></i> <span class="pointer-events-none">Start</span>
+          ${task.status ==0? 
+            `<button class="status-btn text-[11px] px-3 py-2 rounded-lg font-semibold transition-all duration-200 flex items-center gap-1.5 hover:scale-105 active:scale-95 bg-amber-100 text-amber-700 hover:bg-amber-200" data-task-id="${task.id}" data-status="${task.status}" fdprocessedid="r9wkbq">
+          <i class="fa-solid fa-play pointer-events-none"></i> <span class="pointer-events-none">
+          Start
+          </span>
         </button>
       
         <button class="status-btn text-[11px] px-3 py-2 rounded-lg font-semibold transition-all duration-200 flex items-center gap-1.5 hover:scale-105 active:scale-95 bg-emerald-100 text-emerald-700 hover:bg-emerald-200" data-task-id="${task.id}" data-status="${task.status}" fdprocessedid="23250e">
-          <i class="fa-solid fa-check pointer-events-none"></i> <span class="pointer-events-none">Complete</span>
+          <i class="fa-solid fa-check pointer-events-none"></i> <span class="pointer-events-none">
+          Complete
+          </span>
+        </button>`: ""
+          }
+
+           ${task.status ==2? 
+            `<button class="status-btn text-[11px] px-3 py-2 rounded-lg font-semibold transition-all duration-200 flex items-center gap-1.5 hover:scale-105 active:scale-95 bg-amber-100 text-amber-700 hover:bg-amber-200" data-task-id="${task.id}" data-status="${task.status}" fdprocessedid="r9wkbq">
+          <i class="fa-solid fa-play pointer-events-none"></i> <span class="pointer-events-none">
+          To Do
+          </span>
         </button>
+      
+        <button class="status-btn text-[11px] px-3 py-2 rounded-lg font-semibold transition-all duration-200 flex items-center gap-1.5 hover:scale-105 active:scale-95 bg-emerald-100 text-emerald-700 hover:bg-emerald-200" data-task-id="${task.id}" data-status="${task.status}" fdprocessedid="23250e">
+          <i class="fa-solid fa-check pointer-events-none"></i> <span class="pointer-events-none">
+          Start
+          </span>
+        </button>`: ""
+          }
+
+            ${task.status ==1? 
+            `<button class="status-btn text-[11px] px-3 py-2 rounded-lg font-semibold transition-all duration-200 flex items-center gap-1.5 hover:scale-105 active:scale-95 bg-amber-100 text-amber-700 hover:bg-amber-200" data-task-id="${task.id}" data-status="${task.status}" fdprocessedid="r9wkbq">
+          <i class="fa-solid fa-play pointer-events-none"></i> <span class="pointer-events-none">
+          To Do
+          </span>
+        </button>
+      
+        <button class="status-btn text-[11px] px-3 py-2 rounded-lg font-semibold transition-all duration-200 flex items-center gap-1.5 hover:scale-105 active:scale-95 bg-emerald-100 text-emerald-700 hover:bg-emerald-200" data-task-id="${task.id}" data-status="${task.status}" fdprocessedid="23250e">
+          <i class="fa-solid fa-check pointer-events-none"></i> <span class="pointer-events-none">
+          Complete
+          </span>
+        </button>`: ""
+          }
+        
       
         </div>
       </div>
     `;
+    const statusBtns = card.querySelectorAll(".status-btn") ;
+    statusBtns?.forEach((btn) => {
+    btn.addEventListener("click", (e: Event) => {
+      const targetBtn = e.currentTarget as HTMLButtonElement;
+      const taskId = Number(targetBtn.dataset.taskId);
+      const newStatus = Number(targetBtn.dataset.status) as Status;
+      changeStatus(taskId, newStatus);
+          
+    });
+  });
     return card;
 
+}
+
+function changeStatus(id: number, status: Status) {
+  const task = allTasks.find((t) => t.id === id);
+  task!.status = status;
+  saveData();
+ 
 }
 // when click submit button, create a new task and add it to the allTasks array
 submitbtn?.addEventListener("click", (e: Event) => {
@@ -125,10 +179,13 @@ submitbtn?.addEventListener("click", (e: Event) => {
     allTasks.push(task);
     saveData();
     console.log(allTasks);
+    closeModal();
 
 });
 
-// function closeModal() {}
+function closeModal() {
+    modaloverlay?.classList.add("hidden");
+}
 // load data from local storage
 function loadDate(): ITask[] {
     return localStorage.getItem("tasks") ? JSON.parse(localStorage.getItem("tasks") || "[]") : [];
@@ -143,10 +200,18 @@ function saveData() {
 // render tasks in the toDoCol from the allTasks array (createcard function is used to create the card element for each task)
 function renderTasks() {
     allTasks.forEach((task) => {
+      toDoCol.innerHTML = "";
+      inProgressCol.innerHTML = "";
+      completedCol.innerHTML = "";
        let currentCard = createCard(task);
-        toDoCol?.appendChild(createCard(task));
+       if (task.status == 0) 
+        toDoCol?.appendChild(currentCard);
+      else if (task.status == 1) 
+        inProgressCol?.appendChild(currentCard);
+      else if (task.status == 2) 
+        completedCol?.appendChild(currentCard);
     });
-    
+   
 }
 
 renderTasks();
