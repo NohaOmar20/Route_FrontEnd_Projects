@@ -33,135 +33,80 @@ addtaskbtn?.addEventListener("click", () => {
 });
 
 // Create a card element for a task
-function createCard(task: ITask) : HTMLElement {
+function createCard(task: ITask): HTMLElement {
     const card = document.createElement("div");
-    card.innerHTML=`
-    <div class="group bg-white rounded-xl p-4 shadow-sm border border-slate-100 hover:shadow-md hover:border-slate-200 transition-all duration-200 ring-2 ring-red-100 border-red-200 " data-task-id="task-1787386048904-x9j6tmz">
-        <!-- Top Bar -->
+    card.innerHTML = `
+    <div class="group bg-white rounded-xl p-4 shadow-sm border border-slate-100 hover:shadow-md hover:border-slate-200 transition-all duration-200 ring-2 ring-red-100 border-red-200">
+        <!-- Top Bar & Title setup -->
         <div class="flex items-center justify-between mb-3">
           <div class="flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-slate-300"></span>
-            <span class="text-[10px] font-medium text-slate-400 uppercase tracking-wider">#003</span>
-          </div>
-          <div class="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-            <button class="edit-btn text-slate-400 hover:text-indigo-500 hover:bg-indigo-50 w-7 h-7 rounded-lg flex items-center justify-center transition-colors" data-task-id="task-1787386048904-x9j6tmz" title="Edit task" fdprocessedid="jmjl0e">
-              <i class="fa-solid fa-pen text-xs pointer-events-none"></i>
-            </button>
-            <button class="delete-btn text-slate-400 hover:text-red-500 hover:bg-red-50 w-7 h-7 rounded-lg flex items-center justify-center transition-colors" data-task-id="task-1787386048904-x9j6tmz" title="Delete task" fdprocessedid="nze62d">
-              <i class="fa-solid fa-trash-can text-xs pointer-events-none"></i>
-            </button>
+            <span class="text-[10px] font-medium text-slate-400 uppercase tracking-wider">#${task.id.toString().slice(-3)}</span>
           </div>
         </div>
 
-        <!-- Title -->
-        <h3 class="font-semibold text-slate-800 mb-2 leading-snug ">
-            ${task.title}
-        </h3>
+        <h3 class="font-semibold text-slate-800 mb-2 leading-snug">${task.title}</h3>
 
-        <!-- Description -->
-        
-
-        <!-- Tags Row -->
         <div class="flex flex-wrap items-center gap-2 mb-4">
-          <!-- Priority Badge -->
           <span class="bg-amber-50 text-amber-600 text-[10px] font-semibold px-2 py-1 rounded-full flex items-center gap-1.5 uppercase tracking-wide">
             <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
             ${task.priority}
           </span>
-          
-          
-            <span class="bg-red-100 text-red-600 text-[10px] font-semibold px-2 py-1 rounded-full uppercase tracking-wide flex items-center gap-1">
-              <i class="fa-solid fa-triangle-exclamation"></i>
-              Overdue
-            </span>
-          
-          
-          
-          
-          
         </div>
 
-        <!-- Meta Info -->
-        <div class="flex items-center gap-3 text-xs text-slate-400 pb-3 mb-3 border-b border-slate-100">
-          
-            <div class="flex items-center gap-1.5 text-red-500">
-              <i class="fa-regular fa-calendar"></i>
-              <span>Aug 27</span>
-            </div>
-          
-          <div class="flex items-center gap-1.5" title="Created 8/22/2026, 11:07:28 AM">
-            <i class="fa-regular fa-clock"></i>
-            <span>5d ago</span>
-          </div>
-        </div>
-        
         <!-- Action Buttons -->
         <div class="flex flex-wrap gap-2">
-          ${task.status ==0? 
-            `<button class="status-btn text-[11px] px-3 py-2 rounded-lg font-semibold transition-all duration-200 flex items-center gap-1.5 hover:scale-105 active:scale-95 bg-amber-100 text-amber-700 hover:bg-amber-200" data-task-id="${task.id}" data-status="${task.status}" fdprocessedid="r9wkbq">
-          <i class="fa-solid fa-play pointer-events-none"></i> <span class="pointer-events-none">
-          Start
-          </span>
-        </button>
-      
-        <button class="status-btn text-[11px] px-3 py-2 rounded-lg font-semibold transition-all duration-200 flex items-center gap-1.5 hover:scale-105 active:scale-95 bg-emerald-100 text-emerald-700 hover:bg-emerald-200" data-task-id="${task.id}" data-status="${task.status}" fdprocessedid="23250e">
-          <i class="fa-solid fa-check pointer-events-none"></i> <span class="pointer-events-none">
-          Complete
-          </span>
-        </button>`: ""
-          }
+          ${task.status === Status.toDo ? `
+            <button class="status-btn text-[11px] px-3 py-2 rounded-lg font-semibold bg-amber-100 text-amber-700" 
+                    data-task-id="${task.id}" data-target-status="${Status.inProgress}">
+              <i class="fa-solid fa-play pointer-events-none"></i> Start
+            </button>
+            <button class="status-btn text-[11px] px-3 py-2 rounded-lg font-semibold bg-emerald-100 text-emerald-700"
+                    data-task-id="${task.id}" data-target-status="${Status.Completed}">
+              <i class="fa-solid fa-check pointer-events-none"></i> Complete
+            </button>
+          ` : ""}
 
-           ${task.status ==2? 
-            `<button class="status-btn text-[11px] px-3 py-2 rounded-lg font-semibold transition-all duration-200 flex items-center gap-1.5 hover:scale-105 active:scale-95 bg-amber-100 text-amber-700 hover:bg-amber-200" data-task-id="${task.id}" data-status="${task.status}" fdprocessedid="r9wkbq">
-          <i class="fa-solid fa-play pointer-events-none"></i> <span class="pointer-events-none">
-          To Do
-          </span>
-        </button>
-      
-        <button class="status-btn text-[11px] px-3 py-2 rounded-lg font-semibold transition-all duration-200 flex items-center gap-1.5 hover:scale-105 active:scale-95 bg-emerald-100 text-emerald-700 hover:bg-emerald-200" data-task-id="${task.id}" data-status="${task.status}" fdprocessedid="23250e">
-          <i class="fa-solid fa-check pointer-events-none"></i> <span class="pointer-events-none">
-          Start
-          </span>
-        </button>`: ""
-          }
+          ${task.status === Status.inProgress ? `
+            <button class="status-btn text-[11px] px-3 py-2 rounded-lg font-semibold bg-amber-100 text-amber-700"
+                    data-task-id="${task.id}" data-target-status="${Status.toDo}">
+              <i class="fa-solid fa-rotate-left pointer-events-none"></i> To Do
+            </button>
+            <button class="status-btn text-[11px] px-3 py-2 rounded-lg font-semibold bg-emerald-100 text-emerald-700" 
+                    data-task-id="${task.id}" data-target-status="${Status.Completed}">
+              <i class="fa-solid fa-check pointer-events-none"></i> Complete
+            </button>
+          ` : ""}
 
-            ${task.status ==1? 
-            `<button class="status-btn text-[11px] px-3 py-2 rounded-lg font-semibold transition-all duration-200 flex items-center gap-1.5 hover:scale-105 active:scale-95 bg-amber-100 text-amber-700 hover:bg-amber-200" data-task-id="${task.id}" data-status="${task.status}" fdprocessedid="r9wkbq">
-          <i class="fa-solid fa-play pointer-events-none"></i> <span class="pointer-events-none">
-          To Do
-          </span>
-        </button>
-      
-        <button class="status-btn text-[11px] px-3 py-2 rounded-lg font-semibold transition-all duration-200 flex items-center gap-1.5 hover:scale-105 active:scale-95 bg-emerald-100 text-emerald-700 hover:bg-emerald-200" data-task-id="${task.id}" data-status="${task.status}" fdprocessedid="23250e">
-          <i class="fa-solid fa-check pointer-events-none"></i> <span class="pointer-events-none">
-          Complete
-          </span>
-        </button>`: ""
-          }
-        
-      
+          ${task.status === Status.Completed ? `
+            <button class="status-btn text-[11px] px-3 py-2 rounded-lg font-semibold bg-amber-100 text-amber-700"
+                    data-task-id="${task.id}" data-target-status="${Status.toDo}">
+              <i class="fa-solid fa-rotate-left pointer-events-none"></i> To Do
+            </button>
+          ` : ""}
         </div>
       </div>
     `;
-    const statusBtns = card.querySelectorAll(".status-btn") ;
-    statusBtns?.forEach((btn) => {
-    btn.addEventListener("click", (e: Event) => {
-      const targetBtn = e.currentTarget as HTMLButtonElement;
-      const taskId = Number(targetBtn.dataset.taskId);
-      const newStatus = Number(targetBtn.dataset.status) as Status;
-      changeStatus(taskId, newStatus);
-          
-    });
-  });
-    return card;
 
+    const statusBtns = card.querySelectorAll(".status-btn");
+    statusBtns.forEach((btn) => {
+        btn.addEventListener("click", (e: Event) => {
+            const targetBtn = e.currentTarget as HTMLButtonElement;
+            const taskId = Number(targetBtn.dataset.taskId);
+            const targetStatus = Number(targetBtn.dataset.targetStatus) as Status;
+            changeStatus(taskId, targetStatus);
+        });
+    });
+
+    return card;
 }
 
 function changeStatus(id: number, status: Status) {
-  const task = allTasks.find((t) => t.id === id);
-  task!.status = status;
-  saveData();
- 
+    const task = allTasks.find((t) => t.id === id);
+    if (task) {
+        task.status = status;
+        saveData(); // Triggers localStorage update and re-renders columns
+    }
 }
 // when click submit button, create a new task and add it to the allTasks array
 submitbtn?.addEventListener("click", (e: Event) => {
@@ -199,19 +144,22 @@ function saveData() {
 
 // render tasks in the toDoCol from the allTasks array (createcard function is used to create the card element for each task)
 function renderTasks() {
+    // Clear all columns once before rendering
+    if (toDoCol) toDoCol.innerHTML = "";
+    if (inProgressCol) inProgressCol.innerHTML = "";
+    if (completedCol) completedCol.innerHTML = "";
+
     allTasks.forEach((task) => {
-      toDoCol.innerHTML = "";
-      inProgressCol.innerHTML = "";
-      completedCol.innerHTML = "";
-       let currentCard = createCard(task);
-       if (task.status == 0) 
-        toDoCol?.appendChild(currentCard);
-      else if (task.status == 1) 
-        inProgressCol?.appendChild(currentCard);
-      else if (task.status == 2) 
-        completedCol?.appendChild(currentCard);
+        const currentCard = createCard(task);
+
+        if (task.status === Status.toDo) {
+            toDoCol?.appendChild(currentCard);
+        } else if (task.status === Status.inProgress) {
+            inProgressCol?.appendChild(currentCard);
+        } else if (task.status === Status.Completed) {
+            completedCol?.appendChild(currentCard);
+        }
     });
-   
 }
 
 renderTasks();
