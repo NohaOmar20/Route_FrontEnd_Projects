@@ -142,6 +142,14 @@ function saveData() {
     renderTasks();
 }
 
+// Template HTML for the empty state message
+const emptyStateHTML=`
+<div class="flex flex-col items-center justify-center py-12 text-slate-400">
+    <i class="fa-regular fa-folder-open text-4xl mb-3 opacity-50"></i>
+    <p class="text-sm">No tasks yet</p>
+    <p class="text-xs mt-1">Click + to add one</p>
+  </div>
+`;
 // render tasks in the toDoCol from the allTasks array (createcard function is used to create the card element for each task)
 function renderTasks() {
     // Clear all columns once before rendering
@@ -149,17 +157,43 @@ function renderTasks() {
     if (inProgressCol) inProgressCol.innerHTML = "";
     if (completedCol) completedCol.innerHTML = "";
 
+    // track task counts for each column
+    let todoCount = 0;
+    let inProgressCount = 0;
+    let completedCount = 0;
     allTasks.forEach((task) => {
         const currentCard = createCard(task);
 
         if (task.status === Status.toDo) {
             toDoCol?.appendChild(currentCard);
+            todoCount++;
         } else if (task.status === Status.inProgress) {
             inProgressCol?.appendChild(currentCard);
+            inProgressCount++;
         } else if (task.status === Status.Completed) {
             completedCol?.appendChild(currentCard);
+            completedCount++;
         }
     });
+    // if the column is empty, display the empty state message
+    if (todoCount === 0 && toDoCol) {toDoCol.innerHTML = emptyStateHTML;}
+    if (inProgressCount === 0 && inProgressCol) {inProgressCol.innerHTML = emptyStateHTML;}
+    if (completedCount === 0 && completedCol) {completedCol.innerHTML = emptyStateHTML;}
+
+    // call the update function to update the task counts in the column headers
+    updateTaskCounts(todoCount, inProgressCount, completedCount);
+}
+function updateTaskCounts(todoCount: number, inProgressCount: number, completedCount: number) {
+  const todoCountEl= document.querySelector("#todoCount") as HTMLElement;
+  const inProgressCountEl= document.querySelector("#inProgressCount") as HTMLElement;
+  const completedCountEl= document.querySelector("#completedCount") as HTMLElement;
+
+
+  if (todoCountEl) todoCountEl.textContent = `${todoCount} ${todoCount === 1 ? "task" : "tasks"}`;
+    if (inProgressCountEl) inProgressCountEl.textContent = `${inProgressCount} ${inProgressCount === 1 ? "task" : "tasks"}`;
+    if (completedCountEl) completedCountEl.textContent = `${completedCount} ${completedCount === 1 ? "task" : "tasks"}`;
 }
 
 renderTasks();
+
+// titleError dateError

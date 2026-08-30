@@ -54,7 +54,7 @@
             </label>
             <input type="text" id="task-title" name="title" placeholder="What needs to be done?" autocomplete="off"
               class="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all placeholder:text-slate-400">
-            <p id="title-error" class="text-red-500 text-xs mt-1 hidden"></p>
+            <p id="titleError" class="text-red-500 text-xs mt-1 hidden"></p>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
@@ -78,7 +78,7 @@
               </label>
               <input type="date" id="task-due-date" name="dueDate"
                 class="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all">
-              <p id="date-error" class="text-red-500 text-xs mt-1 hidden"></p>
+              <p id="dateError" class="text-red-500 text-xs mt-1 hidden"></p>
             </div>
           </div>
 
@@ -123,7 +123,7 @@
             </div>
             <div class="flex-1">
               <h2 class="font-semibold text-slate-800">To Do</h2>
-              <p class="text-xs text-slate-400">3 tasks</p>
+              <p id="todoCount"class="text-xs text-slate-400">0tasks</p>
             </div>
           </div>
           <div class="flex-1 flex flex-col gap-4 overflow-y-auto pr-1 -mr-1" 
@@ -142,7 +142,7 @@
             </div>
             <div class="flex-1">
               <h2 class="font-semibold text-slate-800">In Progress</h2>
-              <p class="text-xs text-slate-400">1 task</p>
+              <p id="inProgressCount" class="text-xs text-slate-400">0 task</p>
             </div>
           </div>
           <div class="flex-1 flex flex-col gap-4 overflow-y-auto pr-1 -mr-1"
@@ -161,15 +161,11 @@
             </div>
             <div class="flex-1">
               <h2 class="font-semibold text-slate-800">Completed</h2>
-              <p class="text-xs text-slate-400">0 tasks</p>
+              <p id="completedCount" class="text-xs text-slate-400">0 tasks</p>
             </div>
           </div>
-          <div class="flex-1 flex flex-col gap-4 overflow-y-auto pr-1 -mr-1" id="tasksCompleted">
-            <div class="flex flex-col items-center justify-center py-12 text-slate-400">
-              <i class="fa-regular fa-folder-open text-4xl mb-3 opacity-50"></i>
-              <p class="text-sm">No tasks yet</p>
-              <p class="text-xs mt-1">Click + to add one</p>
-            </div>
+          <div  class="flex-1 flex flex-col gap-4 overflow-y-auto pr-1 -mr-1" id="tasksCompleted">
+           
           </div>
         </div>
       </div>
