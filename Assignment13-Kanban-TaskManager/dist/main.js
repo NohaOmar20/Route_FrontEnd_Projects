@@ -15,11 +15,59 @@ let submitbtn = document.querySelector("#submit-btn");
 let toDoCol = document.querySelector("#tasksTodo");
 let inProgressCol = document.querySelector("#tasksInProgress");
 let completedCol = document.querySelector("#tasksCompleted");
+const titleError = document.querySelector("#titleError");
+const dateError = document.querySelector("#dateError");
 let allTasks = loadDate();
 // Show the modal when the add task button is clicked
 addtaskbtn?.addEventListener("click", () => {
     modaloverlay?.classList.remove("hidden");
 });
+function showError(input, errorEl, message) {
+    errorEl.textContent = message;
+    errorEl.classList.remove("hidden");
+    input.classList.add("border-red-500", "focus:ring-red-500");
+    input.classList.remove("border-slate-300", "focus:ring-indigo-500");
+}
+function clearError(input, errorEl) {
+    errorEl.textContent = "";
+    errorEl.classList.add("hidden");
+    input.classList.remove("border-red-500", "focus:ring-red-500");
+    input.classList.add("border-slate-300", "focus:ring-indigo-500");
+}
+function validateForm() {
+    let isValid = true;
+    // 1. Validate Title
+    const titleValue = tasktitle.value.trim();
+    if (titleValue === "") {
+        showError(tasktitle, titleError, "Task title is required");
+        isValid = false;
+    }
+    else if (titleValue.length < 3) {
+        showError(tasktitle, titleError, "Title must be at least 3 characters");
+        isValid = false;
+    }
+    else {
+        clearError(tasktitle, titleError);
+    }
+    // 2. Validate Due Date
+    const dateValue = taskduedate.value;
+    if (dateValue) {
+        const selectedDate = new Date(dateValue);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // Strip time component for accurate date comparison
+        if (selectedDate < today) {
+            showError(taskduedate, dateError, "Due date cannot be in the past");
+            isValid = false;
+        }
+        else {
+            clearError(taskduedate, dateError);
+        }
+    }
+    else {
+        clearError(taskduedate, dateError);
+    }
+    return isValid;
+}
 // Create a card element for a task
 function createCard(task) {
     const card = document.createElement("div");
@@ -96,6 +144,9 @@ function changeStatus(id, status) {
 // when click submit button, create a new task and add it to the allTasks array
 submitbtn?.addEventListener("click", (e) => {
     e.preventDefault();
+    if (!validateForm()) {
+        return;
+    }
     // creat object of type ITask
     const task = {
         id: Date.now(),
@@ -105,12 +156,33 @@ submitbtn?.addEventListener("click", (e) => {
         priority: taskpriority.value,
         status: 0,
     };
-    console.log("Submit button clicked");
     allTasks.push(task);
     saveData();
-    console.log(allTasks);
     closeModal();
+    resetForm();
 });
+// Live input listeners to clear red borders on correction
+tasktitle?.addEventListener("input", () => {
+    if (tasktitle.value.trim().length >= 3) {
+        clearError(tasktitle, titleError);
+    }
+});
+taskduedate?.addEventListener("change", () => {
+    const selectedDate = new Date(taskduedate.value);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    if (selectedDate >= today || !taskduedate.value) {
+        clearError(taskduedate, dateError);
+    }
+});
+// Reset inputs and error messages when closing/clearing modal
+function resetForm() {
+    tasktitle.value = "";
+    taskdescription.value = "";
+    taskduedate.value = "";
+    clearError(tasktitle, titleError);
+    clearError(taskduedate, dateError);
+}
 function closeModal() {
     modaloverlay?.classList.add("hidden");
 }
@@ -185,5 +257,4 @@ function updateTaskCounts(todoCount, inProgressCount, completedCount) {
 }
 renderTasks();
 export {};
-// titleError dateError
 //# sourceMappingURL=main.js.map

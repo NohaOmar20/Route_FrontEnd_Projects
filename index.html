@@ -83,7 +83,6 @@
     <!-- Desktop nav -->
     <ul class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
       <li><a href="#about" class="hover:text-lavender transition">About Me</a></li>
-      <li><a href="#academy" class="hover:text-lavender transition">Route Academy</a></li>
       <li><a href="#projects" class="hover:text-lavender transition">Projects</a></li>
       <li><a href="#contact" class="hover:text-lavender transition">Contact</a></li>
     </ul>
@@ -102,7 +101,6 @@
   <div id="mobile-menu" class="md:hidden overflow-hidden max-h-0 opacity-0">
     <ul class="flex flex-col gap-1 px-5 pb-5 text-sm font-semibold text-slate-700">
       <li><a href="#about" class="block py-2">About Me</a></li>
-      <li><a href="#academy" class="block py-2">Route Academy</a></li>
       <li><a href="#projects" class="block py-2">Projects</a></li>
       <li><a href="#contact" class="block py-2">Contact</a></li>
     </ul>
@@ -124,10 +122,12 @@
           <span class="text-lavender">one assignment at a time.</span>
         </h1>
         <p class="mt-6 text-slate-600 text-base sm:text-lg leading-relaxed max-w-xl">
-          I'm a web development student and front-end developer, trained hands-on at
-          Route Academy. This site is a running log of every assignment and practical
-          test I've shipped — real layouts, real bugs, real fixes — on the way to
-          becoming a dependable engineer.
+          I'm Noha, a Computer Science Engineering graduate now training hands-on
+          as a front-end developer at Route Academy. My path started in applied AI
+          research, a thesis on text-to-image synthesis, and led me here, to the
+          part of software I find most immediate: building things people can
+          actually click, scroll, and trust. This site is a running log of every
+          assignment and practical test I've shipped along the way.
         </p>
 
         <div class="mt-8 flex flex-wrap gap-4">
@@ -143,8 +143,8 @@
       <div class="flex justify-center md:justify-end">
         <div class="relative">
           <div class="absolute -inset-4 bg-lavender-soft rounded-full -z-10"></div>
-          <!-- REPLACE: swap src below with your own profile photo URL -->
-          <img src="https://via.placeholder.com/300"
+          
+          <img src="./images/Noha.png"
                alt="Profile Picture"
                class="rounded-full w-48 h-48 sm:w-60 sm:h-60 object-cover border-4 border-lavender shadow-lg">
           <span class="absolute -bottom-2 -left-2 bg-mint text-white text-xs font-bold px-4 py-2 rounded-full shadow">
@@ -156,37 +156,7 @@
     </div>
   </section>
 
-  <!-- ============ ROUTE ACADEMY SECTION ============ -->
-  <section id="academy" class="bg-lavender-soft py-16 sm:py-20">
-    <div class="max-w-6xl mx-auto px-5 sm:px-8">
-      <div class="grid md:grid-cols-[0.35fr_0.65fr] gap-10 items-center bg-cream-card rounded-3xl p-8 sm:p-12 shadow-sm border border-white">
 
-        <div class="flex justify-center md:justify-start">
-          <!-- REPLACE: swap src below with Route Academy's actual logo URL -->
-          <img src="https://via.placeholder.com/120"
-               alt="Route Academy Logo"
-               class="rounded-full w-24 h-24 sm:w-28 sm:h-28 object-cover border-2 border-mint shadow">
-        </div>
-
-        <div>
-          <span class="eyebrow-underline inline-block text-xs font-bold tracking-widest uppercase text-mint-deep pb-2 mb-3">
-            Training Ground
-          </span>
-          <h2 class="font-display text-2xl sm:text-3xl font-bold text-slate-900 mb-3">
-            Route Academy — Front-End Diploma
-          </h2>
-          <p class="text-slate-600 leading-relaxed">
-            Route Academy is where I built my foundation: weekly assignments, timed
-            practical exams, and real-world mini-projects covering HTML5, CSS3,
-            JavaScript, Bootstrap, and API integration. Every project on this page
-            was built, tested, and submitted as part of that hands-on curriculum —
-            not tutorials I followed, but problems I solved on a deadline.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
 
   <!-- ============ PROJECTS SECTION ============ -->
   <section id="projects" class="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20">
@@ -216,15 +186,15 @@
       <article class="project-card visible-first" data-type="assignment">
         <div class="bg-cream-card rounded-2xl overflow-hidden border border-slate-200 h-full flex flex-col">
           <!-- REPLACE: swap src with a screenshot of this project -->
-          <img src="https://via.placeholder.com/400x240" alt="Bakery landing page preview" class="rounded-t-2xl h-48 w-full object-cover">
+          <img src="https://via.placeholder.com/400x240" alt="NutriPlan nutrition tracker preview" class="rounded-t-2xl h-48 w-full object-cover">
           <div class="p-5 flex flex-col flex-1">
-            <span class="self-start bg-lavender-soft text-lavender text-xs font-bold px-3 py-1 rounded-full mb-3">Assignment</span>
-            <h3 class="font-display font-bold text-lg text-slate-900 mb-1.5">Bakery Landing Page</h3>
-            <p class="text-sm text-slate-600 mb-4 flex-1">A responsive bakery storefront template built from a Figma layout, focused on pixel-accurate spacing and mobile breakpoints.</p>
+            <span class="self-start bg-mint-soft text-mint-deep text-xs font-bold px-3 py-1 rounded-full mb-3">Test</span>
+            <h3 class="font-display font-bold text-lg text-slate-900 mb-1.5">NutriPlan — Nutrition Tracker</h3>
+            <p class="text-sm text-slate-600 mb-4 flex-1">JavaScript exam: a 3-page meal app with category/area filtering across 25 meals, detailed nutrition breakdowns, a daily food log, and a product scanner to log packaged foods by name or barcode — all persisted with LocalStorage.</p>
             <div class="flex flex-wrap gap-1.5 mb-4">
-              <span class="text-xs bg-mint-soft text-mint-deep font-semibold px-2.5 py-1 rounded-md">HTML5</span>
-              <span class="text-xs bg-mint-soft text-mint-deep font-semibold px-2.5 py-1 rounded-md">CSS3</span>
-              <span class="text-xs bg-mint-soft text-mint-deep font-semibold px-2.5 py-1 rounded-md">Bootstrap</span>
+              <span class="text-xs bg-lavender-soft text-lavender font-semibold px-2.5 py-1 rounded-md">JavaScript</span>
+              <span class="text-xs bg-lavender-soft text-lavender font-semibold px-2.5 py-1 rounded-md">REST API</span>
+              <span class="text-xs bg-lavender-soft text-lavender font-semibold px-2.5 py-1 rounded-md">LocalStorage</span>
             </div>
             <div class="flex gap-3 text-sm font-semibold">
               <!-- REPLACE: point to your live GitHub Pages link -->
@@ -240,18 +210,18 @@
         </div>
       </article>
 
-      <!-- Card 2: Test (always visible) -->
-      <article class="project-card visible-first" data-type="test">
+      <!-- Card 2: Assignment (always visible) -->
+      <article class="project-card visible-first" data-type="assignment">
         <div class="bg-cream-card rounded-2xl overflow-hidden border border-slate-200 h-full flex flex-col">
-          <img src="https://via.placeholder.com/400x240" alt="Yummy food app preview" class="rounded-t-2xl h-48 w-full object-cover">
+          <img src="https://via.placeholder.com/400x240" alt="Kanban task manager preview" class="rounded-t-2xl h-48 w-full object-cover">
           <div class="p-5 flex flex-col flex-1">
-            <span class="self-start bg-mint-soft text-mint-deep text-xs font-bold px-3 py-1 rounded-full mb-3">Test</span>
-            <h3 class="font-display font-bold text-lg text-slate-900 mb-1.5">Yummy — Recipe Finder</h3>
-            <p class="text-sm text-slate-600 mb-4 flex-1">Timed practical exam: fetch and render recipes from a public API with search, filtering, and a loading state, built under a 3-hour limit.</p>
+            <span class="self-start bg-lavender-soft text-lavender text-xs font-bold px-3 py-1 rounded-full mb-3">Assignment</span>
+            <h3 class="font-display font-bold text-lg text-slate-900 mb-1.5">Kanban Task Manager</h3>
+            <p class="text-sm text-slate-600 mb-4 flex-1">A full CRUD task board built in TypeScript and styled with Tailwind CSS. Tasks move through Todo, In Progress, and Complete via action buttons, with state persisted to LocalStorage.</p>
             <div class="flex flex-wrap gap-1.5 mb-4">
-              <span class="text-xs bg-lavender-soft text-lavender font-semibold px-2.5 py-1 rounded-md">JavaScript</span>
-              <span class="text-xs bg-lavender-soft text-lavender font-semibold px-2.5 py-1 rounded-md">Fetch API</span>
-              <span class="text-xs bg-lavender-soft text-lavender font-semibold px-2.5 py-1 rounded-md">CSS3</span>
+              <span class="text-xs bg-mint-soft text-mint-deep font-semibold px-2.5 py-1 rounded-md">TypeScript</span>
+              <span class="text-xs bg-mint-soft text-mint-deep font-semibold px-2.5 py-1 rounded-md">Tailwind CSS</span>
+              <span class="text-xs bg-mint-soft text-mint-deep font-semibold px-2.5 py-1 rounded-md">LocalStorage</span>
             </div>
             <div class="flex gap-3 text-sm font-semibold">
               <a href="#" class="inline-flex items-center gap-1.5 text-lavender hover:underline">
@@ -268,14 +238,15 @@
       <!-- Card 3: Assignment (always visible) -->
       <article class="project-card visible-first" data-type="assignment">
         <div class="bg-cream-card rounded-2xl overflow-hidden border border-slate-200 h-full flex flex-col">
-          <img src="https://via.placeholder.com/400x240" alt="Portfolio grid preview" class="rounded-t-2xl h-48 w-full object-cover">
+          <img src="https://via.placeholder.com/400x240" alt="Cosmos NASA API explorer preview" class="rounded-t-2xl h-48 w-full object-cover">
           <div class="p-5 flex flex-col flex-1">
             <span class="self-start bg-lavender-soft text-lavender text-xs font-bold px-3 py-1 rounded-full mb-3">Assignment</span>
-            <h3 class="font-display font-bold text-lg text-slate-900 mb-1.5">CSS Grid Portfolio Layout</h3>
-            <p class="text-sm text-slate-600 mb-4 flex-1">A magazine-style portfolio grid built with pure CSS Grid — no frameworks — to practice responsive column spans and gap control.</p>
+            <h3 class="font-display font-bold text-lg text-slate-900 mb-1.5">Cosmos — NASA API Explorer</h3>
+            <p class="text-sm text-slate-600 mb-4 flex-1">Integrates NASA's APOD API for dynamic search by launch date, planet, and event, rendering live astronomical data like mass and gravity using async/await and DOM manipulation.</p>
             <div class="flex flex-wrap gap-1.5 mb-4">
-              <span class="text-xs bg-mint-soft text-mint-deep font-semibold px-2.5 py-1 rounded-md">HTML5</span>
-              <span class="text-xs bg-mint-soft text-mint-deep font-semibold px-2.5 py-1 rounded-md">CSS Grid</span>
+              <span class="text-xs bg-mint-soft text-mint-deep font-semibold px-2.5 py-1 rounded-md">JavaScript</span>
+              <span class="text-xs bg-mint-soft text-mint-deep font-semibold px-2.5 py-1 rounded-md">NASA API</span>
+              <span class="text-xs bg-mint-soft text-mint-deep font-semibold px-2.5 py-1 rounded-md">Async/Await</span>
             </div>
             <div class="flex gap-3 text-sm font-semibold">
               <a href="#" class="inline-flex items-center gap-1.5 text-lavender hover:underline">
@@ -289,18 +260,18 @@
         </div>
       </article>
 
-      <!-- Card 4: Test (hidden until "Show All") -->
-      <article class="project-card hide-extra hide" data-type="test">
+      <!-- Card 4: Assignment (hidden until "Show All") -->
+      <article class="project-card hide-extra hide" data-type="assignment">
         <div class="bg-cream-card rounded-2xl overflow-hidden border border-slate-200 h-full flex flex-col">
-          <img src="https://via.placeholder.com/400x240" alt="Weather app preview" class="rounded-t-2xl h-48 w-full object-cover">
+          <img src="https://via.placeholder.com/400x240" alt="Quiz app preview" class="rounded-t-2xl h-48 w-full object-cover">
           <div class="p-5 flex flex-col flex-1">
-            <span class="self-start bg-mint-soft text-mint-deep text-xs font-bold px-3 py-1 rounded-full mb-3">Test</span>
-            <h3 class="font-display font-bold text-lg text-slate-900 mb-1.5">3-Day Weather Forecast</h3>
-            <p class="text-sm text-slate-600 mb-4 flex-1">JavaScript exam: pull live weather data by city name and render a 3-day forecast with icons and error handling for invalid input.</p>
+            <span class="self-start bg-lavender-soft text-lavender text-xs font-bold px-3 py-1 rounded-full mb-3">Assignment</span>
+            <h3 class="font-display font-bold text-lg text-slate-900 mb-1.5">Quiz App — OOP Trivia Game</h3>
+            <p class="text-sm text-slate-600 mb-4 flex-1">Built with OOP and modular JavaScript. Fetches live questions from Open Trivia DB, shuffles answers, runs a countdown timer, and plays sound feedback via the Web Audio API. High scores persist to LocalStorage.</p>
             <div class="flex flex-wrap gap-1.5 mb-4">
-              <span class="text-xs bg-lavender-soft text-lavender font-semibold px-2.5 py-1 rounded-md">JavaScript</span>
-              <span class="text-xs bg-lavender-soft text-lavender font-semibold px-2.5 py-1 rounded-md">AJAX</span>
-              <span class="text-xs bg-lavender-soft text-lavender font-semibold px-2.5 py-1 rounded-md">Bootstrap</span>
+              <span class="text-xs bg-mint-soft text-mint-deep font-semibold px-2.5 py-1 rounded-md">JavaScript</span>
+              <span class="text-xs bg-mint-soft text-mint-deep font-semibold px-2.5 py-1 rounded-md">OOP</span>
+              <span class="text-xs bg-mint-soft text-mint-deep font-semibold px-2.5 py-1 rounded-md">Web Audio API</span>
             </div>
             <div class="flex gap-3 text-sm font-semibold">
               <a href="#" class="inline-flex items-center gap-1.5 text-lavender hover:underline">
@@ -338,18 +309,18 @@
         </div>
       </article>
 
-      <!-- Card 6: Test (hidden until "Show All") -->
-      <article class="project-card hide-extra hide" data-type="test">
+      <!-- Card 6: Assignment (hidden until "Show All") -->
+      <article class="project-card hide-extra hide" data-type="assignment">
         <div class="bg-cream-card rounded-2xl overflow-hidden border border-slate-200 h-full flex flex-col">
-          <img src="https://via.placeholder.com/400x240" alt="Cosmos Space API preview" class="rounded-t-2xl h-48 w-full object-cover">
+          <img src="https://via.placeholder.com/400x240" alt="Personal portfolio site preview" class="rounded-t-2xl h-48 w-full object-cover">
           <div class="p-5 flex flex-col flex-1">
-            <span class="self-start bg-mint-soft text-mint-deep text-xs font-bold px-3 py-1 rounded-full mb-3">Test</span>
-            <h3 class="font-display font-bold text-lg text-slate-900 mb-1.5">Cosmos — NASA API Explorer</h3>
-            <p class="text-sm text-slate-600 mb-4 flex-1">Final practical exam: consume NASA's public API to display daily space imagery with a searchable date picker.</p>
+            <span class="self-start bg-lavender-soft text-lavender text-xs font-bold px-3 py-1 rounded-full mb-3">Assignment</span>
+            <h3 class="font-display font-bold text-lg text-slate-900 mb-1.5">Personal Portfolio Site</h3>
+            <p class="text-sm text-slate-600 mb-4 flex-1">Built with Tailwind CSS and Lucide Icons — scroll-spy navigation, a light/dark theme toggle with persisted color preference, a filterable skills section, and a project carousel.</p>
             <div class="flex flex-wrap gap-1.5 mb-4">
-              <span class="text-xs bg-lavender-soft text-lavender font-semibold px-2.5 py-1 rounded-md">JavaScript</span>
-              <span class="text-xs bg-lavender-soft text-lavender font-semibold px-2.5 py-1 rounded-md">REST API</span>
-              <span class="text-xs bg-lavender-soft text-lavender font-semibold px-2.5 py-1 rounded-md">CSS3</span>
+              <span class="text-xs bg-mint-soft text-mint-deep font-semibold px-2.5 py-1 rounded-md">JavaScript</span>
+              <span class="text-xs bg-mint-soft text-mint-deep font-semibold px-2.5 py-1 rounded-md">Tailwind CSS</span>
+              <span class="text-xs bg-mint-soft text-mint-deep font-semibold px-2.5 py-1 rounded-md">LocalStorage</span>
             </div>
             <div class="flex gap-3 text-sm font-semibold">
               <a href="#" class="inline-flex items-center gap-1.5 text-lavender hover:underline">
